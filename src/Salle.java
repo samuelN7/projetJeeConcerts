@@ -18,7 +18,7 @@ public class Salle {
 	String Ville;
 	String description;
 	
-	@ManyToMany
+	@ManyToMany(mappedBy="sallesFavorites")
 	Collection<Utilisateur> followers;
 	
 }
