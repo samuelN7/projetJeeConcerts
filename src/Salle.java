@@ -15,6 +15,15 @@ public class Salle {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	int id;
 	String nom;
+	String adresse;
+	String ville;
+	int capacite;
+	
+	@ManyToMany(mappedBy="sallesFavorites")
+	Collection<Utilisateur> followers;
+	@OneToMany(mappedBy="salle")
+	Collection<Evenement> evenements;
+	
 	public String getNom() {
 		return nom;
 	}
@@ -22,9 +31,7 @@ public class Salle {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-
-	String adresse;
-	String ville;
+	
 	public int getId() {
 		return id;
 	}
