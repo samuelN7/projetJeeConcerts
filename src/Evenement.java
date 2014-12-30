@@ -9,10 +9,14 @@ public class Evenement {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	int id;
-	int id_artiste;
-	int id_salle;
+	Artiste artiste;
+	Salle salle;
 	String titre;
 	String description;
 	int prix;
+	@ManyToMany
+	Collection<Utilisateur> inscris;
+	@ManyToMany
+	Collection<Utilisateur> inscrisNonCache;
 
 }
