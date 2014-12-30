@@ -16,7 +16,7 @@ public class Tournee {
     String description;
     @ManyToOne
     Artiste artiste;
-    @OneToMany
+    @OneToMany(mappedBy="tournee")
     Collection<Evenements> evenements;
     
 
