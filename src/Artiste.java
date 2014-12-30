@@ -9,23 +9,19 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 @Entity
-public class Artiste {
+public class Artiste extends Utilisateur {
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	int id;
-	
-	String nom_gerant;
-	String prenom_gerant;
-	String adresse_gerant;
-	String Ville_gerant;
-	String email_gerant;
 	String nom_groupe;
-	String motDePasse;
 	String description_groupe;
 	
 	@ManyToMany(mappedBy="artistesFavoris")
 	Collection<Utilisateur> followers;
+	
+	@OneToMany
+	Collection<Evenement> evenements;
+	
+	 @OneToMany
+	 Collection<Tournee> tournees;
 	
 	
 
