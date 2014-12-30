@@ -14,7 +14,7 @@ public class Artiste extends Utilisateur {
 	String nom_groupe;
 	String description_groupe;
 	
-	@ManyToMany
+	@ManyToMany(mappedBy="artistesFavoris")
 	Collection<Utilisateur> followers;
 	
 	@OneToMany(mappedBy="artiste")
