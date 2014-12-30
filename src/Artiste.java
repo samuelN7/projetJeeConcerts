@@ -14,13 +14,13 @@ public class Artiste extends Utilisateur {
 	String nom_groupe;
 	String description_groupe;
 	
-	@ManyToMany(mappedBy="artistesFavoris")
+	@ManyToMany
 	Collection<Utilisateur> followers;
 	
-	@OneToMany
+	@OneToMany(mappedBy="artiste")
 	Collection<Evenement> evenements;
 	
-	 @OneToMany
+	 @OneToMany(mappedBy="artiste")
 	 Collection<Tournee> tournees;
 	
 	
