@@ -22,13 +22,19 @@ public class Utilisateur {
 	String email;
 	String pseudo;
 	String motDePasse;
+	String description;
 	
-	@ManyToMany 
+	@ManyToMany
 	Collection<Artiste> artistesFavoris;
 	
 	@ManyToMany
 	Collection<Salle> sallesFavorites;
-		
+	
+	@ManyToMany(mappedBy="amis")
+	Collection<Utilisateur> amis;
+	
+	@ManyToMany(mappedBy="inscrisNonCache")
+	Collection<Utilisateur> inscrisNonCache;
 	
 	
 
