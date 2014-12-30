@@ -33,8 +33,11 @@ public class Utilisateur {
 	@ManyToMany(mappedBy="amis")
 	Collection<Utilisateur> amis;
 	
+	@ManyToMany(mappedBy="inscris")
+	Collection<Evenement> inscris;
+	
 	@ManyToMany(mappedBy="inscrisNonCache")
-	Collection<Utilisateur> inscrisNonCache;
+	Collection<Evenement> inscrisNonCache;
 	
 	
 
