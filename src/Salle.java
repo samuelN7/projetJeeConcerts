@@ -17,6 +17,7 @@ public class Salle {
 	String nom;
 	String adresse;
 	String ville;
+	String description;
 	int capacite;
 	
 	@ManyToMany(mappedBy="sallesFavorites")
@@ -72,9 +73,4 @@ public class Salle {
 		this.followers = followers;
 	}
 
-	String description;
-	
-	@ManyToMany(mappedBy="sallesFavorites")
-	Collection<Utilisateur> followers;
-	
 }
