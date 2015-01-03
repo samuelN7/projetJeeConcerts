@@ -14,6 +14,8 @@ public class Tournee {
     int id;
     String titre;
     String description;
+    DateTimeSyntax dateDebut;
+    DateTimeSyntax dateFin;
     @ManyToOne
     Artiste artiste;
     @OneToMany(mappedBy="tournee")

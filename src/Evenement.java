@@ -15,7 +15,8 @@ public class Evenement {
 	Salle salle;
 	String titre;
 	String description;
-	int prix
+	int prix;
+	DateTimeSyntax date;
 	@ManyToOne
 	Tournee tournee;
 	@ManyToMany
