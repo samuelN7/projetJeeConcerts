@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Connexion Utilisateur</title>
+		<link rel="stylesheet" href="styleConnexion.css" />
+	</head>
+	
+	<body>
+		<p> Veuillez entrer vos identifiants :</p>
+	
+		<form method="Get" action="Serv">
+			<label for="pseudo">Pseudo : </label> 
+			<input type="text" name="pseudo" id="pseudo" />
+			<br />
+			<label for="mdp">Mot De Passe : </label>
+			<input type="password" name="mdp" id="mdp"/>
+			<br />
+			<input type="submit" value="connexion"/>
+			<br />
+			<a href="" id=mdpLost> Mot de passe oublié ? </a>
+			<input type="hidden" name="op" value="connexion"/>
+		</form>
+	</body>
+</html>

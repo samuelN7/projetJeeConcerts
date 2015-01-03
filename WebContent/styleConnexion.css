@@ -1,0 +1,13 @@
+@CHARSET "utf-8";
+
+#pseudo
+{
+	margin-bottom: 2px;
+}
+
+#mdpLost
+{
+	text-decoration: underline;
+	font-style:italic;
+	font-size: small;
+}

@@ -1,16 +1,39 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Bienvenue sur notre site !</title>
-</head>
+	<head>
+		<meta charset="UTF-8">
+		<title>Bienvenue sur notre site !</title>
+		<link rel="stylesheet" href="styleAccueil.css" />
+	</head>
+	
 	<body>
-		<p>Bienvenue à tous sur le site qui vous permet de ne louper aucun événement de vos artiste préférés !</p>
+		<header id="header">
+			<nav id="nav">
+				<h3>Bienvenue sur notre site</h3>
+				<ul id="listePrincipale">
+					<li><a href="accueil.html" id=accueil>Accueil</a></li>
+					<li id="Artiste"> Artistes <img id="petiteFleche" src="petiteFleche.png" alt="petite flèche" height="5" width="9">
+						<ul id=genreArtiste>
+							<li><a href="" >Musique</a></li>
+							<li><a href="" >Danse</a></li>
+							<li><a href="" >Autres</a></li>	
+						</ul>
+					</li>
+					<li><a href="listeSalles.jsp">Salles</a></li>
+					<li><a href="Serv?op=listerUtilisateurs">Membres</a></li>
+				</ul>	
 		
-		<p>Vous n'êtes pas encore inscrit ? Ne perdez plus de temps, c'est par <a href="inscription.html">ici.</a></p>
+				<p id="descriptionSite"> Ne loupez aucun événement de vos artistes préférés ! <br />
+				Vous n'êtes pas encore inscrit ? Ne perdez plus de temps, c'est par <a href="inscription.html">ici.</a> <br />
+				Déjà incrit ? <a href=connexion.html>Connectez-vous !</a>
+				</p>
+			</nav>
+		</header>
 		
-		<p>Déjà incrit ? <a href=connection.html>Connectez-vous !</a> </p>
+		<article id="derniersEvenements">Faire la requête sql</article>
 		
-		<p><a href="Serv?op=listerUtilisateurs">Liste des utilisateurs</a></p>	
+		<article id="ArtistesDuMoment">Suggestion?</article>
+		
+		<script src="JsAccueil.js"></script>
 	</body>
 </html>
