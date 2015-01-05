@@ -1,4 +1,4 @@
-package projet_jee;
+package projetJeeConcerts;
 
 import java.util.Collection;
 
@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Salle {
@@ -19,12 +20,58 @@ public class Salle {
 	String ville;
 	String description;
 	int capacite;
+	int telephone;
 	
 	@ManyToMany(mappedBy="sallesFavorites")
 	Collection<Utilisateur> followers;
 	@OneToMany(mappedBy="salle")
 	Collection<Evenement> evenements;
 	
+	
+	
+	public Salle() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+
+	public int getTelephone() {
+		return telephone;
+	}
+
+
+
+	public void setTelephone(int telephone) {
+		this.telephone = telephone;
+	}
+
+
+
+	public int getCapacite() {
+		return capacite;
+	}
+
+
+
+	public void setCapacite(int capacite) {
+		this.capacite = capacite;
+	}
+
+
+
+	public Collection<Evenement> getEvenements() {
+		return evenements;
+	}
+
+
+
+	public void setEvenements(Collection<Evenement> evenements) {
+		this.evenements = evenements;
+	}
+
+
+
 	public String getNom() {
 		return nom;
 	}
