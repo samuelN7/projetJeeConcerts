@@ -18,6 +18,7 @@ public class Facade {
 	public Collection<Evenement> evenements;
 	public Collection<Artiste> artistes;
 	public Collection<Salle> salles;
+	public Collection<Tournee> tournees;
 	
 	
 	public Facade() {
@@ -25,6 +26,7 @@ public class Facade {
 		this.artistes = new LinkedList<Artiste>();
 		this.evenements = new LinkedList<Evenement>();
 		this.salles = new LinkedList<Salle>();
+		this.tournees = new LinkedList<Tournee>();
 	}
 	
 	public void ajoutUtilisateur(String nom, String prenom, String pseudo,
@@ -62,6 +64,15 @@ public class Facade {
 		l.setTelephone(telephone);
 		this.salles.add(l);
 	}
+	
+	public void ajoutTournee(Artiste artiste, DateTimeSyntax dateDebut, DateTimeSyntax dateFin, String titre){
+		Tournee t = new Tournee();
+		t.setArtiste(artiste);
+		t.setDateDebut(dateDebut);
+		t.setDateFin(dateFin);
+		t.setTitre(titre);
+		this.tournees.add(t);
+	}
 
 	public Collection<Utilisateur> getUtilisateurs() {
 		return utilisateurs;
@@ -73,5 +84,13 @@ public class Facade {
 
 	public Collection<Artiste> getArtistes() {
 		return artistes;
+	}
+	
+	public Collection<Salle> getSalles() {
+		return salles;
+	}
+	
+	public Collection<Tournee> getTournees() {
+		return tournees;
 	}
 }

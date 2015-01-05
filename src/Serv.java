@@ -51,6 +51,10 @@ public class Serv extends HttpServlet {
 			request.setAttribute("listeEvenements", facade.evenements);
 			request.getRequestDispatcher("listeEvenements.jsp").forward(request, response);
 		}
+		else if(op.equals("listerTournees")){
+			request.setAttribute("listeTournees", facade.tournees);
+			request.getRequestDispatcher("listeTournees.jsp").forward(request, response);
+		}
 	}
 
 	/**
