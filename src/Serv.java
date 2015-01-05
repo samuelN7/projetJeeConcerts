@@ -43,6 +43,10 @@ public class Serv extends HttpServlet {
 			request.setAttribute("listeSalles", facade.salles);
 			request.getRequestDispatcher("ListeSalle.jsp").forward(request, response);
 		}
+		else if(op.equals("listerArtistes")){
+			request.setAttribute("listeArtistes", facade.artistes);
+			request.getRequestDispatcher("listeArtistes.jsp").forward(request, response);
+		}
 	}
 
 	/**
