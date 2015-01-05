@@ -52,7 +52,7 @@ public class Facade {
 		Artiste a = new Artiste();
 		a.setNom(nom);
 		a.setPrenom(prenom);
-		a.setTypeArtiste(typeArtiste);
+		//a.setTypeArtiste(typeArtiste);
 		this.artistes.add(a);
 	}
 	

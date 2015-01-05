@@ -9,6 +9,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.print.attribute.DateTimeSyntax;
 
+@Entity
 public class Evenement {
 	
 	
