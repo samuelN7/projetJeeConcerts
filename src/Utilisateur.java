@@ -30,13 +30,13 @@ public class Utilisateur {
 	@ManyToMany
 	Collection<Salle> sallesFavorites;
 	
-	@ManyToMany(mappedBy="amis")
+	@ManyToMany
 	Collection<Utilisateur> amis;
 	
-	@ManyToMany(mappedBy="inscris")
+	@ManyToMany(mappedBy="inscrisE")
 	Collection<Evenement> inscris;
 	
-	@ManyToMany(mappedBy="inscrisNonCache")
+	@ManyToMany(mappedBy="inscrisNonCacheE")
 	Collection<Evenement> inscrisNonCache;
 	
 	

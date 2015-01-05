@@ -11,7 +11,7 @@ public class Artiste extends Utilisateur {
 	
 	String nom_groupe;
 	String description_groupe;
-	TypeArtiste typeArtiste ;
+	int typeArtiste ;
 	
 	@ManyToMany(mappedBy="artistesFavoris")
 	Collection<Utilisateur> followers;

@@ -27,9 +27,9 @@ public class Evenement {
 	@ManyToOne
 	Tournee tournee;
 	@ManyToMany
-	Collection<Utilisateur> inscris;
+	Collection<Utilisateur> inscrisE;
 	@ManyToMany
-	Collection<Utilisateur> inscrisNonCache;
+	Collection<Utilisateur> inscrisNonCacheE;
 	
 	
 	
@@ -86,17 +86,17 @@ public class Evenement {
 	public void setTournee(Tournee tournee) {
 		this.tournee = tournee;
 	}
-	public Collection<Utilisateur> getInscris() {
-		return inscris;
+	public Collection<Utilisateur> getInscrisE() {
+		return inscrisE;
 	}
-	public void setInscris(Collection<Utilisateur> inscris) {
-		this.inscris = inscris;
+	public void setInscrisE(Collection<Utilisateur> inscris) {
+		this.inscrisE = inscris;
 	}
-	public Collection<Utilisateur> getInscrisNonCache() {
-		return inscrisNonCache;
+	public Collection<Utilisateur> getInscrisNonCacheE() {
+		return inscrisNonCacheE;
 	}
 	public void setInscrisNonCache(Collection<Utilisateur> inscrisNonCache) {
-		this.inscrisNonCache = inscrisNonCache;
+		this.inscrisNonCacheE = inscrisNonCache;
 	}
 	
 	
