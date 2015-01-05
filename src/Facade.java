@@ -17,14 +17,14 @@ public class Facade {
 	public Collection<Utilisateur> utilisateurs;
 	public Collection<Evenement> evenements;
 	public Collection<Artiste> artistes;
-	public Collection<Salle> Salle;
+	public Collection<Salle> salles;
 	
 	
 	public Facade() {
 		this.utilisateurs = new LinkedList<Utilisateur>();
 		this.artistes = new LinkedList<Artiste>();
 		this.evenements = new LinkedList<Evenement>();
-		this.Salle = new LinkedList<Salle>();
+		this.salles = new LinkedList<Salle>();
 	}
 	
 	public void ajoutUtilisateur(String nom, String prenom, String pseudo,
@@ -40,27 +40,27 @@ public class Facade {
 	
 	public void ajoutEvenement(Salle salle, Artiste artiste, DateTimeSyntax date){
 		Evenement e = new Evenement();
-		this.evenements.add(e);
 		e.setSalle(salle);
 		e.setArtiste(artiste);
 		e.setDate(date);
+		this.evenements.add(e);
 	}
 	
 	public void ajoutArtiste(String nom, String prenom, TypeArtiste typeArtiste){
 		Artiste a = new Artiste();
-		this.artistes.add(a);
 		a.setNom(nom);
 		a.setPrenom(prenom);
 		a.setTypeArtiste(typeArtiste);
+		this.artistes.add(a);
 	}
 	
 	public void ajoutSalle(String adresse, String nom, int capacite, int telephone){
 		Salle l = new Salle();
-		this.Salle.add(l);
 		l.setAdresse(adresse);
 		l.setNom(nom);
 		l.setCapacite(capacite);
 		l.setTelephone(telephone);
+		this.salles.add(l);
 	}
 
 	public Collection<Utilisateur> getUtilisateurs() {
