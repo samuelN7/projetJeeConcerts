@@ -23,8 +23,54 @@ public class Tournee {
     Artiste artiste;
     @OneToMany(mappedBy="tournee")
     Collection<Evenement> evenements;
+      
     
-
-
-
+	public Tournee() {
+		
+	}
+	
+	
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getTitre() {
+		return titre;
+	}
+	public void setTitre(String titre) {
+		this.titre = titre;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public DateTimeSyntax getDateDebut() {
+		return dateDebut;
+	}
+	public void setDateDebut(DateTimeSyntax dateDebut) {
+		this.dateDebut = dateDebut;
+	}
+	public DateTimeSyntax getDateFin() {
+		return dateFin;
+	}
+	public void setDateFin(DateTimeSyntax dateFin) {
+		this.dateFin = dateFin;
+	}
+	public Artiste getArtiste() {
+		return artiste;
+	}
+	public void setArtiste(Artiste artiste) {
+		this.artiste = artiste;
+	}
+	public Collection<Evenement> getEvenements() {
+		return evenements;
+	}
+	public void setEvenements(Collection<Evenement> evenements) {
+		this.evenements = evenements;
+	}
 }
