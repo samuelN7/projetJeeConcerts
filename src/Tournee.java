@@ -1,4 +1,4 @@
-package projetJeeConcerts;
+package projet_jee;
 import java.util.Collection;
 
 import javax.persistence.Entity;

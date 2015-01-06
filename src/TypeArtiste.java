@@ -1,4 +1,4 @@
-package projetJeeConcerts;
+package projet_jee;
 
 public class TypeArtiste {
 	

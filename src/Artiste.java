@@ -1,12 +1,14 @@
-package projetJeeConcerts;
+package projet_jee;
 
 import java.util.Collection;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
+@DiscriminatorValue("artiste")
 public class Artiste extends Utilisateur {
 	
 	String nom_groupe;
@@ -31,13 +33,13 @@ public class Artiste extends Utilisateur {
 	
 	
 
-	public TypeArtiste getTypeArtiste() {
+	public int getTypeArtiste() {
 		return typeArtiste;
 	}
 
 
 
-	public void setTypeArtiste(TypeArtiste typeArtiste) {
+	public void setTypeArtiste(int typeArtiste) {
 		this.typeArtiste = typeArtiste;
 	}
 
