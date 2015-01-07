@@ -23,12 +23,12 @@ public class Tournee {
     Artiste artiste;
     @OneToMany(mappedBy="tournee")
     Collection<Evenement> evenements;
-      
-    
+    @OneToMany
+	Collection<Message> commentaires;
+
 	public Tournee() {
 		
 	}
-	
 	
 	
 	public int getId() {
@@ -72,5 +72,13 @@ public class Tournee {
 	}
 	public void setEvenements(Collection<Evenement> evenements) {
 		this.evenements = evenements;
+	}
+	
+	public Collection<Message> getCommentaires() {
+		return commentaires;
+	}
+
+	public void setCommentaires(Collection<Message> commentaires) {
+		this.commentaires = commentaires;
 	}
 }

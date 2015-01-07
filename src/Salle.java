@@ -26,6 +26,8 @@ public class Salle {
 	Collection<Utilisateur> followers;
 	@OneToMany(mappedBy="salle")
 	Collection<Evenement> evenements;
+	@OneToMany
+	Collection<Message> commentaires;
 	
 	
 	
@@ -118,6 +120,14 @@ public class Salle {
 
 	public void setFollowers(Collection<Utilisateur> followers) {
 		this.followers = followers;
+	}
+	
+	public Collection<Message> getCommentaires() {
+		return commentaires;
+	}
+
+	public void setCommentaires(Collection<Message> commentaires) {
+		this.commentaires = commentaires;
 	}
 
 }

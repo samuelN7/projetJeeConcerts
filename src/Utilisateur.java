@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 @DiscriminatorValue("utilisateur")
@@ -41,8 +42,8 @@ public class Utilisateur {
 	@ManyToMany(mappedBy="inscrisNonCacheE")
 	Collection<Evenement> inscrisNonCache;
 	
-	
-	
+	@OneToMany
+	Collection<Message> messagesPerso;
 
 	public Utilisateur() {
 		super();
@@ -161,8 +162,13 @@ public class Utilisateur {
 		this.inscrisNonCache = inscrisNonCache;
 	}
 	
-	
-	
+	public Collection<Message> getMessagesPerso() {
+		return messagesPerso;
+	}
+
+	public void setMessagesPerso(Collection<Message> messagesPerso) {
+		this.messagesPerso = messagesPerso;
+	}	
 	
 
 }

@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.print.attribute.DateTimeSyntax;
 
 @Entity
@@ -32,6 +33,8 @@ public class Evenement {
 	Collection<Utilisateur> inscrisE;
 	@ManyToMany
 	Collection<Utilisateur> inscrisNonCacheE;
+	@OneToMany
+	Collection<Message> commentaires;
 	
 	
 	
@@ -97,8 +100,14 @@ public class Evenement {
 	public Collection<Utilisateur> getInscrisNonCacheE() {
 		return inscrisNonCacheE;
 	}
-	public void setInscrisNonCache(Collection<Utilisateur> inscrisNonCache) {
-		this.inscrisNonCacheE = inscrisNonCache;
+	public Collection<Message> getCommentaires() {
+		return commentaires;
+	}
+	public void setCommentaires(Collection<Message> commentaires) {
+		this.commentaires = commentaires;
+	}
+	public void setInscrisNonCacheE(Collection<Utilisateur> inscrisNonCacheE) {
+		this.inscrisNonCacheE = inscrisNonCacheE;
 	}
 	
 	

@@ -10,7 +10,7 @@ import javax.persistence.OneToMany;
 @Entity
 @DiscriminatorValue("artiste")
 public class Artiste extends Utilisateur {
-	
+
 	String nom_groupe;
 	String description_groupe;
 	int typeArtiste ;
@@ -23,6 +23,9 @@ public class Artiste extends Utilisateur {
 	
 	 @OneToMany(mappedBy="artiste")
 	 Collection<Tournee> tournees;
+	 
+	 @OneToMany
+	 Collection<Message> commentaires;
 	 
 	 
 
@@ -85,6 +88,13 @@ public class Artiste extends Utilisateur {
 		this.tournees = tournees;
 	}
 	
+	public Collection<Message> getCommentaires() {
+		return commentaires;
+	}
+
+	public void setCommentaires(Collection<Message> commentaires) {
+		this.commentaires = commentaires;
+	}
 	
 
 }
