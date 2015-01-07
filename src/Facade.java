@@ -99,8 +99,22 @@ public class Facade {
 		return evenements;
 	}
 
-	public Collection<Artiste> getArtistes() {
-		TypedQuery<Artiste> tq = em.createQuery("select a from Artiste a", Artiste.class);
+	public Collection<Artiste> getArtistes(int type) {
+		TypedQuery<Artiste> tq;
+		if (type==1){
+			tq = em.createQuery("select a from Artiste a where a.typeArtiste = 1", Artiste.class);
+		}
+		else if (type==2){
+			tq = em.createQuery("select a from Artiste a where a.typeArtiste = 2", Artiste.class);
+		}
+		else if (type == 3){
+			tq = em.createQuery("select a from Artiste a where a.typeArtiste = 3", Artiste.class);
+		}
+		
+		else{
+			tq = em.createQuery("select a from Artiste a", Artiste.class);
+		}
+			
 		Collection<Artiste> artistes = (Collection<Artiste>) tq.getResultList(); 
 		return artistes;
 	}

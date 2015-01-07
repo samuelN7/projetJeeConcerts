@@ -47,8 +47,23 @@ public class Serv extends HttpServlet {
 			request.setAttribute("listeSalles", facade.getSalles());
 			request.getRequestDispatcher("ListeSalle.jsp").forward(request, response);
 		}
-		else if(op.equals("listerArtistes")){
-			request.setAttribute("listeArtistes", facade.getArtistes());
+		else if(op.equals("listerArtistesMusique")){
+			System.out.println("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+			request.setAttribute("listeArtistes", facade.getArtistes(1));
+			request.getRequestDispatcher("listeArtistes.jsp").forward(request, response);
+		}
+		else if(op.equals("listerArtistesDanse")){
+			System.out.println("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+			request.setAttribute("listeArtistes", facade.getArtistes(2));
+			request.getRequestDispatcher("listeArtistes.jsp").forward(request, response);
+		}
+		else if(op.equals("listerArtistesHumour")){
+			System.out.println("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+			request.setAttribute("listeArtistes", facade.getArtistes(3));
+			request.getRequestDispatcher("listeArtistes.jsp").forward(request, response);
+		}
+		else if(op.equals("listeArtistes")){
+			request.setAttribute("listeArtistes", facade.getArtistes(4));
 			request.getRequestDispatcher("listeArtistes.jsp").forward(request, response);
 		}
 		else if(op.equals("listerEvenements")){
