@@ -131,4 +131,17 @@ public class Facade {
 		Collection<Tournee> tournees = (Collection<Tournee>) tq.getResultList(); 
 		return tournees;
 	}
+
+	//Renvoie l'id de l'utilisateur s'il est inscris, sinon -1.
+	public int identifier(String pseudo, String mdp) {
+		// TODO Auto-generated method stub
+		TypedQuery<Utilisateur> tq = em.createQuery("select u from Utilisateur t where pseudo="+pseudo+" and motDePasse="+mdp, Utilisateur.class);
+		Collection<Utilisateur> ut = (Collection<Utilisateur>) tq.getResultList(); 
+		int retour = -1;
+		if (ut.size() == 1) {
+			Utilisateur u = ut.iterator().next();
+			retour = u.getId();
+		} 
+		return retour;
+	}
 }
