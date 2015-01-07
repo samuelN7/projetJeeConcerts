@@ -7,7 +7,29 @@ body
 	text-align:center;
 }
 
+#connexion
+{
+	
+	width : 200px;
+	position:absolute;
+	top:0px;
+	right: 0px;
+	padding-top: 5px;
+	padding-right:5px;
+	display:inline-block;
+	
+	
+	
+	
+}
 
+#connexion a
+{
+	border-style:groove;
+	display:inline-block;
+	
+	
+}
 
 
  
@@ -55,7 +77,7 @@ nav li
 
     display: inline-block;
     border-style:solid;
-    width: 80px;
+    width: 100px;
     text-align: center; 
 }
 
@@ -63,7 +85,6 @@ nav li:HOVER
 {
 	background-color:#33bde5;
 }
-
 
 
 
