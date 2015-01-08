@@ -10,13 +10,12 @@
 </head>
 <body>
 	<% Evenement e = (Evenement)request.getAttribute("evenement");
-	out.println(e.getTitre());
+	out.println(e.getTitre() +" "+e.getArtiste()+" "+e.getTournee());
 	out.println(e.getSalle());
-	out.println(e.getArtiste());
 	out.println(e.getDate());
 	out.println(e.getPrix());
-	out.println(e.getTournee());
 	out.println(e.getDescription());
+	out.println(" ");
 	
 	Collection<Utilisateur> inscritsNonCaches = e.getInscrisNonCacheE();
 	out.println("Participants à cet événement ");
@@ -30,7 +29,8 @@
 	out.println("Commentaires :");
 	out.println("");
 	for(Message m : messages) {
-		out.println(m.getAuteur()+" "+m.getDate()+" " +m.getMessage() +" <br>");		
+		out.println(m.getAuteur()+" "+m.getDate() +" <br>");
+		out.println(m.getMessage());		
 	}
 	out.println("");
 	%>

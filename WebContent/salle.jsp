@@ -11,10 +11,8 @@
 <body>
 	<%
 	Salle s = (Salle)request.getAttribute("salle");
-	out.println(s.getNom());
+	out.println(s.getNom()+" "+s.getVille()+" "+s.getCapacite());
 	out.println(s.getAdresse());
-	out.println(s.getVille());
-	out.println(s.getCapacite());
 	out.println(s.getTelephone());
 	out.println(s.getDescription());
 	out.println("");
@@ -40,7 +38,8 @@
 	out.println("Commentaires :");
 	out.println("");
 	for(Message m : messages) {
-		out.println(m.getAuteur()+" "+m.getDate()+" " +m.getMessage() +" <br>");		
+		out.println(m.getAuteur()+" "+m.getDate() +" <br>");
+		out.println(m.getMessage());		
 	}
 	out.println("");
 	%>
