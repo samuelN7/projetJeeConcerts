@@ -135,7 +135,7 @@ public class Facade {
 	//Renvoie l'id de l'utilisateur s'il est inscris, sinon -1.
 	public int identifier(String pseudo, String mdp) {
 		// TODO Auto-generated method stub
-		TypedQuery<Utilisateur> tq = em.createQuery("select u from Utilisateur t where t.pseudo="+pseudo+" and t.motDePasse="+mdp, Utilisateur.class);
+		TypedQuery<Utilisateur> tq = em.createQuery("select u from Utilisateur u where u.pseudo="+pseudo+" and u.motDePasse="+mdp, Utilisateur.class);
 		Collection<Utilisateur> ut = (Collection<Utilisateur>) tq.getResultList(); 
 		int retour = -1;
 		if (ut.size() == 1) {
