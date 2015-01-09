@@ -79,6 +79,18 @@ public class Serv extends HttpServlet {
 				request.setAttribute("pseudo", "Pas inscris");
 			}
 			request.getRequestDispatcher("accueil.jsp").forward(request, response);
+		} 
+		else if(op.equals("achat")) {
+			request.getRequestDispatcher("Achat.jsp").forward(request, response);
+		}
+		else if(op.equals("achete")) {
+			 if(request.getParameter("PourMoi") != null) {
+				 //Avec l'id de l'utilisateur connecté, ajouter l'événement dans la liste de ses inscriptions
+				 
+			 } else {
+				 //Sinon achat pour quelqu'un d'autre, donc on ajoute pas (sauf si utilisateur existe)
+			 }		 
+			 
 		}
 	}
 

@@ -34,5 +34,9 @@
 	}
 	out.println("");
 	%>
+	<form method = action="Serv" id="achat"> 
+	<input type="submit" value="Prendre sa place !" id="achat" > 
+	<input type="hidden" name="op" value="achat"/>
+	</form>
 </body>
 </html>
