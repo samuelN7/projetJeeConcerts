@@ -32,7 +32,6 @@ public class Serv extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU");
 		String op = request.getParameter("op");
 		if(op.equals("ajoututilisateur")){
 			facade.ajoutUtilisateur(request.getParameter("nom"), request.getParameter("prenom"), request.getParameter("pseudo"),request.getParameter("mdp"), request.getParameter("mail"));
@@ -43,22 +42,18 @@ public class Serv extends HttpServlet {
 			request.getRequestDispatcher("listerUtilisateurs.jsp").forward(request, response);
 		}
 		else if(op.equals("listerSalles")){
-			System.out.println("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
 			request.setAttribute("listeSalles", facade.getSalles());
 			request.getRequestDispatcher("ListeSalle.jsp").forward(request, response);
 		}
 		else if(op.equals("listerArtistesMusique")){
-			System.out.println("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
 			request.setAttribute("listeArtistes", facade.getArtistes(1));
 			request.getRequestDispatcher("listeArtistes.jsp").forward(request, response);
 		}
 		else if(op.equals("listerArtistesDanse")){
-			System.out.println("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
 			request.setAttribute("listeArtistes", facade.getArtistes(2));
 			request.getRequestDispatcher("listeArtistes.jsp").forward(request, response);
 		}
 		else if(op.equals("listerArtistesHumour")){
-			System.out.println("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
 			request.setAttribute("listeArtistes", facade.getArtistes(3));
 			request.getRequestDispatcher("listeArtistes.jsp").forward(request, response);
 		}

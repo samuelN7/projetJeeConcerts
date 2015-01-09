@@ -14,8 +14,13 @@
 		out.println(t.getDateDebut()+" "+t.getDateFin());
 		out.println(t.getDescription());
 		out.println(" ");
+	%>
+	
+	<form method="Get" action="Serv">
+	<input type="submit" value="S'abonner à cette tournée"/>
+	</form>
 		
-		Collection<Evenement> events = t.getEvenements();
+	<% Collection<Evenement> events = t.getEvenements();
 		out.println("Prochains evenements de la tournée :");
 		out.println("");
 		for(Evenement e : events) {
