@@ -49,6 +49,19 @@ public class Facade {
 		this.em.persist(u);
 	}
 	
+	public void ajoutEvt(String nom, String description, String nomsalle){
+		Evenement e = new Evenement();
+		TypedQuery<Salle> tq = em.createQuery("select s from Salle s where s.nom='"+nomsalle+"'", Salle.class);
+		Salle salle = ((Collection<Salle>) tq.getResultList()).iterator().next();
+		System.out.println("JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ"+salle.getNom());
+		
+		e.setSalle(salle);
+		e.setTitre(nom);
+		e.setDescription(description);
+		/*this.evenements.add(e);*/
+		em.persist(e);
+	}	
+	
 	public void ajoutEvenement(Salle salle, Artiste artiste, DateTimeSyntax date){
 		Evenement e = new Evenement();
 		e.setSalle(salle);
@@ -122,7 +135,6 @@ public class Facade {
 	public Collection<Salle> getSalles() {
 		TypedQuery<Salle> tq = em.createQuery("select s from Salle s", Salle.class);
 		Collection<Salle> salles = (Collection<Salle>) tq.getResultList(); 
-		System.out.println("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
 		return salles;
 	}
 	
@@ -132,16 +144,16 @@ public class Facade {
 		return tournees;
 	}
 
-	//Renvoie l'id de l'utilisateur s'il est inscris, sinon -1.
-	public int identifier(String pseudo, String mdp) {
+	//Renvoie l'Utilisateur
+	public Utilisateur identifier(String pseudo, String mdp) {
 		// TODO Auto-generated method stub
-		TypedQuery<Utilisateur> tq = em.createQuery("select u from Utilisateur u where u.pseudo="+pseudo+" and u.motDePasse="+mdp, Utilisateur.class);
-		Collection<Utilisateur> ut = (Collection<Utilisateur>) tq.getResultList(); 
-		int retour = -1;
-		if (ut.size() == 1) {
-			Utilisateur u = ut.iterator().next();
-			retour = u.getId();
-		} 
-		return retour;
+		TypedQuery<Utilisateur> tq = em.createQuery("select u from Utilisateur u where u.pseudo='"+pseudo+"' and u.motDePasse='"+mdp+"'", Utilisateur.class);	
+		
+		Collection<Utilisateur> ut =(Collection<Utilisateur>) tq.getResultList();
+		Utilisateur u = null;
+		if (ut.iterator().hasNext()) {
+			u = ut.iterator().next();
+		} 		
+		return u;
 	}
 }
