@@ -11,6 +11,9 @@
 			Nom: 				<input type="text" name="nomEvt" /><br>
 			Description : 			<input type="text" name="descriptionEvt"/><br>
 			Salle : 			<input type="text" name="nomSalle"/><br>
+			Date: 				<input type="text" name="date" /><br>
+			Prix : 			<input type="text" name="prix"/><br>
+			Tournee : 			<input type="text" name="tournee"/><br>
 			<input type="submit" value="Ajouter" id="ajouterEvt" >  
 			<input type="hidden" name="op" value="ajouterEvt"/>
 		<form/>

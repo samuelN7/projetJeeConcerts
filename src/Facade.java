@@ -49,20 +49,33 @@ public class Facade {
 		this.em.persist(u);
 	}
 	
-	public void ajoutEvt(String nom, String description, String nomsalle){
+	public void ajoutEvt(String nom, String description, String nomsalle, String date,int prix,String tournee){
 		Evenement e = new Evenement();
-		TypedQuery<Salle> tq = em.createQuery("select s from Salle s where s.nom='"+nomsalle+"'", Salle.class);
-		Salle salle = ((Collection<Salle>) tq.getResultList()).iterator().next();
-		System.out.println("JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ"+salle.getNom());
 		
-		e.setSalle(salle);
+		TypedQuery<Salle> tq = em.createQuery("select s from Salle s where s.nom='"+nomsalle+"'", Salle.class);
+		Collection<Salle> salles = (Collection<Salle>) tq.getResultList();
+		if (salles.iterator().hasNext()) {
+			Salle salle = salles.iterator().next();
+			System.out.println("JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ"+salle.getNom());
+			e.setSalle(salle);
+		}	
+		
+		TypedQuery<Tournee> tq2 = em.createQuery("select t from Tournee t where t.titre='"+tournee+"'", Tournee.class);
+		Collection<Tournee> tournees = (Collection<Tournee>) tq2.getResultList();
+		if(tournees.iterator().hasNext()) {
+			Tournee t = ((Collection<Tournee>) tq2.getResultList()).iterator().next();
+			e.setTournee(t);
+		}
+		
 		e.setTitre(nom);
 		e.setDescription(description);
+		e.setDate(date);
+		e.setPrix(prix);
 		/*this.evenements.add(e);*/
 		em.persist(e);
 	}	
 	
-	public void ajoutEvenement(Salle salle, Artiste artiste, DateTimeSyntax date){
+	public void ajoutEvenement(Salle salle, Artiste artiste, String date){
 		Evenement e = new Evenement();
 		e.setSalle(salle);
 		e.setArtiste(artiste);
@@ -156,4 +169,5 @@ public class Facade {
 		} 		
 		return u;
 	}
+	
 }

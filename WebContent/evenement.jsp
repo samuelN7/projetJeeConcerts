@@ -33,6 +33,7 @@
 		out.println(m.getMessage());		
 	}
 	out.println("");
+	request.setAttribute("monEvenement",e);
 	%>
 	<form method = action="Serv" id="achat"> 
 	<input type="submit" value="Prendre sa place !" id="achat" > 
