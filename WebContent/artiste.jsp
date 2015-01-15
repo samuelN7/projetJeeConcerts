@@ -10,8 +10,8 @@
 </head>
 <body>
 	<% Artiste a = (Artiste)request.getAttribute("artiste");
-	out.println(a.getNom_groupe());
-	out.println(a.getDescription_groupe());
+	out.println(a.getNom_groupe()+ "<br>");
+	out.println(a.getDescription_groupe() + "<br>");
 	%>
 	
 	<form method="Get" action="Serv">
@@ -20,7 +20,9 @@
 	<input type="hidden" name="artiste" value=<%=a%>/>
 	</form>
 	
-	<% Collection<Utilisateur> followers = a.getFollowers();
+	 
+	<% 
+	/* Collection<Utilisateur> followers = a.getFollowers();
 	out.println("Les followers de " + a.getNom());
 	out.println("");
 	for(Utilisateur u : followers) {
@@ -35,12 +37,6 @@
 		out.println(e.getTitre()+" <br>");		
 	}
 	out.println("");
-	
-	for(Evenement e : events) {
-		out.println("<a href=\"/projet_jee/Serv?op=listeEventsdelArtiste\">"+e.getTitre()+ "</a> <br>");	
-	}
-	out.println("");
-	
 	
 	Collection<Tournee> tournees = a.getTournees();
 	out.println("Les tournées à venir de " + a.getNom_groupe());
@@ -57,7 +53,8 @@
 		out.println(m.getAuteur()+" "+m.getDate() +" <br>");
 		out.println(m.getMessage());		
 	}
-	out.println("");
+	out.println(""); 
+	*/
 	%>
 	
 	</body>

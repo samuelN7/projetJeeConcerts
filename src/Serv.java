@@ -90,6 +90,18 @@ public class Serv extends HttpServlet {
 			request.setAttribute("listeSalles", facade.getSallesRecherche(rechercheNom, rechercheVille));
 			request.getRequestDispatcher("ListeSalle.jsp").forward(request, response);
 		}
+		
+		else if(op.equals("lienSalle")){
+			String nomSalle = request.getParameter("param");
+			request.setAttribute("salle", facade.getSalle(nomSalle));
+			request.getRequestDispatcher("salle.jsp").forward(request, response);
+		}
+		
+		else if(op.equals("lienArtiste")){
+			String nomArtiste = request.getParameter("param");
+			request.setAttribute("artiste", facade.getArtiste(nomArtiste));
+			request.getRequestDispatcher("artiste.jsp").forward(request, response);
+		}
 	}
 
 	/**

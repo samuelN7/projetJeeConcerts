@@ -21,8 +21,9 @@
 	</form>
 	
 	<% Collection<Salle> salles = (Collection<Salle>)request.getAttribute("listeSalles");
-	 for(Salle s : salles) {
-		out.println(s.getNom()+" "+s.getVille() + "<br>");
-	}%>
+	for(Salle s : salles) {
+			out.println("<a href=\"/projet_jee/Serv?op=lienSalle&param="+s.getNom()+"\">"+s.getNom()+" "+s.getVille()+"</a> <br>");
+	}	
+	%>
 	</body>
 </html>

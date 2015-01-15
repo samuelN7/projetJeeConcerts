@@ -11,13 +11,13 @@
 <body>
 	<%
 	Salle s = (Salle)request.getAttribute("salle");
-	out.println(s.getNom()+" "+s.getVille()+" "+s.getCapacite());
-	out.println(s.getAdresse());
-	out.println(s.getTelephone());
-	out.println(s.getDescription());
-	out.println("");
+	out.println(s.getNom()+" "+s.getVille()+" "+s.getCapacite()+" <br>");
+	out.println(s.getAdresse()+ " <br>");
+	out.println(s.getTelephone()+ "<br>");
+//	out.println(s.getDescription());
+	out.println("<br>");
 	
-	Collection<Utilisateur> followers = s.getFollowers();
+/*	Collection<Utilisateur> followers = s.getFollowers();
 	out.println("Les followers de " + s.getNom());
 	out.println("");
 	for(Utilisateur u : followers) {
@@ -41,7 +41,7 @@
 		out.println(m.getAuteur()+" "+m.getDate() +" <br>");
 		out.println(m.getMessage());		
 	}
-	out.println("");
+	out.println(""); */
 	%>
 </body>
 </html>

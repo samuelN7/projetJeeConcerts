@@ -139,6 +139,26 @@ public class Facade {
 		return tournees;
 	}
 
+	public Salle getSalle(String nom) {
+		TypedQuery<Salle> tq = em.createQuery("select s from Salle s where s.nom='"+nom+"'", Salle.class);
+		Collection<Salle> salles = (Collection<Salle>) tq.getResultList(); 
+		if (salles.size() != 0) {
+			Salle s = salles.iterator().next();
+			return s;
+		}
+		return null;
+	}
+	
+	public Artiste getArtiste(String nom) {
+		TypedQuery<Artiste> tq = em.createQuery("select a from Artiste a where a.nom_groupe='"+nom+"'", Artiste.class);
+		Collection<Artiste> artistes = (Collection<Artiste>) tq.getResultList(); 
+		if (artistes.size() != 0) {
+			Artiste a = artistes.iterator().next();
+			return a;
+		}
+		return null;
+	}
+	
 	//Renvoie l'id de l'utilisateur s'il est inscris, sinon -1.
 	public int identifier(String pseudo, String mdp) {
 		// TODO Auto-generated method stub

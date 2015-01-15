@@ -11,7 +11,7 @@
 <body>
 	<% Collection<Artiste> artistes = (Collection<Artiste>)request.getAttribute("listeArtistes");
 	 for(Artiste a : artistes) {
-		out.println(a.getNom_groupe()+" "+a.getTypeArtiste() + "<br>");
+		 out.println("<a href=\"/projet_jee/Serv?op=lienArtiste&param="+a.getNom_groupe()+"\">"+a.getNom_groupe()+" "+a.getNom_groupe()+"</a> <br>");
 	}%>
 </body>
 </html>
