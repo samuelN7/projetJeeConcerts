@@ -7,7 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.print.attribute.DateTimeSyntax;
+
 
 @Entity
 public class Tournee {
@@ -49,16 +49,16 @@ public class Tournee {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public DateTimeSyntax getDateDebut() {
+	public String getDateDebut() {
 		return dateDebut;
 	}
-	public void setDateDebut(DateTimeSyntax dateDebut) {
+	public void setDateDebut(String dateDebut) {
 		this.dateDebut = dateDebut;
 	}
-	public DateTimeSyntax getDateFin() {
+	public String getDateFin() {
 		return dateFin;
 	}
-	public void setDateFin(DateTimeSyntax dateFin) {
+	public void setDateFin(String dateFin) {
 		this.dateFin = dateFin;
 	}
 	public Artiste getArtiste() {

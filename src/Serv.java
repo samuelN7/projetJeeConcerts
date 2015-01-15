@@ -77,21 +77,6 @@ public class Serv extends HttpServlet {
 			request.setAttribute("listeTournees", facade.getTournees());
 			request.getRequestDispatcher("listeTournees.jsp").forward(request, response);
 		}
-		else if(op.equals("connexion")) {
-			String pseudo = request.getParameter("pseudo");
-			String mdp = request.getParameter("mdp");
-			request.setAttribute("id", facade.identifier(pseudo,mdp));
-			String id_string = request.getParameter("id");
-			int id = Integer.parseInt(id_string);
-			if (id == -1) {
-				request.setAttribute("pseudo", "Pas inscrit");
-			} else {
-				request.setAttribute("pseudo",pseudo);
-			}
-			request.getRequestDispatcher("accueil.jsp").forward(request, response);
-			
-			request.getRequestDispatcher("accueil.jsp").forward(request, response);
-		}
 		else if(op.equals("RechercherSalle")){
 			String rechercheNom = request.getParameter("rechercheNom");
 			String rechercheVille = request.getParameter("rechercheVille");

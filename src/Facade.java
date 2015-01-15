@@ -6,13 +6,7 @@ import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import javax.print.attribute.DateTimeSyntax;
 
-import projet_jee.Artiste;
-import projet_jee.Evenement;
-import projet_jee.Salle;
-import projet_jee.Tournee;
-import projet_jee.Utilisateur;
 
 /**
  * 
@@ -82,7 +76,7 @@ public class Facade {
 		em.persist(e);
 	}
 	
-	public void ajoutEvenement(Salle salle, Artiste artiste, DateTimeSyntax date){
+	public void ajoutEvenement(Salle salle, Artiste artiste, String date){
 		Evenement e = new Evenement();
 		e.setSalle(salle);
 		e.setArtiste(artiste);
@@ -112,7 +106,7 @@ public class Facade {
 		this.em.persist(l);
 	}
 	
-	public void ajoutTournee(Artiste artiste, DateTimeSyntax dateDebut, DateTimeSyntax dateFin, String titre){
+	public void ajoutTournee(Artiste artiste, String dateDebut, String dateFin, String titre){
 		Tournee t = new Tournee();
 		t.setArtiste(artiste);
 		t.setDateDebut(dateDebut);

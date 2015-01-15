@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.print.attribute.DateTimeSyntax;
+
 
 @Entity
 public class Evenement {
@@ -79,10 +79,10 @@ public class Evenement {
 	public void setPrix(int prix) {
 		this.prix = prix;
 	}
-	public DateTimeSyntax getDate() {
+	public String getDate() {
 		return date;
 	}
-	public void setDate(DateTimeSyntax date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 	public Tournee getTournee() {
