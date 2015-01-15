@@ -16,6 +16,8 @@
 	
 	<form method="Get" action="Serv">
 	<input type="submit" value="Suivre cet artiste !"/>
+	<input type="hidden" name="op" value="suivreArtiste"/>
+	<input type="hidden" name="artiste" value=<%=a%>/>
 	</form>
 	
 	<% Collection<Utilisateur> followers = a.getFollowers();

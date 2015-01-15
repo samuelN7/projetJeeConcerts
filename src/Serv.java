@@ -89,7 +89,6 @@ public class Serv extends HttpServlet {
 				session.setAttribute(ATT_SESSION_USER, ut);
 			}
 			request.getRequestDispatcher("accueil.jsp").forward(request, response);
-			
 		}
 		//L'utilisateur est sur un evenement, il veut acheter, on transmet l'evt à la prochaine page
 		else if(op.equals("achat")) { 
@@ -102,16 +101,7 @@ public class Serv extends HttpServlet {
 			 if(request.getParameter("PourMoi") != null) {
 				 Evenement e = (Evenement) session.getAttribute(MON_EVT);
 				 Utilisateur u = (Utilisateur) session.getAttribute(ATT_SESSION_USER);
-				 Collection<Evenement> evts = (Collection<Evenement>) u.getInscris();
-				 evts.add(e);
-				 u.setInscris(evts);
-				 
-				 //L'utilisateur veut être visible
-				 if (request.getParameter("Visible") != null) {
-					 Collection<Evenement> evts_vis = (Collection<Evenement>) u.getInscrisNonCache();
-					 evts_vis.add(e);
-					 u.setInscrisNonCache(evts_vis);
-				 }
+				 facade.ajouterInscription(e, u, request.getParameter("Visible") != null );
 				 
 			 } else {
 				 //Sinon achat pour quelqu'un d'autre, donc on ajoute pas (sauf si utilisateur existe)
@@ -130,6 +120,13 @@ public class Serv extends HttpServlet {
 			facade.ajoutEvt(nom,description,nomsalle, date,prix,tournee);
 			request.getRequestDispatcher("PagePerso.jsp").forward(request, response);
 
+		}
+		else if(op.equals("suivreArtiste")) {
+			 Artiste a = (Artiste) request.getAttribute("artiste");
+			 Utilisateur u = (Utilisateur) session.getAttribute(ATT_SESSION_USER);
+			 facade.ajouterArtisteSuivis(a, u);
+			 //Permet de retourner à la page précédente
+			 response.sendRedirect((String) request.getHeader("Referer"));			
 		}
 	}
 

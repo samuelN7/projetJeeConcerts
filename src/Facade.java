@@ -157,7 +157,7 @@ public class Facade {
 		return tournees;
 	}
 
-	//Renvoie l'Utilisateur
+	//Renvoie l'Utilisateur s'il existe et sinon null
 	public Utilisateur identifier(String pseudo, String mdp) {
 		// TODO Auto-generated method stub
 		TypedQuery<Utilisateur> tq = em.createQuery("select u from Utilisateur u where u.pseudo='"+pseudo+"' and u.motDePasse='"+mdp+"'", Utilisateur.class);	
@@ -168,6 +168,26 @@ public class Facade {
 			u = ut.iterator().next();
 		} 		
 		return u;
+	}
+	
+	//Ajouter un événement dans la liste des événements ou est inscris un utilisateur
+	//Et dans celle où il est visible si tel est son souhait
+	public void ajouterInscription(Evenement e,Utilisateur u, boolean visible) {
+		 Collection<Evenement> evts = (Collection<Evenement>) u.getInscris();
+		 evts.add(e);
+		 u.setInscris(evts);
+		 if (visible) {
+			 Collection<Evenement> evts_vis = (Collection<Evenement>) u.getInscrisNonCache();
+			 evts_vis.add(e);
+			 u.setInscrisNonCache(evts_vis);
+		}
+	}
+	
+	//Ajouter un artiste dans les favoris d'un utilisateur
+	public void ajouterArtisteSuivis(Artiste a,Utilisateur u) {
+		Collection<Artiste> artistes = (Collection<Artiste>) u.getArtistesFavoris();
+		 artistes.add(a);
+		 u.setArtistesFavoris(artistes);		
 	}
 	
 }
