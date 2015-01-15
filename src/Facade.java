@@ -49,33 +49,20 @@ public class Facade {
 		this.em.persist(u);
 	}
 	
-	public void ajoutEvt(String nom, String description, String nomsalle, String date,int prix,String tournee){
+	public void ajoutEvt(String nom, String description, String nomsalle){
 		Evenement e = new Evenement();
-		
 		TypedQuery<Salle> tq = em.createQuery("select s from Salle s where s.nom='"+nomsalle+"'", Salle.class);
-		Collection<Salle> salles = (Collection<Salle>) tq.getResultList();
-		if (salles.iterator().hasNext()) {
-			Salle salle = salles.iterator().next();
-			System.out.println("JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ"+salle.getNom());
-			e.setSalle(salle);
-		}	
+		Salle salle = ((Collection<Salle>) tq.getResultList()).iterator().next();
+		System.out.println("JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ"+salle.getNom());
 		
-		TypedQuery<Tournee> tq2 = em.createQuery("select t from Tournee t where t.titre='"+tournee+"'", Tournee.class);
-		Collection<Tournee> tournees = (Collection<Tournee>) tq2.getResultList();
-		if(tournees.iterator().hasNext()) {
-			Tournee t = ((Collection<Tournee>) tq2.getResultList()).iterator().next();
-			e.setTournee(t);
-		}
-		
+		e.setSalle(salle);
 		e.setTitre(nom);
 		e.setDescription(description);
-		e.setDate(date);
-		e.setPrix(prix);
 		/*this.evenements.add(e);*/
 		em.persist(e);
 	}	
 	
-	public void ajoutEvenement(Salle salle, Artiste artiste, String date){
+	public void ajoutEvenement(Salle salle, Artiste artiste, DateTimeSyntax date){
 		Evenement e = new Evenement();
 		e.setSalle(salle);
 		e.setArtiste(artiste);
@@ -93,14 +80,12 @@ public class Facade {
 		em.persist(a);
 	}
 	
-	public void ajoutSalle(String adresse, String nom, String ville, int capacite, int telephone, String description){
+	public void ajoutSalle(String adresse, String nom, int capacite, int telephone){
 		Salle l = new Salle();
 		l.setAdresse(adresse);
 		l.setNom(nom);
-		l.setVille(ville);
 		l.setCapacite(capacite);
 		l.setTelephone(telephone);
-		l.setDescription(description);
 		/*this.salles.add(l);*/
 		this.em.persist(l);
 	}
@@ -159,7 +144,7 @@ public class Facade {
 		return tournees;
 	}
 
-	//Renvoie l'Utilisateur s'il existe et sinon null
+	//Renvoie l'Utilisateur
 	public Utilisateur identifier(String pseudo, String mdp) {
 		// TODO Auto-generated method stub
 		TypedQuery<Utilisateur> tq = em.createQuery("select u from Utilisateur u where u.pseudo='"+pseudo+"' and u.motDePasse='"+mdp+"'", Utilisateur.class);	
@@ -172,24 +157,27 @@ public class Facade {
 		return u;
 	}
 	
-	//Ajouter un événement dans la liste des événements ou est inscris un utilisateur
-	//Et dans celle où il est visible si tel est son souhait
-	public void ajouterInscription(Evenement e,Utilisateur u, boolean visible) {
-		 Collection<Evenement> evts = (Collection<Evenement>) u.getInscris();
-		 evts.add(e);
-		 u.setInscris(evts);
-		 if (visible) {
-			 Collection<Evenement> evts_vis = (Collection<Evenement>) u.getInscrisNonCache();
-			 evts_vis.add(e);
-			 u.setInscrisNonCache(evts_vis);
+		//Renvoie l'evenement
+		public Evenement getEvenement(String titre) {
+			TypedQuery<Evenement> tq = em.createQuery("select e from Evenement e where e.titre='"+titre+"'", Evenement.class);	
+			
+			Collection<Evenement> events =(Collection<Evenement>) tq.getResultList();
+			Evenement e = null;
+			if (events.iterator().hasNext()) {
+				e = events.iterator().next();
+			} 		
+			return e;
 		}
-	}
-	
-	//Ajouter un artiste dans les favoris d'un utilisateur
-	public void ajouterArtisteSuivis(Artiste a,Utilisateur u) {
-		Collection<Artiste> artistes = (Collection<Artiste>) u.getArtistesFavoris();
-		 artistes.add(a);
-		 u.setArtistesFavoris(artistes);		
-	}
-	
+		
+		//Renvoie la salle
+		public Salle getSalle(String nom) {
+			TypedQuery<Salle> tq = em.createQuery("select s from Salle s where s.nom='"+nom+"'", Salle.class);	
+			
+			Collection<Salle> salles =(Collection<Salle>) tq.getResultList();
+			Salle s = null;
+			if (salles.iterator().hasNext()) {
+				s = salles.iterator().next();
+			} 		
+			return s;
+		}
 }

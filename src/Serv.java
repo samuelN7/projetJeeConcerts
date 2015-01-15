@@ -2,7 +2,6 @@ package projet_jee;
 
 
 import java.io.IOException;
-import java.util.Collection;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -19,8 +18,6 @@ import javax.servlet.http.HttpSession;
 public class Serv extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public static final String ATT_SESSION_USER = "sessionUtilisateur";
-	public static final String MON_EVT = "monEvenement";
-	private HttpSession session;
 	
 	@EJB
 	Facade facade = new Facade();
@@ -85,23 +82,18 @@ public class Serv extends HttpServlet {
 			request.setAttribute("ut", facade.identifier(pseudo,mdp));
 			Utilisateur ut = (Utilisateur) request.getAttribute("ut");
 			if (ut != null) {
-				session = request.getSession();
+				HttpSession session = request.getSession();
 				session.setAttribute(ATT_SESSION_USER, ut);
 			}
 			request.getRequestDispatcher("accueil.jsp").forward(request, response);
+			
 		}
-		//L'utilisateur est sur un evenement, il veut acheter, on transmet l'evt à la prochaine page
-		else if(op.equals("achat")) { 
-			Evenement e = (Evenement) request.getAttribute("monEvenement");
-			session.setAttribute(MON_EVT, e);			
+		else if(op.equals("achat")) {
 			request.getRequestDispatcher("Achat.jsp").forward(request, response);
 		}
-		//On effectue l'achat, l'inscription...
 		else if(op.equals("achete")) {
 			 if(request.getParameter("PourMoi") != null) {
-				 Evenement e = (Evenement) session.getAttribute(MON_EVT);
-				 Utilisateur u = (Utilisateur) session.getAttribute(ATT_SESSION_USER);
-				 facade.ajouterInscription(e, u, request.getParameter("Visible") != null );
+				 //Avec l'id de l'utilisateur connecté, ajouter l'événement dans la liste de ses inscriptions
 				 
 			 } else {
 				 //Sinon achat pour quelqu'un d'autre, donc on ajoute pas (sauf si utilisateur existe)
@@ -112,34 +104,21 @@ public class Serv extends HttpServlet {
 			String nom = request.getParameter("nomEvt");
 			String description = request.getParameter("descriptionEvt");
 			String nomsalle = request.getParameter("nomSalle");
-			int prix = Integer.parseInt(request.getParameter("prix"));
-			String date = request.getParameter("date");
-			String tournee = request.getParameter("tournee");
-			
-			
-			facade.ajoutEvt(nom,description,nomsalle, date,prix,tournee);
+			facade.ajoutEvt(nom, description, nomsalle);
 			request.getRequestDispatcher("PagePerso.jsp").forward(request, response);
 
 		}
-		else if(op.equals("suivreArtiste")) {
-			 Artiste a = (Artiste) request.getAttribute("artiste");
-			 Utilisateur u = (Utilisateur) session.getAttribute(ATT_SESSION_USER);
-			 facade.ajouterArtisteSuivis(a, u);
-			 //Permet de retourner à la page précédente
-			 response.sendRedirect((String) request.getHeader("Referer"));			
+		
+		else if(op.equals("lienEvenement")) {
+			String titreEvent = request.getParameter("eventParam");
+			Evenement e = facade.getEvenement(titreEvent);
+			request.setAttribute("evenement", e);
 		}
-		else if(op.equals("ajouterSalle")) {
-			String nom = request.getParameter("nomSalle");
-			String adresse = request.getParameter("adresse");
-			String ville = request.getParameter("ville");
-			int capacite = Integer.parseInt(request.getParameter("capacite"));
-			String description = request.getParameter("desciptionSalle");
-			int tel = Integer.parseInt(request.getParameter("tel"));
-			
-			facade.ajoutSalle(adresse, nom, ville, capacite, tel, description);
-			request.getRequestDispatcher("PagePerso.jsp").forward(request, response);
-			
-			
+		
+		else if(op.equals("lienSalle")) {
+			String nomSalle = request.getParameter("salleParam");
+			Salle s = facade.getSalle(nomSalle);
+			request.setAttribute("salle", s);
 		}
 	}
 
