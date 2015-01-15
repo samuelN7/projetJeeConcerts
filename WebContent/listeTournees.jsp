@@ -11,7 +11,7 @@
 	<body>
 	<% Collection<Tournee> tournees = (Collection<Tournee>)request.getAttribute("listeTournees");
 	 for(Tournee t : tournees) {
-		out.println(t.getTitre()+" "+t.getArtiste() + "<br>");
+		 out.println("<a href=\"/projet_jee/Serv?op=lienTournee&param="+t.getTitre()+"\">"+t.getTitre()+"</a> <br>");
 	}%>
 	</body>
 </html>

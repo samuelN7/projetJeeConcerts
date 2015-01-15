@@ -14,25 +14,26 @@
 	out.println(s.getNom()+" "+s.getVille()+" "+s.getCapacite()+" <br>");
 	out.println(s.getAdresse()+ " <br>");
 	out.println(s.getTelephone()+ "<br>");
-//	out.println(s.getDescription());
+	out.println(s.getDescription());
 	out.println("<br>");
-	
-/*	Collection<Utilisateur> followers = s.getFollowers();
+	/*
+	Collection<Utilisateur> followers = s.getFollowers();
 	out.println("Les followers de " + s.getNom());
-	out.println("");
+	out.println("<br>");
 	for(Utilisateur u : followers) {
 		out.println(u.getPseudo()+" <br>");		
-	}
-	out.println("");
+	}	
+	out.println("<br>");
 	
-	
+
 	Collection<Evenement> events = s.getEvenements();
-	out.println("Les futurs événements de la salle :");
-	out.println("");
+	out.println("Les futurs événements de la salle : <br>");
+	out.println("<br>");
 	for(Evenement e : events) {
 		out.println(e.getTitre()+" <br>");		
 	}
-	out.println("");
+	out.println("<br>"); 
+	
 	
 	Collection<Message> messages = s.getCommentaires();
 	out.println("Commentaires :");
@@ -41,7 +42,8 @@
 		out.println(m.getAuteur()+" "+m.getDate() +" <br>");
 		out.println(m.getMessage());		
 	}
-	out.println(""); */
+	out.println("<br>");
+	*/
 	%>
 </body>
 </html>

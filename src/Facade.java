@@ -159,6 +159,16 @@ public class Facade {
 		return null;
 	}
 	
+	public Tournee getTournee(String titre) {
+		TypedQuery<Tournee> tq = em.createQuery("select t from Tournee t where t.titre='"+titre+"'", Tournee.class);
+		Collection<Tournee> tournees = (Collection<Tournee>) tq.getResultList(); 
+		if (tournees.size() != 0) {
+			Tournee t = tournees.iterator().next();
+			return t;
+		}
+		return null;
+	}
+	
 	//Renvoie l'id de l'utilisateur s'il est inscris, sinon -1.
 	public int identifier(String pseudo, String mdp) {
 		// TODO Auto-generated method stub

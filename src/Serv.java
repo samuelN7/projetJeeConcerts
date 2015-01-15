@@ -102,6 +102,12 @@ public class Serv extends HttpServlet {
 			request.setAttribute("artiste", facade.getArtiste(nomArtiste));
 			request.getRequestDispatcher("artiste.jsp").forward(request, response);
 		}
+		
+		else if(op.equals("lienTournee")){
+			String nomTournee = request.getParameter("param");
+			request.setAttribute("tournee", facade.getTournee(nomTournee));
+			request.getRequestDispatcher("tournee.jsp").forward(request, response);
+		}
 	}
 
 	/**
