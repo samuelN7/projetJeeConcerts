@@ -9,15 +9,20 @@
 <title>Liste des salles</title>
 </head>
 	<body>
+	<h2>Liste des salles repertoriées</h2>
+	
+	<form method="Get" action="Serv">	
+			<label for="rechercheNom">Nom : </label> 	
+			<input type="text" name="rechercheNom" id="rechercheNom" />
+			<label for="rechercheVille">Ville : </label> 
+			<input type="text" name="rechercheVille" id="rechercheVille" />
+			<input type="submit" value="RechercherSalle"/>
+			<input type="hidden" name="op" value="RechercherSalle"/>
+	</form>
+	
 	<% Collection<Salle> salles = (Collection<Salle>)request.getAttribute("listeSalles");
 	 for(Salle s : salles) {
 		out.println(s.getNom()+" "+s.getVille() + "<br>");
-	}
-
-	 for(Salle s : salles) {
-			out.println("<a href=\"/projet_jee/Serv?op=lienSalle&salleParam="+s.getNom()+"\">"+s.getNom()+ "</a> <br>");
-		}
-		out.println("");
-	%>
+	}%>
 	</body>
 </html>

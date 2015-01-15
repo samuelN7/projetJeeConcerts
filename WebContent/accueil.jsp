@@ -10,6 +10,9 @@
 	
 	<body>
 		<header id="header">
+			<div id="connexion"> <a href="inscription.html">Inscription</a> <a href=connexion.html>Connexion</a> 
+			</div>
+			
 			<nav id="nav">
 				<h3>Bienvenue sur notre site</h3>
 				<ul id="listePrincipale">
@@ -37,7 +40,8 @@
 		<article id="derniersEvenements">Faire la requête sql</article>
 		
 		<article id="ArtistesDuMoment">Suggestion?</article>
-		<p> ${sessionScope.sessionUtilisateur.pseudo} </p>
+		<% String pseudo = (String) request.getAttribute("pseudo"); 
+			out.println(pseudo);%>
 		
 		<script src="Accueil.js"></script>
 	</body>

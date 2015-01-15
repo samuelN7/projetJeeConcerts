@@ -12,7 +12,7 @@ Procédure pour le git sur eclipse :
 
 
 
-/* Salle */
+
 INSERT INTO salle (adresse,capacite,description,nom,telephone,ville)
 values ('adresse1',500,'description1','test1',06,'Toulouse');
 

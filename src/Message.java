@@ -9,6 +9,19 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Message {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	int id;
+	String date;
+	String message;
+	
+	@ManyToOne
+	Utilisateur auteur;
+
+	public Message() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -41,17 +54,6 @@ public class Message {
 		this.auteur = auteur;
 	}
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	int id;
-	String date;
-	String message;
 	
-	@ManyToOne
-	Utilisateur auteur;
-
-	public Message() {
-		// TODO Auto-generated constructor stub
-	}
 
 }
