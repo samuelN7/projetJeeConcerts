@@ -40,8 +40,8 @@
 		<article id="derniersEvenements">Faire la requête sql</article>
 		
 		<article id="ArtistesDuMoment">Suggestion?</article>
-		<% String pseudo = (String) request.getAttribute("pseudo"); 
-			out.println(pseudo);%>
+	
+			<p> ${sessionScope.sessionUtilisateur.pseudo} </p>
 		
 		<script src="Accueil.js"></script>
 	</body>

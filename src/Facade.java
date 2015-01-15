@@ -8,6 +8,12 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.print.attribute.DateTimeSyntax;
 
+import projet_jee.Artiste;
+import projet_jee.Evenement;
+import projet_jee.Salle;
+import projet_jee.Tournee;
+import projet_jee.Utilisateur;
+
 /**
  * 
  */
@@ -49,6 +55,33 @@ public class Facade {
 		this.em.persist(u);
 	}
 	
+	public void ajoutEvt(/*Artiste artiste,*/ String nom, String description, String nomsalle, String date,int prix,String tournee){
+		Evenement e = new Evenement();
+		
+		TypedQuery<Salle> tq = em.createQuery("select s from Salle s where s.nom='"+nomsalle+"'", Salle.class);
+		Collection<Salle> salles = (Collection<Salle>) tq.getResultList();
+		if (salles.iterator().hasNext()) {
+			Salle salle = salles.iterator().next();
+			System.out.println("JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ"+salle.getNom());
+			e.setSalle(salle);
+		}	
+		
+		TypedQuery<Tournee> tq2 = em.createQuery("select t from Tournee t where t.titre='"+tournee+"'", Tournee.class);
+		Collection<Tournee> tournees = (Collection<Tournee>) tq2.getResultList();
+		if(tournees.iterator().hasNext()) {
+			Tournee t = ((Collection<Tournee>) tq2.getResultList()).iterator().next();
+			e.setTournee(t);
+		}
+		
+		//e.setArtiste(artiste);
+		e.setTitre(nom);
+		e.setDescription(description);
+		e.setDate(date);
+		e.setPrix(prix);
+		/*this.evenements.add(e);*/
+		em.persist(e);
+	}
+	
 	public void ajoutEvenement(Salle salle, Artiste artiste, DateTimeSyntax date){
 		Evenement e = new Evenement();
 		e.setSalle(salle);
@@ -67,12 +100,14 @@ public class Facade {
 		em.persist(a);
 	}
 	
-	public void ajoutSalle(String adresse, String nom, int capacite, int telephone){
+	public void ajoutSalle(String adresse, String nom, String ville, int capacite, int telephone, String description){
 		Salle l = new Salle();
 		l.setAdresse(adresse);
 		l.setNom(nom);
+		l.setVille(ville);
 		l.setCapacite(capacite);
 		l.setTelephone(telephone);
+		l.setDescription(description);
 		/*this.salles.add(l);*/
 		this.em.persist(l);
 	}
@@ -169,21 +204,36 @@ public class Facade {
 		return null;
 	}
 	
-	//Renvoie l'id de l'utilisateur s'il est inscris, sinon -1.
-	public int identifier(String pseudo, String mdp) {
-		// TODO Auto-generated method stub
-		TypedQuery<Utilisateur> tq = em.createQuery("select u from Utilisateur u where u.pseudo="+pseudo+" and u.motDePasse="+mdp, Utilisateur.class);
-		
-		
-		System.out.println("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
-		Collection<Utilisateur> ut = (Collection<Utilisateur>) tq.getResultList(); 
-		int retour = -1;
-		if (ut.size() == 1) {
-			Utilisateur u = ut.iterator().next();
-			retour = u.getId();
+	//Renvoie l'Utilisateur s'il existe et sinon null
+		public Utilisateur identifier(String pseudo, String mdp) {
+			// TODO Auto-generated method stub
+			TypedQuery<Utilisateur> tq = em.createQuery("select u from Utilisateur u where u.pseudo='"+pseudo+"' and u.motDePasse='"+mdp+"'", Utilisateur.class);	
+			
+			Collection<Utilisateur> ut =(Collection<Utilisateur>) tq.getResultList();
+			Utilisateur u = null;
+			if (ut.iterator().hasNext()) {
+				u = ut.iterator().next();
+			} 		
+			return u;
 		}
-		return retour;
 		
+		//Ajouter un événement dans la liste des événements ou est inscris un utilisateur
+		//Et dans celle où il est visible si tel est son souhait
+		public void ajouterInscription(Evenement e,Utilisateur u, boolean visible) {
+			 Collection<Evenement> evts = (Collection<Evenement>) u.getInscris();
+			 evts.add(e);
+			 u.setInscris(evts);
+			 if (visible) {
+				 Collection<Evenement> evts_vis = (Collection<Evenement>) u.getInscrisNonCache();
+				 evts_vis.add(e);
+				 u.setInscrisNonCache(evts_vis);
+			}
+		}
 		
-	}
+		//Ajouter un artiste dans les favoris d'un utilisateur
+		public void ajouterArtisteSuivis(Artiste a,Utilisateur u) {
+			Collection<Artiste> artistes = (Collection<Artiste>) u.getArtistesFavoris();
+			 artistes.add(a);
+			 u.setArtistesFavoris(artistes);		
+		}
 }
