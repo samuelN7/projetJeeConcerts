@@ -128,6 +128,19 @@ public class Serv extends HttpServlet {
 			 //Permet de retourner à la page précédente
 			 response.sendRedirect((String) request.getHeader("Referer"));			
 		}
+		else if(op.equals("ajouterSalle")) {
+			String nom = request.getParameter("nomSalle");
+			String adresse = request.getParameter("adresse");
+			String ville = request.getParameter("ville");
+			int capacite = Integer.parseInt(request.getParameter("capacite"));
+			String description = request.getParameter("desciptionSalle");
+			int tel = Integer.parseInt(request.getParameter("tel"));
+			
+			facade.ajoutSalle(adresse, nom, ville, capacite, tel, description);
+			request.getRequestDispatcher("PagePerso.jsp").forward(request, response);
+			
+			
+		}
 	}
 
 	/**

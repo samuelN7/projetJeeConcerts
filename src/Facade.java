@@ -93,12 +93,14 @@ public class Facade {
 		em.persist(a);
 	}
 	
-	public void ajoutSalle(String adresse, String nom, int capacite, int telephone){
+	public void ajoutSalle(String adresse, String nom, String ville, int capacite, int telephone, String description){
 		Salle l = new Salle();
 		l.setAdresse(adresse);
 		l.setNom(nom);
+		l.setVille(ville);
 		l.setCapacite(capacite);
 		l.setTelephone(telephone);
+		l.setDescription(description);
 		/*this.salles.add(l);*/
 		this.em.persist(l);
 	}
