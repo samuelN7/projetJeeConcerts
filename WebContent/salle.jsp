@@ -44,6 +44,13 @@
 	}
 	out.println("<br>");
 	*/
+	
+	
 	%>
+	<form method="Get" action="Serv">
+	<input type="submit" value="Ajouter aux favoris !"/>
+	<input type="hidden" name="op" value="suivreSalle"/>
+	<input type="hidden" name="salle" value=<%=s%>/>
+	</form>
 </body>
 </html>
