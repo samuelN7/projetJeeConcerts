@@ -1,16 +1,27 @@
 package projet_jee;
 
 import java.util.Collection;
+import java.util.LinkedList;
 
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(
+	    name="est",
+	    discriminatorType=DiscriminatorType.STRING
+	)
 @DiscriminatorValue("utilisateur")
 public class Utilisateur {
 	
@@ -27,14 +38,14 @@ public class Utilisateur {
 	String motDePasse;
 	String description;
 	
-	@ManyToMany
-	Collection<Artiste> artistesFavoris;
+	@ManyToMany(/*cascade=CascadeType.REMOVE,*/ fetch=FetchType.EAGER)
+	Collection<Artiste> artistesFavoris = new LinkedList<Artiste>();
 	
 	@ManyToMany
 	Collection<Salle> sallesFavorites;
 	
-	@ManyToMany
-	Collection<Utilisateur> amis;
+	/*@ManyToMany
+	Collection<Utilisateur> amis;*/
 	
 	@ManyToMany(mappedBy="inscrisE")
 	Collection<Evenement> inscris;
@@ -48,6 +59,10 @@ public class Utilisateur {
 	public Utilisateur() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+	
+	public void ajouterArtisteFavoris(Artiste a) {
+		this.artistesFavoris.add(a);
 	}
 
 	public int getId() {
@@ -138,13 +153,13 @@ public class Utilisateur {
 		this.sallesFavorites = sallesFavorites;
 	}
 
-	public Collection<Utilisateur> getAmis() {
-		return amis;
-	}
-
-	public void setAmis(Collection<Utilisateur> amis) {
-		this.amis = amis;
-	}
+//	public Collection<Utilisateur> getAmis() {
+//		return amis;
+//	}
+//
+//	public void setAmis(Collection<Utilisateur> amis) {
+//		this.amis = amis;
+//	}
 
 	public Collection<Evenement> getInscris() {
 		return inscris;

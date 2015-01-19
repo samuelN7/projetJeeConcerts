@@ -12,12 +12,13 @@
 	<% Artiste a = (Artiste)request.getAttribute("artiste");
 	out.println(a.getNom_groupe()+ "<br>");
 	out.println(a.getDescription_groupe() + "<br>");
+
 	%>
 	
 	<form method="Get" action="Serv">
 	<input type="submit" value="Suivre cet artiste !"/>
 	<input type="hidden" name="op" value="suivreArtiste"/>
-	<input type="hidden" name="artiste" value=<%=a%>/>
+	<input type="hidden" name="artiste" value="<%=a.getId()%>"/>
 	</form>
 	
 	 

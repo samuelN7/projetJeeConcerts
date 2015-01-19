@@ -146,10 +146,14 @@ public class Serv extends HttpServlet {
 
 		}
 		else if(op.equals("suivreArtiste")) {
-			 Artiste a = (Artiste) request.getAttribute("artiste");
+			 int id = Integer.parseInt(request.getParameter("artiste"));
 			 Utilisateur u = (Utilisateur) session.getAttribute(ATT_SESSION_USER);
-			 facade.ajouterArtisteSuivis(a, u);
+			 System.out.println("UUUUUUUUUUUUUU"+u.getPseudo()+id);
+			 if (u!=null) {
+			 facade.ajouterArtisteSuivis(id, u);
+			 }
 			 //Permet de retourner à la page précédente
+			 //System.out.println("POPOPOPOPOPOPOPOPOPP"+u.getArtistesFavoris().iterator().next().getNom_groupe());;
 			 response.sendRedirect((String) request.getHeader("Referer"));			
 		}
 		else if(op.equals("ajouterSalle")) {

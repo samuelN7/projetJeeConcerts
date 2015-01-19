@@ -7,6 +7,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import projet_jee.Artiste;
+import projet_jee.Utilisateur;
+
 
 /**
  * 
@@ -224,10 +227,11 @@ public class Facade {
 			}
 		}
 		
-		//Ajouter un artiste dans les favoris d'un utilisateur
-		public void ajouterArtisteSuivis(Artiste a,Utilisateur u) {
-			Collection<Artiste> artistes = (Collection<Artiste>) u.getArtistesFavoris();
-			 artistes.add(a);
-			 u.setArtistesFavoris(artistes);		
-		}
+		//Ajouter un artiste dans les favoris d'un utilisateur	
+		public void ajouterArtisteSuivis(int id/*Artiste a*/,Utilisateur u) {
+				Utilisateur u1 = em.find(Utilisateur.class, u.getId()); 
+				System.out.println(6+"IIIIIIIIIDDDDDDDD"+id);
+				Artiste a1 = em.find(Artiste.class, id/*a.getId()*/);.
+				u1.getArtistesFavoris().add(a1);
+			}
 }

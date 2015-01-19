@@ -19,10 +19,10 @@ values ('adresse1',500,'description1','test1',06,'Toulouse');
 INSERT INTO salle (adresse,capacite,description,nom,telephone,ville)
 values ('adresse2',500,'description2','test2',06,'Paris');
 
-INSERT INTO utilisateur (dtype, email, motdepasse, prenom, pseudo, adresse,description,nom, ville)
+INSERT INTO utilisateur (est, email, motdepasse, prenom, pseudo, adresse,description,nom, ville)
 values ('utilisateur','@', 'blbl', 'remi', 'rmontel',  'adresse1','description1','test1','Toulouse');
 
-INSERT INTO utilisateur (dtype, email, motdepasse, prenom, pseudo, adresse,description,nom, ville,DESCRIPTION_GROUPE,NOM_GROUPE ,TYPEARTISTE  )
+INSERT INTO utilisateur (est, email, motdepasse, prenom, pseudo, adresse,description,nom, ville,DESCRIPTION_GROUPE,NOM_GROUPE ,TYPEARTISTE  )
 values ('artiste','@', 'blbl', 'samuel', 'sguery',  'adresse2','description2','test2','Paris','bon groupe', 'queen', 1);
 
 INSERT INTO tournee (description,titre)

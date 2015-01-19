@@ -1,9 +1,16 @@
 package projet_jee;
 
 import java.util.Collection;
+import java.util.LinkedList;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
@@ -15,8 +22,8 @@ public class Artiste extends Utilisateur {
 	String description_groupe;
 	int typeArtiste ;
 	
-	@ManyToMany(mappedBy="artistesFavoris")
-	Collection<Utilisateur> followers;
+	@ManyToMany(mappedBy="artistesFavoris",fetch=FetchType.EAGER)
+	Collection<Utilisateur> followers = new LinkedList<Utilisateur>();
 	
 	@OneToMany(mappedBy="artiste")
 	Collection<Evenement> evenements;
@@ -34,19 +41,10 @@ public class Artiste extends Utilisateur {
 		// TODO Auto-generated constructor stub
 	}
 	
-	
 
 	public int getTypeArtiste() {
 		return typeArtiste;
 	}
-
-
-
-	public void setTypeArtiste(int typeArtiste) {
-		this.typeArtiste = typeArtiste;
-	}
-
-
 
 	public String getNom_groupe() {
 		return nom_groupe;
