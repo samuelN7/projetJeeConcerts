@@ -11,14 +11,17 @@
 	<body>
 	<% Tournee t = (Tournee)request.getAttribute("tournee");
 		out.println(t.getTitre()+" <br>");//+t.getArtiste());
+		out.println("<br>");
 	//	out.println(t.getDateDebut()+" "+t.getDateFin());
-		out.println(t.getDescription()+" <br>");
+		out.println("Infos : "+t.getDescription()+" <br>");
 		out.println("<br>");
 	%>
 	
+	<br>
 	<form method="Get" action="Serv">
 	<input type="submit" value="S'abonner à cette tournée"/>
 	</form>
+	<br>
 		
 	<% /*
 		Collection<Evenement> events = t.getEvenements();

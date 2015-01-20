@@ -9,9 +9,11 @@
 <title>Liste des utilisateurs</title>
 </head>
 	<body>
+	<br>
 	<% Collection<Utilisateur> users = (Collection<Utilisateur>)request.getAttribute("listeUtilisateurs");
 	 for(Utilisateur u : users) {
-		out.println(u.getNom()+" "+u.getPrenom() + " " + u.getPseudo() + "<br>");
+		out.println(u.getPseudo() + "<br>");
+		out.println("<br>");
 	}%>
 	</body>
 </html>

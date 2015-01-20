@@ -11,10 +11,17 @@
 <body>
 	<%
 	Salle s = (Salle)request.getAttribute("salle");
-	out.println(s.getNom()+" "+s.getVille()+" "+s.getCapacite()+" <br>");
-	out.println(s.getAdresse()+ " <br>");
-	out.println(s.getTelephone()+ "<br>");
-	out.println(s.getDescription());
+	out.println(s.getNom()+" <br>");
+	out.println("<br>");
+	out.println("Capacité : "+s.getCapacite()+" places <br>");
+	out.println("<br>");
+	out.println("Adresse : "+s.getAdresse()+ " <br>");
+	out.println("<br>");
+	out.println("Ville : "+s.getVille()+" <br>");
+	out.println("<br>");
+	out.println("Téléphone :"+s.getTelephone()+ "<br>");
+	out.println("<br>");
+	out.println("Infos :"+s.getDescription()+" <br>");
 	out.println("<br>");
 	/*
 	Collection<Utilisateur> followers = s.getFollowers();

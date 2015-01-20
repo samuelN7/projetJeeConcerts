@@ -83,7 +83,16 @@ public class Serv extends HttpServlet {
 			request.setAttribute("listeSalles", facade.getSallesRecherche(rechercheNom, rechercheVille));
 			request.getRequestDispatcher("ListeSalle.jsp").forward(request, response);
 		}
-		
+		else if(op.equals("RechercherEvenement")){
+			String rechercheTitre = request.getParameter("titreEvent");
+			request.setAttribute("listeEvenements", facade.getEvenementsRecherche(rechercheTitre));
+			request.getRequestDispatcher("listeEvenements.jsp").forward(request, response);
+		}
+		else if(op.equals("RechercherTournee")){
+			String rechercheTitre = request.getParameter("titreTournee");
+			request.setAttribute("listeTournees", facade.getTourneesRecherche(rechercheTitre));
+			request.getRequestDispatcher("listeTournees.jsp").forward(request, response);
+		}
 		else if(op.equals("lienSalle")){
 			String nomSalle = request.getParameter("param");
 			request.setAttribute("salle", facade.getSalle(nomSalle));
@@ -101,6 +110,13 @@ public class Serv extends HttpServlet {
 			request.setAttribute("tournee", facade.getTournee(nomTournee));
 			request.getRequestDispatcher("tournee.jsp").forward(request, response);
 		}
+		
+		else if(op.equals("lienEvenement")){
+			String nomEvent = request.getParameter("param");
+			request.setAttribute("evenement", facade.getEvenement(nomEvent));
+			request.getRequestDispatcher("evenement.jsp").forward(request, response);
+		}
+		
 		else if(op.equals("connexion")) {			
 
 			String pseudo = request.getParameter("pseudo");

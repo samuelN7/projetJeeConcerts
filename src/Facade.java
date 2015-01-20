@@ -165,6 +165,20 @@ public class Facade {
 		return salles;
 	}
 	
+	public Collection<Evenement> getEvenementsRecherche(String rechercheTitre) {
+		TypedQuery<Evenement> tq = em.createQuery("select e from Evenement e where e.titre ='"+rechercheTitre+"'", Evenement.class);
+		Collection<Evenement> evenements = (Collection<Evenement>) tq.getResultList(); 
+		
+		return evenements;
+	}
+	
+	public Collection<Tournee> getTourneesRecherche(String rechercheTitre) {
+		TypedQuery<Tournee> tq = em.createQuery("select t from Tournee t where t.titre ='"+rechercheTitre+"'", Tournee.class);
+		Collection<Tournee> tournees = (Collection<Tournee>) tq.getResultList(); 
+		
+		return tournees;
+	}
+	
 	public Collection<Tournee> getTournees() {
 		TypedQuery<Tournee> tq = em.createQuery("select t from Tournee t", Tournee.class);
 		Collection<Tournee> tournees = (Collection<Tournee>) tq.getResultList(); 
@@ -201,6 +215,16 @@ public class Facade {
 		return null;
 	}
 	
+	public Evenement getEvenement(String titre) {
+		TypedQuery<Evenement> tq = em.createQuery("select e from Evenement e where e.titre='"+titre+"'", Evenement.class);
+		Collection<Evenement> events = (Collection<Evenement>) tq.getResultList(); 
+		if (events.size() != 0) {
+			Evenement e = events.iterator().next();
+			return e;
+		}
+		return new Evenement();
+	}
+	
 	//Renvoie l'Utilisateur s'il existe et sinon null
 		public Utilisateur identifier(String pseudo, String mdp) {
 			// TODO Auto-generated method stub
@@ -231,7 +255,7 @@ public class Facade {
 		public void ajouterArtisteSuivis(int id/*Artiste a*/,Utilisateur u) {
 				Utilisateur u1 = em.find(Utilisateur.class, u.getId()); 
 				System.out.println(6+"IIIIIIIIIDDDDDDDD"+id);
-				Artiste a1 = em.find(Artiste.class, id/*a.getId()*/);.
+				Artiste a1 = em.find(Artiste.class, id/*a.getId()*/);
 				u1.getArtistesFavoris().add(a1);
 			}
 }

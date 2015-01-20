@@ -10,14 +10,17 @@
 </head>
 <body>
 	<% Evenement e = (Evenement)request.getAttribute("evenement");
-	out.println(e.getTitre() +" "+e.getArtiste()+" "+e.getTournee());
-	out.println(e.getSalle());
-	out.println(e.getDate());
-	out.println(e.getPrix());
-	out.println(e.getDescription());
-	out.println(" ");
+	out.println(e.getTitre()+" <br>");// +" "+e.getArtiste()+" "+e.getTournee());
+	out.println("<br>");
+//	out.println(e.getSalle());
+	out.println("Date : "+e.getDate()+ "<br>");
+	out.println("<br>");
+	out.println("Prix : "+e.getPrix()+"€ <br>");
+	out.println("<br>");
+	out.println("Infos : "+e.getDescription()+"<br>");
+	out.println("<br>");
 	
-	Collection<Utilisateur> inscritsNonCaches = e.getInscrisNonCacheE();
+/*	Collection<Utilisateur> inscritsNonCaches = e.getInscrisNonCacheE();
 	out.println("Participants à cet événement ");
 	out.println("");
 	for(Utilisateur u : inscritsNonCaches) {
@@ -33,7 +36,7 @@
 		out.println(m.getMessage());		
 	}
 	out.println("");
-	request.setAttribute("monEvenement",e);
+	request.setAttribute("monEvenement",e); */
 	%>
 	<form method = action="Serv" id="achat"> 
 	<input type="submit" value="Prendre sa place !" id="achat" > 

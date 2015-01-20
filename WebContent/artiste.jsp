@@ -11,7 +11,9 @@
 <body>
 	<% Artiste a = (Artiste)request.getAttribute("artiste");
 	out.println(a.getNom_groupe()+ "<br>");
-	out.println(a.getDescription_groupe() + "<br>");
+	out.println("<br>");
+	out.println("Description : "+a.getDescription_groupe() + "<br>");
+	out.println("<br>");
 
 	%>
 	
