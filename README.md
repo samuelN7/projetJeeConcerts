@@ -31,6 +31,8 @@ values ('super tournée', 'maTournee');
 INSERT INTO tournee (description,titre)
 values ('tournée de merde', 'taTournee');
 
+INSERT INTO EVENEMENT  (titre,description,prix,date) values ('Evenement1','Ceciestladescriptiondelevenement1',80,'22/01/2015')
+
 
 
 
