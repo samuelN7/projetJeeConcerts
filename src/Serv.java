@@ -118,6 +118,11 @@ public class Serv extends HttpServlet {
 			request.getRequestDispatcher("evenement.jsp").forward(request, response);
 		}
 		
+		else if(op.equals("accueil")){
+			request.setAttribute("eventsRecents", facade.getEvenements());
+			request.getRequestDispatcher("accueil.jsp").forward(request, response);
+		}
+		
 		else if(op.equals("connexion")) {			
 
 			String pseudo = request.getParameter("pseudo");

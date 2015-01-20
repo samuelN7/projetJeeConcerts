@@ -37,7 +37,27 @@
 			</nav>
 		</header>
 		
-		<article id="derniersEvenements">Faire la requête sql</article>
+		<article id="derniersEvenements">Faire la requête sql <br>
+		<br>
+		<%
+		Collection<Evenement> events = (Collection<Evenement>)request.getAttribute("eventsRecents");
+		if (events.size()>3){
+			Iterator<Evenement> it = events.iterator();
+			Evenement courant;
+			for(int i=0;i<3;i++){
+				courant = it.next();
+				out.println("<a href=\"/projet_jee/Serv?op=lienEvenement&param="+courant.getTitre()+"\">"+courant.getTitre()+"</a> <br>");
+				out.println("<br>");		
+			}
+		}
+		else {
+			for(Evenement e : events) {
+				out.println("<a href=\"/projet_jee/Serv?op=lienEvenement&param="+e.getTitre()+"\">"+e.getTitre()+"</a> <br>");
+				out.println("<br>");
+			}
+		}
+		%>
+		</article>
 		
 		<article id="ArtistesDuMoment">Suggestion?</article>
 	
