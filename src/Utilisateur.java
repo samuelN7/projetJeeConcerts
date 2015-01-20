@@ -50,8 +50,8 @@ public class Utilisateur {
 	@ManyToMany(mappedBy="inscrisE")
 	Collection<Evenement> inscris;
 	
-	@ManyToMany(mappedBy="inscrisNonCacheE")
-	Collection<Evenement> inscrisNonCache;
+//	@ManyToMany(mappedBy="inscrisNonCacheE")
+//	Collection<Evenement> inscrisNonCache;
 	
 	@OneToMany
 	Collection<Message> messagesPerso;
@@ -169,13 +169,13 @@ public class Utilisateur {
 		this.inscris = inscris;
 	}
 
-	public Collection<Evenement> getInscrisNonCache() {
-		return inscrisNonCache;
-	}
-
-	public void setInscrisNonCache(Collection<Evenement> inscrisNonCache) {
-		this.inscrisNonCache = inscrisNonCache;
-	}
+//	public Collection<Evenement> getInscrisNonCache() {
+//		return inscrisNonCache;
+//	}
+//
+//	public void setInscrisNonCache(Collection<Evenement> inscrisNonCache) {
+//		this.inscrisNonCache = inscrisNonCache;
+//	}
 	
 	public Collection<Message> getMessagesPerso() {
 		return messagesPerso;

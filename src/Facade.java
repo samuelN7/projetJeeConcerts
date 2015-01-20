@@ -240,15 +240,13 @@ public class Facade {
 		
 		//Ajouter un événement dans la liste des événements ou est inscris un utilisateur
 		//Et dans celle où il est visible si tel est son souhait
-		public void ajouterInscription(Evenement e,Utilisateur u, boolean visible) {
-			 Collection<Evenement> evts = (Collection<Evenement>) u.getInscris();
-			 evts.add(e);
-			 u.setInscris(evts);
-			 if (visible) {
-				 Collection<Evenement> evts_vis = (Collection<Evenement>) u.getInscrisNonCache();
-				 evts_vis.add(e);
-				 u.setInscrisNonCache(evts_vis);
-			}
+		public void ajouterInscription(int idevt,Utilisateur u, boolean visible) {
+			 Evenement e2 = em.find(Evenement.class,idevt);
+			 Utilisateur u2 = em.find(Utilisateur.class, u.getId());
+			 e2.getInscrisE().add(u2);
+//			 if (visible) {
+//				 e2.getInscrisNonCacheE().add(u2);
+//			}
 		}
 		
 		//Ajouter un artiste dans les favoris d'un utilisateur	

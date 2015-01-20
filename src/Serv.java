@@ -24,6 +24,7 @@ public class Serv extends HttpServlet {
 	public static final String ATT_SESSION_USER = "sessionUtilisateur";
 	public static final String MON_EVT = "monEvenement";
 	private HttpSession session;
+	private int idevt;
 	
 	@EJB
 	Facade facade = new Facade();
@@ -132,16 +133,19 @@ public class Serv extends HttpServlet {
 		//L'utilisateur est sur un evenement, il veut acheter, on transmet l'evt à la prochaine page
 		else if(op.equals("achat")) { 
 			Evenement e = (Evenement) request.getAttribute("monEvenement");
+			idevt = Integer.parseInt(request.getParameter("idEvt"));
 			session.setAttribute(MON_EVT, e);			
 			request.getRequestDispatcher("Achat.jsp").forward(request, response);
 		}
 		//On effectue l'achat, l'inscription...
 		else if(op.equals("achete")) {
 			 if(request.getParameter("PourMoi") != null) {
-				 Evenement e = (Evenement) session.getAttribute(MON_EVT);
+				 //int idevt = Integer.parseInt(request.getParameter("idEvt"));
+				 //Evenement e = (Evenement) session.getAttribute(MON_EVT);
+				 System.out.println("KKKKKKKKKKKKKKKKKKKKKKKKK"+idevt);
 				 Utilisateur u = (Utilisateur) session.getAttribute(ATT_SESSION_USER);
-				 facade.ajouterInscription(e, u, request.getParameter("Visible") != null );
-				 
+				 facade.ajouterInscription(idevt, u, request.getParameter("Visible") != null );
+				 request.getRequestDispatcher("accueil.jsp").forward(request, response);
 			 } else {
 				 //Sinon achat pour quelqu'un d'autre, donc on ajoute pas (sauf si utilisateur existe)
 			 }		 
