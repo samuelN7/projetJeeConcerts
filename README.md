@@ -26,7 +26,7 @@ INSERT INTO utilisateur (est, email, motdepasse, prenom, pseudo, adresse,descrip
 values ('artiste','samuel@guery', 'blbl', 'samuel', 'sguery',  'adresse de samuel','leur réputation n est plus à faire','Queen','Los Angeles','Leur reputation n est plus à faire', 'Queen', 1);
 
 INSERT INTO tournee (description,titre)
-values ('une tournée d'adieu pour Queen', 'Live Tour 2015');
+values ('une tournée d adieu pour Queen', 'Live Tour 2015');
 
 INSERT INTO tournee (description,titre)
 values ('première tournée pour cet artiste qui monte', 'Découverte');
