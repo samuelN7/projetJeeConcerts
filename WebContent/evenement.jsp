@@ -42,7 +42,7 @@
 	<form method ="get" action="Serv" id="achat"> 
 	<input type="submit" value="Prendre sa place !" id="achat" > 
 	<input type="hidden" name="op" value="achat"/>
-		<input type="hidden" name="idEvt" value="<%=e.getId()%>"/>
+	<input type="hidden" name="idEvt" value="<%=e.getId()%>"/>
 	
 	</form>
 </body>

@@ -95,12 +95,16 @@ public class Serv extends HttpServlet {
 			request.setAttribute("listeTournees", facade.getTourneesRecherche(rechercheTitre));
 			request.getRequestDispatcher("listeTournees.jsp").forward(request, response);
 		}
+		else if(op.equals("RechercherPseudo")){
+			String pseudo = request.getParameter("pseudoRech");
+			request.setAttribute("listeUtilisateurs", facade.getPseudoRecherche(pseudo));
+			request.getRequestDispatcher("listerUtilisateurs.jsp").forward(request, response);
+		}
 		else if(op.equals("lienSalle")){
 			String nomSalle = request.getParameter("param");
 			request.setAttribute("salle", facade.getSalle(nomSalle));
 			request.getRequestDispatcher("salle.jsp").forward(request, response);
-		}
-		
+		}		
 		else if(op.equals("lienArtiste")){
 			String nomArtiste = request.getParameter("param");
 			request.setAttribute("artiste", facade.getArtiste(nomArtiste));

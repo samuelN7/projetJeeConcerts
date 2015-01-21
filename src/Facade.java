@@ -192,6 +192,13 @@ public class Facade {
 		return tournees;
 	}
 	
+	public Collection<Utilisateur> getPseudoRecherche(String pseudo) {
+		TypedQuery<Utilisateur> tq = em.createQuery("select u from Utilisateur u where u.pseudo ='"+pseudo+"'", Utilisateur.class);
+		Collection<Utilisateur> users = (Collection<Utilisateur>) tq.getResultList(); 
+		
+		return users;
+	}
+	
 	public Collection<Tournee> getTournees() {
 		TypedQuery<Tournee> tq = em.createQuery("select t from Tournee t", Tournee.class);
 		Collection<Tournee> tournees = (Collection<Tournee>) tq.getResultList(); 

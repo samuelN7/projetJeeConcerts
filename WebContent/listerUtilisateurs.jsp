@@ -37,6 +37,22 @@
 		</nav>
 	
 	<br>
+	<br>
+	Rechercher un utilisateur ou un artiste :
+	<br>
+	<br>
+	
+	<form method="Get" action="Serv">	
+			<label for="pseudoRech">Pseudo : </label> 	
+			<input type="text" name="pseudoRech" id="pseudoRech" />
+			<br>
+			<br>
+			<input type="submit" value="Rechercher"/>
+			<input type="hidden" name="op" value="RechercherPseudo"/>
+	</form>
+	<br>
+	<br>
+	
 	<% Collection<Utilisateur> users = (Collection<Utilisateur>)request.getAttribute("listeUtilisateurs");
 	 for(Utilisateur u : users) {
 		out.println(u.getPseudo() + "<br>");
