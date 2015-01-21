@@ -17,12 +17,12 @@
 			<nav id="nav">
 				<h3>Bienvenue sur notre site</h3>
 				<ul id="listePrincipale">
-					<li><a href="accueil.html" id=accueil>Accueil</a></li>
+					<li><a href="accueil.jsp" id=accueil>Accueil</a></li>
 					<li id="Artiste"> Artistes <img id="petiteFleche" src="petiteFleche.png" alt="petite flèche" height="5" width="9">
 						<ul id=genreArtiste>
-							<li><a href="" >Musique</a></li>
-							<li><a href="" >Danse</a></li>
-							<li><a href="" >Autres</a></li>	
+							<li><a href="/projet_jee/Serv?op=listerArtistesMusique" >Musique</a></li>
+							<li><a href="/projet_jee/Serv?op=listerArtistesDanse" >Danse</a></li>
+							<li><a href="/projet_jee/Serv?op=listerArtistesHumour" >Humour</a></li>	
 						</ul>
 					</li>
 					<li><a href="/projet_jee/Serv?op=listerSalles">Salles</a></li>
