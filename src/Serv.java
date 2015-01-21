@@ -26,7 +26,6 @@ public class Serv extends HttpServlet {
 	public static final String MON_EVT = "monEvenement";
 	private HttpSession session;
 	private int idevt;
-	private estArtiste;
 	
 	@EJB
 	Facade facade = new Facade();
@@ -159,17 +158,21 @@ public class Serv extends HttpServlet {
 			 
 		}
 		else if(op.equals("ajouterEvt")) {
-			String nom = request.getParameter("nomEvt");
-			String description = request.getParameter("descriptionEvt");
-			String nomsalle = request.getParameter("nomSalle");
-			int prix = Integer.parseInt(request.getParameter("prix"));
-			String date = request.getParameter("date");
-			String tournee = request.getParameter("tournee");
-			Artiste artiste = (Artiste) session.getAttribute(ATT_SESSION_USER);	
+			if(session!=null){
+				String nom = request.getParameter("nomEvt");
+				String description = request.getParameter("descriptionEvt");
+				String nomsalle = request.getParameter("nomSalle");
+				int prix = Integer.parseInt(request.getParameter("prix"));
+				String date = request.getParameter("date");
+				String tournee = request.getParameter("tournee");
+				Artiste artiste = (Artiste) session.getAttribute(ATT_SESSION_USER);	
 			
-			facade.ajoutEvt(artiste.getId(),nom,description,nomsalle, date,prix,tournee);
-			request.getRequestDispatcher("PagePerso.jsp").forward(request, response);
-
+				facade.ajoutEvt(artiste.getId(),nom,description,nomsalle, date,prix,tournee);
+				request.getRequestDispatcher("PagePerso.jsp").forward(request, response);
+			}
+			else {
+				request.getRequestDispatcher("connexion.html").forward(request, response);
+			}
 		}
 		else if (op.equals("ajouterTournee")) {
 			String nom = request.getParameter("nomT");
@@ -183,15 +186,20 @@ public class Serv extends HttpServlet {
 			
 		}
 		else if(op.equals("suivreArtiste")) {
-			 int id = Integer.parseInt(request.getParameter("artiste"));
-			 Utilisateur u = (Utilisateur) session.getAttribute(ATT_SESSION_USER);
-			 if (u!=null) {
-			 facade.ajouterArtisteSuivis(id, u);
-			 }
-			 request.setAttribute("favoris", facade.getFavoris(u.getId()));
-			 request.setAttribute("inscriptions", facade.getInscriptions(u.getId()));
-			 request.setAttribute("evtsFav", facade.getEvtsDesFavoris(u.getId()));
-			 request.getRequestDispatcher("PagePerso.jsp").forward(request, response);			
+			if(session!=null){
+				int id = Integer.parseInt(request.getParameter("artiste"));
+				Utilisateur u = (Utilisateur) session.getAttribute(ATT_SESSION_USER);
+				if (u!=null) {
+					facade.ajouterArtisteSuivis(id, u);
+					request.setAttribute("favoris", facade.getFavoris(u.getId()));
+					request.setAttribute("inscriptions", facade.getInscriptions(u.getId()));
+					request.setAttribute("evtsFav", facade.getEvtsDesFavoris(u.getId()));
+					request.getRequestDispatcher("PagePerso.jsp").forward(request, response);
+				}
+			}
+			else{
+				request.getRequestDispatcher("connexion.html").forward(request, response);
+			}
 		}
 		else if(op.equals("ajouterSalle")) {
 			String nom = request.getParameter("nomSalle");
