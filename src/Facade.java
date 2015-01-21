@@ -273,4 +273,14 @@ public class Facade {
 				Artiste a1 = em.find(Artiste.class, id/*a.getId()*/);
 				u1.getArtistesFavoris().add(a1);
 			}
+		
+		public Collection<Artiste> getFavoris(int id) {
+			System.out.println(6+"IIIIIIIIIDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD1"+id);
+			Utilisateur u = em.find(Utilisateur.class, id);
+			System.out.println(6+"IIIIIIIIIDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD2"+id);
+			if (u.getInscris()==null) {
+				System.out.println("NNNNNNNNNNNNNNNNNNNNNNNNNNUUUULLLLLLL");
+			}
+			return u.getArtistesFavoris();
+		}
 }

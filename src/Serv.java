@@ -212,6 +212,19 @@ public class Serv extends HttpServlet {
 			
 			
 		}
+		else if(op.equals("pagePerso")) {
+			Utilisateur u = (Utilisateur) session.getAttribute(ATT_SESSION_USER);
+			//u = facade.getUtilisateur(u.getId());
+			//request.setAttribute("inscriptions", facade.getInscriptions(u.getId()));
+//			Collection<Evenement> e = facade.getInscriptions(u.getId());
+//			System.out.println("IIIIIIIIIIIII"+ e.iterator().next().getTitre()+"IIIIIIIII");
+			
+			request.setAttribute("favoris", facade.getFavoris(u.getId()));
+			
+			request.getRequestDispatcher("PagePerso.jsp").forward(request, response);
+		}
+		
+		
 	}
 
 	/**
