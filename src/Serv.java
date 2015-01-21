@@ -135,10 +135,16 @@ public class Serv extends HttpServlet {
 			request.getRequestDispatcher("accueil.jsp").forward(request, response);
 		}
 		else if (op.equals("deconnexion")) {
-			session.invalidate();
-			session = null;
-			request.getRequestDispatcher("accueil.jsp").forward(request, response);
+			if(session!=null){
+				session.invalidate();
+				session = null;
+				request.getRequestDispatcher("accueil.jsp").forward(request, response);
+			}
+			else{
+				request.getRequestDispatcher("accueil.jsp").forward(request, response);
+			}
 		}
+		
 		//L'utilisateur est sur un evenement, il veut acheter, on transmet l'evt à la prochaine page
 		else if(op.equals("achat")) { 
 			Evenement e = (Evenement) request.getAttribute("monEvenement");
@@ -146,6 +152,7 @@ public class Serv extends HttpServlet {
 			session.setAttribute(MON_EVT, e);			
 			request.getRequestDispatcher("Achat.jsp").forward(request, response);
 		}
+		
 		//On effectue l'achat, l'inscription...
 		else if(op.equals("achete")) {
 			 if(request.getParameter("PourMoi") != null) {
