@@ -56,7 +56,6 @@ public class Facade {
 		Collection<Salle> salles = (Collection<Salle>) tq.getResultList();
 		if (salles.iterator().hasNext()) {
 			Salle salle = salles.iterator().next();
-			System.out.println("JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ"+salle.getNom());
 			e.setSalle(salle);
 		}	
 		
@@ -262,7 +261,6 @@ public class Facade {
 		//Ajouter un artiste dans les favoris d'un utilisateur	
 		public void ajouterArtisteSuivis(int id/*Artiste a*/,Utilisateur u) {
 				Utilisateur u1 = em.find(Utilisateur.class, u.getId()); 
-				System.out.println(6+"IIIIIIIIIDDDDDDDD"+id);
 				Artiste a1 = em.find(Artiste.class, id/*a.getId()*/);
 				u1.getArtistesFavoris().add(a1);
 			}
@@ -272,9 +270,7 @@ public class Facade {
 		}
 		
 		public Collection<Evenement> getInscriptions(int id) {
-			System.out.println(6+"IIIIIIIIIDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD1"+id);
 			Utilisateur u = em.find(Utilisateur.class, id);
-			System.out.println(6+"IIIIIIIIIDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD2"+id);
 			if (u.getInscris()==null) {
 				System.out.println("NNNNNNNNNNNNNNNNNNNNNNNNNNUUUULLLLLLL");
 			}
@@ -282,9 +278,7 @@ public class Facade {
 		}
 		
 		public Collection<Artiste> getFavoris(int id) {
-			System.out.println(6+"IIIIIIIIIDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD1"+id);
 			Utilisateur u = em.find(Utilisateur.class, id);
-			System.out.println(6+"IIIIIIIIIDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD2"+id);
 			if (u.getInscris()==null) {
 				System.out.println("NNNNNNNNNNNNNNNNNNNNNNNNNNUUUULLLLLLL");
 			}
@@ -303,8 +297,6 @@ public class Facade {
 					retour.addAll(a.getEvenements());
 				}
 			}
-			return retour;		
-			
-		}
-		
+			return retour;				
+		}		
 }
