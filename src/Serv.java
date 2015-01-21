@@ -149,9 +149,6 @@ public class Serv extends HttpServlet {
 		//On effectue l'achat, l'inscription...
 		else if(op.equals("achete")) {
 			 if(request.getParameter("PourMoi") != null) {
-				 //int idevt = Integer.parseInt(request.getParameter("idEvt"));
-				 //Evenement e = (Evenement) session.getAttribute(MON_EVT);
-				 System.out.println("KKKKKKKKKKKKKKKKKKKKKKKKK"+idevt);
 				 Utilisateur u = (Utilisateur) session.getAttribute(ATT_SESSION_USER);
 				 facade.ajouterInscription(idevt, u, request.getParameter("Visible") != null );
 				 request.getRequestDispatcher("accueil.jsp").forward(request, response);
@@ -187,13 +184,11 @@ public class Serv extends HttpServlet {
 		else if(op.equals("suivreArtiste")) {
 			 int id = Integer.parseInt(request.getParameter("artiste"));
 			 Utilisateur u = (Utilisateur) session.getAttribute(ATT_SESSION_USER);
-			 System.out.println("UUUUUUUUUUUUUU"+u.getPseudo()+id);
 			 if (u!=null) {
 			 facade.ajouterArtisteSuivis(id, u);
 			 }
-			 //Permet de retourner à la page précédente
-			 //System.out.println("POPOPOPOPOPOPOPOPOPP"+u.getArtistesFavoris().iterator().next().getNom_groupe());;
-			 response.sendRedirect((String) request.getHeader("Referer"));			
+			 request.setAttribute("favoris", facade.getFavoris(u.getId()));
+			 request.getRequestDispatcher("PagePerso.jsp").forward(request, response);			
 		}
 		else if(op.equals("ajouterSalle")) {
 			String nom = request.getParameter("nomSalle");
@@ -210,11 +205,7 @@ public class Serv extends HttpServlet {
 		}
 		else if(op.equals("pagePerso")) {
 			Utilisateur u = (Utilisateur) session.getAttribute(ATT_SESSION_USER);
-			//u = facade.getUtilisateur(u.getId());
-			request.setAttribute("inscriptions", facade.getInscriptions(u.getId()));
-//			Collection<Evenement> e = facade.getInscriptions(u.getId());
-//			System.out.println("IIIIIIIIIIIII"+ e.iterator().next().getTitre()+"IIIIIIIII");
-			
+			request.setAttribute("inscriptions", facade.getInscriptions(u.getId()));			
 			request.setAttribute("favoris", facade.getFavoris(u.getId()));
 			request.setAttribute("evtsFav", facade.getEvtsDesFavoris(u.getId()));
 			
