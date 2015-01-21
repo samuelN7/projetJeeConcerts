@@ -202,17 +202,20 @@ public class Serv extends HttpServlet {
 			}
 		}
 		else if(op.equals("ajouterSalle")) {
-			String nom = request.getParameter("nomSalle");
-			String adresse = request.getParameter("adresse");
-			String ville = request.getParameter("ville");
-			int capacite = Integer.parseInt(request.getParameter("capacite"));
-			String description = request.getParameter("desciptionSalle");
-			int tel = Integer.parseInt(request.getParameter("tel"));
+			if(session!=null){
+				String nom = request.getParameter("nomSalle");
+				String adresse = request.getParameter("adresse");
+				String ville = request.getParameter("ville");
+				int capacite = Integer.parseInt(request.getParameter("capacite"));
+				String description = request.getParameter("desciptionSalle");
+				int tel = Integer.parseInt(request.getParameter("tel"));
 			
-			facade.ajoutSalle(adresse, nom, ville, capacite, tel, description);
-			request.getRequestDispatcher("PagePerso.jsp").forward(request, response);
-			
-			
+				facade.ajoutSalle(adresse, nom, ville, capacite, tel, description);
+				request.getRequestDispatcher("PagePerso.jsp").forward(request, response);
+			}
+			else{
+				request.getRequestDispatcher("connexion.html").forward(request, response);	
+			}		
 		}
 		else if(op.equals("pagePerso")) {
 			Utilisateur u = (Utilisateur) session.getAttribute(ATT_SESSION_USER);
