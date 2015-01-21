@@ -188,6 +188,8 @@ public class Serv extends HttpServlet {
 			 facade.ajouterArtisteSuivis(id, u);
 			 }
 			 request.setAttribute("favoris", facade.getFavoris(u.getId()));
+			 request.setAttribute("inscriptions", facade.getInscriptions(u.getId()));
+			 request.setAttribute("evtsFav", facade.getEvtsDesFavoris(u.getId()));
 			 request.getRequestDispatcher("PagePerso.jsp").forward(request, response);			
 		}
 		else if(op.equals("ajouterSalle")) {
@@ -207,8 +209,7 @@ public class Serv extends HttpServlet {
 			Utilisateur u = (Utilisateur) session.getAttribute(ATT_SESSION_USER);
 			request.setAttribute("inscriptions", facade.getInscriptions(u.getId()));			
 			request.setAttribute("favoris", facade.getFavoris(u.getId()));
-			request.setAttribute("evtsFav", facade.getEvtsDesFavoris(u.getId()));
-			
+			request.setAttribute("evtsFav", facade.getEvtsDesFavoris(u.getId()));		
 			request.getRequestDispatcher("PagePerso.jsp").forward(request, response);
 		}
 		
