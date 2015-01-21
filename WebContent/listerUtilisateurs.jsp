@@ -10,21 +10,25 @@
 <link rel="stylesheet" href="styleConnexion.css" />
 </head>
 	<body>
-		<div id="bandeau1"></div>
+		<header id="header">
 		
-		<div id="bandeau2"></div>
+			<div id="bandeau1"></div>
 		
-		<div id="connexion"> <a href="inscription.html">Inscription</a> <a href=connexion.html>Connexion</a> 
-		</div>
-		
-		<nav id="nav">
+			<div id="bandeau2"></div>
+			
+			<div id="connexion"> <a href="inscription.html">Inscription</a> <a href=connexion.html>Connexion</a><a href="/projet_jee/Serv?op=deconnexion">Deconnexion</a> 
+			</div>
+			
+			
+			<nav id="nav">
+				
 				<ul id="listePrincipale">
 					<li><a href="accueil.jsp" id=accueil>Accueil</a></li>
 					<li id="Artiste"> Artistes <img id="petiteFleche" src="petiteFleche.png" alt="petite flèche" height="5" width="9">
 						<ul id=genreArtiste>
-							<li><a href="" >Musique</a></li>
-							<li><a href="" >Danse</a></li>
-							<li><a href="" >Autres</a></li>	
+							<li><a href="/projet_jee/Serv?op=listerArtistesMusique" >Musique</a></li>
+							<li><a href="/projet_jee/Serv?op=listerArtistesDanse" >Danse</a></li>
+							<li><a href="/projet_jee/Serv?op=listerArtistesHumour" >Humour</a></li>	
 						</ul>
 					</li>
 					<li><a href="/projet_jee/Serv?op=listerSalles">Salles</a></li>
@@ -32,9 +36,10 @@
 					<li><a href="/projet_jee/Serv?op=listerUtilisateurs">Membres</a></li>
 					<li><a href="/projet_jee/Serv?op=listerTournees">Tournees</a></li>
 				</ul>	
-		
-				
-		</nav>
+			</nav>
+		</header>
+	
+	<br>
 	
 	<br>
 	<br>
@@ -58,5 +63,77 @@
 		out.println(u.getPseudo() + "<br>");
 		out.println("<br>");
 	}%>
+	
+	<table border="1">
+
+   <caption>Liste des Artistes</caption>
+
+   <thead> <!-- En-tête du tableau -->
+
+       <tr style="font-weight: bold;">
+
+            <td>Pseudo</td>
+           
+           <td>Nom</td>
+
+           <td>Prenom</td>
+           
+           <td>Adresse</td>
+           
+           <td>Ville</td>
+           
+           <td>Email</td>
+
+       </tr>
+
+   </thead>
+
+   <tfoot> <!-- Pied de tableau -->
+		
+       <tr style="font-weight: bold;">
+
+           <td>Pseudo</td>
+           
+           <td>Nom</td>
+
+           <td>Prenom</td>
+           
+           <td>Adresse</td>
+           
+           <td>Ville</td>
+           
+           <td>Email</td>
+
+       </tr>
+
+   </tfoot>
+
+   <tbody> <!-- Corps du tableau -->
+   
+		  <% Collection<Utilisateur> users2 = (Collection<Utilisateur>)request.getAttribute("listeUtilisateurs");
+	 for(Utilisateur u : users2) {
+		 
+		 
+		 out.print("<tr>");
+         out.print("<td>"+u.getPseudo()+"</td>");
+         out.print("<td>"+u.getNom()+"</td>");
+         out.print("<td>"+u.getPrenom()+"</td>");
+         out.print("<td>"+u.getAdresse()+"</td>");
+         out.print("<td>"+u.getVille()+"</td>");
+         out.print("<td>"+u.getEmail()+"</td>");
+         out.print("</tr>");
+      
+	 }
+	   %>
+	   
+
+
+   </tbody>
+
+</table>
+
+
+
+	<script src="JsAccueil.js"></script>
 	</body>
 </html>

@@ -7,6 +7,11 @@ body
 	margin-top: 0px;
 }
 
+body table
+{
+	margin:auto;
+	table-layout:  
+}
 
 #bandeau1
 {

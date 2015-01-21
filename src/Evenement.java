@@ -90,6 +90,14 @@ public class Evenement {
 	public Tournee getTournee() {
 		return tournee;
 	}
+	public String getTitreTournee() {
+		if (tournee==null){
+			return null;
+		}
+		else{
+			return tournee.getTitre();
+		}
+	}
 	public void setTournee(Tournee tournee) {
 		this.tournee = tournee;
 	}

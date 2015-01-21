@@ -11,21 +11,25 @@
 </head>
 <body>
 
-	<div id="bandeau1"></div>
+		<header id="header">
 		
-		<div id="bandeau2"></div>
+			<div id="bandeau1"></div>
 		
-		<div id="connexion"> <a href="inscription.html">Inscription</a> <a href=connexion.html>Connexion</a> 
-		</div>
-		
-		<nav id="nav">
+			<div id="bandeau2"></div>
+			
+			<div id="connexion"> <a href="inscription.html">Inscription</a> <a href=connexion.html>Connexion</a><a href="/projet_jee/Serv?op=deconnexion">Deconnexion</a> 
+			</div>
+			
+			
+			<nav id="nav">
+				
 				<ul id="listePrincipale">
 					<li><a href="accueil.jsp" id=accueil>Accueil</a></li>
 					<li id="Artiste"> Artistes <img id="petiteFleche" src="petiteFleche.png" alt="petite flèche" height="5" width="9">
 						<ul id=genreArtiste>
-							<li><a href="" >Musique</a></li>
-							<li><a href="" >Danse</a></li>
-							<li><a href="" >Autres</a></li>	
+							<li><a href="/projet_jee/Serv?op=listerArtistesMusique" >Musique</a></li>
+							<li><a href="/projet_jee/Serv?op=listerArtistesDanse" >Danse</a></li>
+							<li><a href="/projet_jee/Serv?op=listerArtistesHumour" >Humour</a></li>	
 						</ul>
 					</li>
 					<li><a href="/projet_jee/Serv?op=listerSalles">Salles</a></li>
@@ -33,14 +37,65 @@
 					<li><a href="/projet_jee/Serv?op=listerUtilisateurs">Membres</a></li>
 					<li><a href="/projet_jee/Serv?op=listerTournees">Tournees</a></li>
 				</ul>	
-		
-				
-		</nav>
+			</nav>
+		</header>
 
-	<% Collection<Artiste> artistes = (Collection<Artiste>)request.getAttribute("listeArtistes");
+	
+	<table border="1">
+
+   <caption>Liste des Artistes</caption>
+
+   <thead> <!-- En-tête du tableau -->
+
+       <tr style="font-weight: bold;">
+
+           <td>Nom de l'Artiste</td>
+           
+           <td>Genre</td>
+
+           <td>Nom du Groupe</td>
+
+       </tr>
+
+   </thead>
+
+   <tfoot> <!-- Pied de tableau -->
+		
+       <tr style="font-weight: bold;">
+
+           <td>Nom de l'Artiste</td>
+           
+           <td>Genre</td>
+
+           <td>Nom du Groupe</td>
+
+       </tr>
+
+   </tfoot>
+
+   <tbody> <!-- Corps du tableau -->
+   
+		<% Collection<Artiste> artistes = (Collection<Artiste>)request.getAttribute("listeArtistes");
+	
 	 for(Artiste a : artistes) {
-		 out.println("<a href=\"/projet_jee/Serv?op=lienArtiste&param="+a.getNom_groupe()+"\">"+a.getNom_groupe()+"</a> <br>");
-		 out.println("<br>");
-	}%>
+		 
+		 
+		 out.print("<tr>");
+         out.print("<td><a href=\"/projet_jee/Serv?op=lienArtiste&param="+a.getNom_groupe()+"\">"+a.getNom_groupe()+"</a></td>");
+         out.print("<td>"+a.getTypeArtisteString()+"</td>");
+         out.print("<td>"+a.getNom_groupe()+"</td>");
+         out.print("</tr>");
+      
+	 }
+	   %>
+
+      
+
+
+
+   </tbody>
+
+</table>
+<script src="JsAccueil.js"></script>
 </body>
 </html>

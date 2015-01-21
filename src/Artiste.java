@@ -45,6 +45,21 @@ public class Artiste extends Utilisateur {
 	public int getTypeArtiste() {
 		return typeArtiste;
 	}
+	
+	public String getTypeArtisteString() {
+		if(typeArtiste == 1){
+			return "Musique";
+		}
+		else if(typeArtiste == 2){
+			return "Danse";
+		}
+		else if(typeArtiste == 3){
+			return "Humour";
+		}
+		else{
+			return "type inconnu";
+		}
+	}
 
 	public String getNom_groupe() {
 		return nom_groupe;

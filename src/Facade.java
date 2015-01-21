@@ -172,7 +172,7 @@ public class Facade {
 	}
 	
 	public Collection<Salle> getSallesRecherche(String rechercheNom, String rechercheVille) {
-		TypedQuery<Salle> tq = em.createQuery("select s from Salle s where s.nom ='"+rechercheNom+"' and s.ville='"+rechercheVille+"'", Salle.class);
+		TypedQuery<Salle> tq = em.createQuery("select s from Salle s where s.nom ='"+rechercheNom+"' or s.ville='"+rechercheVille+"'", Salle.class);
 		Collection<Salle> salles = (Collection<Salle>) tq.getResultList(); 
 		
 		return salles;
@@ -190,13 +190,6 @@ public class Facade {
 		Collection<Tournee> tournees = (Collection<Tournee>) tq.getResultList(); 
 		
 		return tournees;
-	}
-	
-	public Collection<Utilisateur> getPseudoRecherche(String pseudo) {
-		TypedQuery<Utilisateur> tq = em.createQuery("select u from Utilisateur u where u.pseudo ='"+pseudo+"'", Utilisateur.class);
-		Collection<Utilisateur> users = (Collection<Utilisateur>) tq.getResultList(); 
-		
-		return users;
 	}
 	
 	public Collection<Tournee> getTournees() {
