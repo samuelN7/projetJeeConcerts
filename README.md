@@ -35,6 +35,8 @@ INSERT INTO EVENEMENT  (titre,description,prix,date) values ('Evenement1','Ceci 
 
 INSERT INTO EVENEMENT  (titre,description,prix,date) values ('Evenement2','Ceci est la description de l evenement 2',65,'13/08/2015');
 
+INSERT INTO utilisateur (est, email, motdepasse, prenom, pseudo, adresse,description,nom, ville) values ('artiste','anna@pavlova', 'blbl', 'anna', 'apavlova', 'adresse de anna','Elle était considérée comme la meilleure danseuse étoile de tous les temps','Pavlova','Moscou');
+
 
 
 
