@@ -125,14 +125,22 @@ public class Serv extends HttpServlet {
 		
 		else if(op.equals("connexion")) {			
 
-			String pseudo = request.getParameter("pseudo");
-			String mdp = request.getParameter("mdp");
-			request.setAttribute("ut", facade.identifier(pseudo,mdp));
-			Utilisateur ut = (Utilisateur) request.getAttribute("ut");
-			if (ut != null) {
-				session = request.getSession();
-				session.setAttribute(ATT_SESSION_USER, ut);
+			if (session == null) {
+				String pseudo = request.getParameter("pseudo");
+				String mdp = request.getParameter("mdp");
+				request.setAttribute("ut", facade.identifier(pseudo,mdp));
+				Utilisateur ut = (Utilisateur) request.getAttribute("ut");
+				if (ut != null) {
+					session = request.getSession();
+					session.setAttribute(ATT_SESSION_USER, ut);
+				}
+				
 			}
+			request.getRequestDispatcher("accueil.jsp").forward(request, response);
+		}
+		else if (op.equals("deconnexion")) {
+			session.invalidate();
+			session = null;
 			request.getRequestDispatcher("accueil.jsp").forward(request, response);
 		}
 		//L'utilisateur est sur un evenement, il veut acheter, on transmet l'evt à la prochaine page
