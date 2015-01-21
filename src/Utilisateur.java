@@ -56,7 +56,7 @@ public class Utilisateur {
 //	@ManyToMany(mappedBy="inscrisNonCacheE")
 //	Set<Evenement> inscrisNonCache;
 	
-	@OneToMany
+	@OneToMany(mappedBy="dest",fetch=FetchType.EAGER)
 	Set<Message> messagesPerso;
 
 	public Utilisateur() {

@@ -1,6 +1,7 @@
 package projet_jee;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,9 +15,10 @@ public class Message {
 	int id;
 	String date;
 	String message;
+	String auteur;
 	
-	@ManyToOne
-	Utilisateur auteur;
+	@ManyToOne(fetch=FetchType.EAGER)
+	Utilisateur dest;
 
 	public Message() {
 		// TODO Auto-generated constructor stub
@@ -46,12 +48,20 @@ public class Message {
 		this.message = message;
 	}
 
-	public Utilisateur getAuteur() {
+	public Utilisateur getDest() {
+		return dest;
+	}
+
+	public String getAuteur() {
 		return auteur;
 	}
 
-	public void setAuteur(Utilisateur auteur) {
+	public void setAuteur(String auteur) {
 		this.auteur = auteur;
+	}
+
+	public void setDest(Utilisateur dest) {
+		this.dest = dest;
 	}
 
 	

@@ -26,6 +26,7 @@ public class Serv extends HttpServlet {
 	public static final String MON_EVT = "monEvenement";
 	private HttpSession session;
 	private int idevt;
+	private estArtiste;
 	
 	@EJB
 	Facade facade = new Facade();
@@ -212,6 +213,18 @@ public class Serv extends HttpServlet {
 			request.setAttribute("evtsFav", facade.getEvtsDesFavoris(u.getId()));
 			request.setAttribute("estArtiste", facade.estArtiste(u.getId()));
 			request.getRequestDispatcher("PagePerso.jsp").forward(request, response);
+		}
+		else if(op.equals("sendMP")) {
+			Utilisateur u = (Utilisateur) session.getAttribute(ATT_SESSION_USER);
+			facade.envoyer(u.getNom(),request.getParameter("dest"),request.getParameter("mess"));
+			request.getRequestDispatcher("Serv?op=MP").forward(request, response);
+
+		}
+		else if(op.equals("MP")) {
+			Utilisateur u = (Utilisateur) session.getAttribute(ATT_SESSION_USER);
+			request.setAttribute("mps", facade.getMPs(u.getId()));
+			request.getRequestDispatcher("MessagesPersos.jsp").forward(request, response);
+
 		}
 		
 	}

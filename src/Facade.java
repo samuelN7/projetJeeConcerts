@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import projet_jee.Artiste;
+import projet_jee.Message;
 import projet_jee.Utilisateur;
 
 
@@ -312,5 +313,27 @@ public class Facade {
 				retour = false;
 			}
 			return retour;
+		}
+		public void envoyer(String em, String dest, String mess) {
+			Message m = new Message();
+			m.setAuteur(em);
+			m.setMessage(mess);
+			this.em.persist(m);
+			
+			TypedQuery<Utilisateur> tq = this.em.createQuery("select u from Utilisateur u where u.pseudo='"+dest+"'", Utilisateur.class);
+			Collection<Utilisateur> uts = (Collection<Utilisateur>) tq.getResultList();
+			if (uts.iterator().hasNext()) {
+				Utilisateur ut = uts.iterator().next();
+				Utilisateur ut2 = this.em.find(Utilisateur.class,ut.getId());
+				Message m2 = this.em.find(Message.class,m.getId());
+				System.out.println("JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ"+ut2.getNom());
+				m2.setDest(ut2);
+			}
+			
+		}
+		
+		public Collection<Message> getMPs(int id) {
+			Utilisateur u = em.find(Utilisateur.class, id);
+			return u.getMessagesPerso();
 		}
 }
