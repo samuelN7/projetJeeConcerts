@@ -1,7 +1,7 @@
 package projet_jee;
 
-import java.util.Collection;
-import java.util.LinkedList;
+import java.util.Set;
+import java.util.TreeSet;
 
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
@@ -39,22 +39,25 @@ public class Utilisateur {
 	String description;
 	
 	@ManyToMany(/*cascade=CascadeType.REMOVE,*/ fetch=FetchType.EAGER)
-	Collection<Artiste> artistesFavoris = new LinkedList<Artiste>();
+	Set<Artiste> artistesFavoris;
 	
 	@ManyToMany
-	Collection<Salle> sallesFavorites;
+	Set<Salle> sallesFavorites;
 	
 	/*@ManyToMany
-	Collection<Utilisateur> amis;*/
+	Set<Utilisateur> amis;*/
 	
-	@ManyToMany(mappedBy="inscrisE")
-	Collection<Evenement> inscris;
+	
+	@ManyToMany(mappedBy="inscrisE",fetch=FetchType.EAGER)
+//	@LazySet(LazySetOption.FALSE)
+//	@ Fetch(value = FetchMode.SUBSELECT)
+	Set<Evenement> inscris;// = new TreeSet<Evenement>();
 	
 //	@ManyToMany(mappedBy="inscrisNonCacheE")
-//	Collection<Evenement> inscrisNonCache;
+//	Set<Evenement> inscrisNonCache;
 	
 	@OneToMany
-	Collection<Message> messagesPerso;
+	Set<Message> messagesPerso;
 
 	public Utilisateur() {
 		super();
@@ -137,51 +140,51 @@ public class Utilisateur {
 		this.description = description;
 	}
 
-	public Collection<Artiste> getArtistesFavoris() {
+	public Set<Artiste> getArtistesFavoris() {
 		return artistesFavoris;
 	}
 
-	public void setArtistesFavoris(Collection<Artiste> artistesFavoris) {
+	public void setArtistesFavoris(Set<Artiste> artistesFavoris) {
 		this.artistesFavoris = artistesFavoris;
 	}
 
-	public Collection<Salle> getSallesFavorites() {
+	public Set<Salle> getSallesFavorites() {
 		return sallesFavorites;
 	}
 
-	public void setSallesFavorites(Collection<Salle> sallesFavorites) {
+	public void setSallesFavorites(Set<Salle> sallesFavorites) {
 		this.sallesFavorites = sallesFavorites;
 	}
 
-//	public Collection<Utilisateur> getAmis() {
+//	public Set<Utilisateur> getAmis() {
 //		return amis;
 //	}
 //
-//	public void setAmis(Collection<Utilisateur> amis) {
+//	public void setAmis(Set<Utilisateur> amis) {
 //		this.amis = amis;
 //	}
 
-	public Collection<Evenement> getInscris() {
+	public Set<Evenement> getInscris() {
 		return inscris;
 	}
 
-	public void setInscris(Collection<Evenement> inscris) {
+	public void setInscris(Set<Evenement> inscris) {
 		this.inscris = inscris;
 	}
 
-//	public Collection<Evenement> getInscrisNonCache() {
+//	public Set<Evenement> getInscrisNonCache() {
 //		return inscrisNonCache;
 //	}
 //
-//	public void setInscrisNonCache(Collection<Evenement> inscrisNonCache) {
+//	public void setInscrisNonCache(Set<Evenement> inscrisNonCache) {
 //		this.inscrisNonCache = inscrisNonCache;
 //	}
 	
-	public Collection<Message> getMessagesPerso() {
+	public Set<Message> getMessagesPerso() {
 		return messagesPerso;
 	}
 
-	public void setMessagesPerso(Collection<Message> messagesPerso) {
+	public void setMessagesPerso(Set<Message> messagesPerso) {
 		this.messagesPerso = messagesPerso;
 	}	
 	

@@ -2,6 +2,7 @@ package projet_jee;
 
 
 import java.io.IOException;
+import java.util.Collection;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -118,11 +119,6 @@ public class Serv extends HttpServlet {
 			request.getRequestDispatcher("evenement.jsp").forward(request, response);
 		}
 		
-		else if(op.equals("accueil")){
-			request.setAttribute("eventsRecents", facade.getEvenements());
-			request.getRequestDispatcher("accueil.jsp").forward(request, response);
-		}
-		
 		else if(op.equals("connexion")) {			
 
 			if (session == null) {
@@ -215,15 +211,15 @@ public class Serv extends HttpServlet {
 		else if(op.equals("pagePerso")) {
 			Utilisateur u = (Utilisateur) session.getAttribute(ATT_SESSION_USER);
 			//u = facade.getUtilisateur(u.getId());
-			//request.setAttribute("inscriptions", facade.getInscriptions(u.getId()));
+			request.setAttribute("inscriptions", facade.getInscriptions(u.getId()));
 //			Collection<Evenement> e = facade.getInscriptions(u.getId());
 //			System.out.println("IIIIIIIIIIIII"+ e.iterator().next().getTitre()+"IIIIIIIII");
 			
 			request.setAttribute("favoris", facade.getFavoris(u.getId()));
+			request.setAttribute("evtsFav", facade.getEvtsDesFavoris(u.getId()));
 			
 			request.getRequestDispatcher("PagePerso.jsp").forward(request, response);
 		}
-		
 		
 	}
 

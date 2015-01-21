@@ -1,17 +1,11 @@
 package projet_jee;
 import java.util.Collection;
-import java.util.LinkedList;
+import java.util.Set;
 
 import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-
-import projet_jee.Artiste;
-import projet_jee.Evenement;
-import projet_jee.Salle;
-import projet_jee.Tournee;
-import projet_jee.Utilisateur;
 
 
 /**
@@ -28,19 +22,19 @@ public class Facade {
 	@PersistenceContext
 	private EntityManager em;
 	
-	public Collection<Utilisateur> utilisateurs;
-	public Collection<Evenement> evenements;
-	public Collection<Artiste> artistes;
-	public Collection<Salle> salles;
-	public Collection<Tournee> tournees;
+	public Set<Utilisateur> utilisateurs;
+	public Set<Evenement> evenements;
+	public Set<Artiste> artistes;
+	public Set<Salle> salles;
+	public Set<Tournee> tournees;
 	
 	
 	public Facade() {
-		this.utilisateurs = new LinkedList<Utilisateur>();
-		this.artistes = new LinkedList<Artiste>();
-		this.evenements = new LinkedList<Evenement>();
-		this.salles = new LinkedList<Salle>();
-		this.tournees = new LinkedList<Tournee>();
+//		this.utilisateurs = new LinkedList<Utilisateur>();
+//		this.artistes = new LinkedList<Artiste>();
+//		this.evenements = new LinkedList<Evenement>();
+//		this.salles = new LinkedList<Salle>();
+//		this.tournees = new LinkedList<Tournee>();
 	}
 	
 	public void ajoutUtilisateur(String nom, String prenom, String pseudo,
@@ -94,7 +88,6 @@ public class Facade {
 		em.persist(t);
 		
 	}
-	
 	
 	public void ajoutEvenement(Salle salle, Artiste artiste, String date){
 		Evenement e = new Evenement();
@@ -274,6 +267,20 @@ public class Facade {
 				u1.getArtistesFavoris().add(a1);
 			}
 		
+		public Utilisateur getUtilisateur(int id) {
+			return em.find(Utilisateur.class, id); 
+		}
+		
+		public Collection<Evenement> getInscriptions(int id) {
+			System.out.println(6+"IIIIIIIIIDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD1"+id);
+			Utilisateur u = em.find(Utilisateur.class, id);
+			System.out.println(6+"IIIIIIIIIDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD2"+id);
+			if (u.getInscris()==null) {
+				System.out.println("NNNNNNNNNNNNNNNNNNNNNNNNNNUUUULLLLLLL");
+			}
+			return u.getInscris();
+		}
+		
 		public Collection<Artiste> getFavoris(int id) {
 			System.out.println(6+"IIIIIIIIIDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD1"+id);
 			Utilisateur u = em.find(Utilisateur.class, id);
@@ -283,4 +290,21 @@ public class Facade {
 			}
 			return u.getArtistesFavoris();
 		}
+		
+		public Collection<Evenement> getEvtsDesFavoris(int id) {
+			Collection<Evenement> retour = null;
+			Collection<Artiste> arts = this.getFavoris(id);
+			boolean first = true;
+			for(Artiste a:arts) {
+				if (first) {
+					retour = a.getEvenements();
+					first = false;
+				} else {
+					retour.addAll(a.getEvenements());
+				}
+			}
+			return retour;		
+			
+		}
+		
 }

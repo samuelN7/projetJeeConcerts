@@ -1,8 +1,10 @@
 package projet_jee;
 
-import java.util.Collection;
+import java.util.Set;
+import java.util.TreeSet;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,12 +31,12 @@ public class Evenement {
 	String date;
 	@ManyToOne
 	Tournee tournee;
-	@ManyToMany
-	Collection<Utilisateur> inscrisE;
+	@ManyToMany(fetch=FetchType.EAGER)//(/*cascade=CascadeType.ALL,*/ fetch=FetchType.EAGER)
+	Set<Utilisateur> inscrisE; //= new TreeSet<Utilisateur>();
 	/*@ManyToMany
-	Collection<Utilisateur> inscrisNonCacheE;*/
+	Set<Utilisateur> inscrisNonCacheE;*/
 	@OneToMany
-	Collection<Message> commentaires;
+	Set<Message> commentaires;
 	
 	
 	
@@ -91,22 +93,22 @@ public class Evenement {
 	public void setTournee(Tournee tournee) {
 		this.tournee = tournee;
 	}
-	public Collection<Utilisateur> getInscrisE() {
+	public Set<Utilisateur> getInscrisE() {
 		return inscrisE;
 	}
-	public void setInscrisE(Collection<Utilisateur> inscris) {
+	public void setInscrisE(Set<Utilisateur> inscris) {
 		this.inscrisE = inscris;
 	}
-//	public Collection<Utilisateur> getInscrisNonCacheE() {
+//	public Set<Utilisateur> getInscrisNonCacheE() {
 //		return inscrisNonCacheE;
 //	}
-	public Collection<Message> getCommentaires() {
+	public Set<Message> getCommentaires() {
 		return commentaires;
 	}
-	public void setCommentaires(Collection<Message> commentaires) {
+	public void setCommentaires(Set<Message> commentaires) {
 		this.commentaires = commentaires;
 	}
-//	public void setInscrisNonCacheE(Collection<Utilisateur> inscrisNonCacheE) {
+//	public void setInscrisNonCacheE(Set<Utilisateur> inscrisNonCacheE) {
 //		this.inscrisNonCacheE = inscrisNonCacheE;
 //	}
 	

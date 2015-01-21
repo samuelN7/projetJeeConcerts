@@ -1,6 +1,6 @@
 package projet_jee;
 
-import java.util.Collection;
+import java.util.Set;
 import java.util.LinkedList;
 
 import javax.persistence.DiscriminatorValue;
@@ -23,16 +23,16 @@ public class Artiste extends Utilisateur {
 	int typeArtiste ;
 	
 	@ManyToMany(mappedBy="artistesFavoris",fetch=FetchType.EAGER)
-	Collection<Utilisateur> followers = new LinkedList<Utilisateur>();
+	Set<Utilisateur> followers;
 	
-	@OneToMany(mappedBy="artiste")
-	Collection<Evenement> evenements;
+	@OneToMany(mappedBy="artiste",fetch=FetchType.EAGER)
+	Set<Evenement> evenements;
 	
 	 @OneToMany(mappedBy="artiste")
-	 Collection<Tournee> tournees;
+	 Set<Tournee> tournees;
 	 
 	 @OneToMany
-	 Collection<Message> commentaires;
+	 Set<Message> commentaires;
 	 
 	 
 
@@ -62,35 +62,35 @@ public class Artiste extends Utilisateur {
 		this.description_groupe = description_groupe;
 	}
 
-	public Collection<Utilisateur> getFollowers() {
+	public Set<Utilisateur> getFollowers() {
 		return followers;
 	}
 
-	public void setFollowers(Collection<Utilisateur> followers) {
+	public void setFollowers(Set<Utilisateur> followers) {
 		this.followers = followers;
 	}
 
-	public Collection<Evenement> getEvenements() {
+	public Set<Evenement> getEvenements() {
 		return evenements;
 	}
 
-	public void setEvenements(Collection<Evenement> evenements) {
+	public void setEvenements(Set<Evenement> evenements) {
 		this.evenements = evenements;
 	}
 
-	public Collection<Tournee> getTournees() {
+	public Set<Tournee> getTournees() {
 		return tournees;
 	}
 
-	public void setTournees(Collection<Tournee> tournees) {
+	public void setTournees(Set<Tournee> tournees) {
 		this.tournees = tournees;
 	}
 	
-	public Collection<Message> getCommentaires() {
+	public Set<Message> getCommentaires() {
 		return commentaires;
 	}
 
-	public void setCommentaires(Collection<Message> commentaires) {
+	public void setCommentaires(Set<Message> commentaires) {
 		this.commentaires = commentaires;
 	}
 	

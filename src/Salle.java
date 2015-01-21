@@ -1,6 +1,6 @@
 package projet_jee;
 
-import java.util.Collection;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,11 +23,11 @@ public class Salle {
 	int telephone;
 	
 	@ManyToMany(mappedBy="sallesFavorites")
-	Collection<Utilisateur> followers;
+	Set<Utilisateur> followers;
 	@OneToMany(mappedBy="salle")
-	Collection<Evenement> evenements;
+	Set<Evenement> evenements;
 	@OneToMany
-	Collection<Message> commentaires;
+	Set<Message> commentaires;
 	
 	
 	
@@ -62,13 +62,13 @@ public class Salle {
 
 
 
-	public Collection<Evenement> getEvenements() {
+	public Set<Evenement> getEvenements() {
 		return evenements;
 	}
 
 
 
-	public void setEvenements(Collection<Evenement> evenements) {
+	public void setEvenements(Set<Evenement> evenements) {
 		this.evenements = evenements;
 	}
 
@@ -114,19 +114,19 @@ public class Salle {
 		this.description = description;
 	}
 
-	public Collection<Utilisateur> getFollowers() {
+	public Set<Utilisateur> getFollowers() {
 		return followers;
 	}
 
-	public void setFollowers(Collection<Utilisateur> followers) {
+	public void setFollowers(Set<Utilisateur> followers) {
 		this.followers = followers;
 	}
 	
-	public Collection<Message> getCommentaires() {
+	public Set<Message> getCommentaires() {
 		return commentaires;
 	}
 
-	public void setCommentaires(Collection<Message> commentaires) {
+	public void setCommentaires(Set<Message> commentaires) {
 		this.commentaires = commentaires;
 	}
 

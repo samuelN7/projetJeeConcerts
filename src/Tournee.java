@@ -1,5 +1,5 @@
 package projet_jee;
-import java.util.Collection;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,9 +22,9 @@ public class Tournee {
     @ManyToOne
     Artiste artiste;
     @OneToMany(mappedBy="tournee")
-    Collection<Evenement> evenements;
+    Set<Evenement> evenements;
     @OneToMany
-	Collection<Message> commentaires;
+	Set<Message> commentaires;
 
 	public Tournee() {
 		
@@ -67,18 +67,18 @@ public class Tournee {
 	public void setArtiste(Artiste artiste) {
 		this.artiste = artiste;
 	}
-	public Collection<Evenement> getEvenements() {
+	public Set<Evenement> getEvenements() {
 		return evenements;
 	}
-	public void setEvenements(Collection<Evenement> evenements) {
+	public void setEvenements(Set<Evenement> evenements) {
 		this.evenements = evenements;
 	}
 	
-	public Collection<Message> getCommentaires() {
+	public Set<Message> getCommentaires() {
 		return commentaires;
 	}
 
-	public void setCommentaires(Collection<Message> commentaires) {
+	public void setCommentaires(Set<Message> commentaires) {
 		this.commentaires = commentaires;
 	}
 }
