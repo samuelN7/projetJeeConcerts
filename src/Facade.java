@@ -7,6 +7,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import projet_jee.Artiste;
+import projet_jee.Utilisateur;
+
 
 /**
  * 
@@ -299,4 +302,15 @@ public class Facade {
 			}
 			return retour;				
 		}		
+		
+		public boolean estArtiste(int id) {
+			Utilisateur u = em.find(Utilisateur.class, id);
+			boolean retour;
+			if (u instanceof Artiste) {
+				retour = true;
+			} else {
+				retour = false;
+			}
+			return retour;
+		}
 }

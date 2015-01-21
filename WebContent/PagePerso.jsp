@@ -82,6 +82,15 @@
 	 			} 
  		}
 		%> 
+		
+		<%  
+		if ( (Boolean) request.getAttribute("estArtiste") ) {
+				out.println("<a href=\"/projet_jee/AjouterEvenement.jsp\">Créer un événement</a> <br>");
+				out.println("<a href=\"/projet_jee/AjouterEvenement.jsp\">Créer une tournée</a> <br>");
+				out.println("<a href=\"/projet_jee/AjouterEvenement.jsp\">Ajouter une salle</a> <br>");
+
+			}
+		%>
  		<p> ${sessionScope.sessionUtilisateur.pseudo} </p>
 </body>
 
