@@ -10,6 +10,11 @@
 	
 	<body>
 		<header id="header">
+		
+			<div id="bandeau1"></div>
+		
+			<div id="bandeau2"></div>
+			
 			<div id="connexion"> <a href="inscription.html">Inscription</a> <a href=connexion.html>Connexion</a><a href="/projet_jee/Serv?op=deconnexion">Deconnexion</a> 
 			</div>
 			
