@@ -25,7 +25,11 @@ values ('utilisateur','remi@montel', 'blbl', 'remi', 'rmontel',  'adresse de rem
 INSERT INTO utilisateur (est, email, motdepasse, prenom, pseudo, adresse,description,nom, ville,DESCRIPTION_GROUPE,NOM_GROUPE ,TYPEARTISTE  )
 values ('artiste','samuel@guery', 'blbl', 'samuel', 'sguery',  'adresse de samuel','leur réputation n est plus à faire','Queen','Los Angeles','Leur reputation n est plus à faire', 'Queen', 1);
 
-INSERT INTO utilisateur (est, email, motdepasse, prenom, pseudo, adresse,description,nom, ville,TYPEARTISTE,NOM_GROUPE, DESCRIPTION_GROUPE) values ('artiste','anna@pavlova', 'blbl', 'anna', 'apavlova', 'adresse de anna','Elle était considérée comme la meilleure danseuse étoile de tous les temps','Pavlova','Moscou',2,'Anna Pavlova','Condisérée comme la meilleure danseuse étoile de tous les temps');
+INSERT INTO utilisateur (est, email, motdepasse, prenom, pseudo, adresse,description,nom, ville,TYPEARTISTE,NOM_GROUPE, DESCRIPTION_GROUPE) values ('artiste','anna@pavlova', 'blbl', 'anna', 'apavlova', 'adresse de anna','Elle était considérée comme la meilleure danseuse étoile de tous les temps','pavlova','Moscou',2,'Anna Pavlova','Condisérée comme la meilleure danseuse étoile de tous les temps');
+
+INSERT INTO utilisateur (est, email, motdepasse, prenom, pseudo, adresse,description,nom, ville,TYPEARTISTE,NOM_GROUPE, DESCRIPTION_GROUPE) values ('artiste','franck@dubosc', 'blbl', 'franck', 'dubosc', 'adresse de franck','Les films Camping','dubosc','Paris',3,'Franck Dubosc','A été révélé au grand public notamment grâce au film camping');
+
+INSERT INTO utilisateur (est, email, motdepasse, prenom, pseudo, adresse,description,nom, ville,TYPEARTISTE,NOM_GROUPE, DESCRIPTION_GROUPE) values ('artiste','gad@elmaleh', 'blbl', 'gad', 'elmaleh', 'adresse de gad','One man show','elmaleh','Monaco',3,'Gad Elmaleh','Très apprécié du public français');
 
 INSERT INTO tournee (description,titre)
 values ('une tournée d adieu pour Queen', 'Live Tour 2015');
