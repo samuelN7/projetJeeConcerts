@@ -8,6 +8,9 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import projet_jee.Artiste;
+import projet_jee.Evenement;
+import projet_jee.Salle;
+import projet_jee.Tournee;
 import projet_jee.Utilisateur;
 
 
@@ -52,7 +55,7 @@ public class Facade {
 		this.em.persist(u);
 	}
 	
-	public void ajoutEvt(/*Artiste artiste,*/ String nom, String description, String nomsalle, String date,int prix,String tournee){
+	public void ajoutEvt(int id, String nom, String description, String nomsalle, String date,int prix,String tournee){
 		Evenement e = new Evenement();
 		
 		TypedQuery<Salle> tq = em.createQuery("select s from Salle s where s.nom='"+nomsalle+"'", Salle.class);
@@ -70,7 +73,8 @@ public class Facade {
 			e.setTournee(t);
 		}
 		
-		//e.setArtiste(artiste);
+		Artiste a = em.find(Artiste.class,id);
+		e.setArtiste(a);
 		e.setTitre(nom);
 		e.setDescription(description);
 		e.setDate(date);
@@ -78,6 +82,19 @@ public class Facade {
 		/*this.evenements.add(e);*/
 		em.persist(e);
 	}
+	
+	public void ajouterTournee(String titre, String dateD, String dateF, String desc,int id) {
+		Tournee t = new Tournee();
+		t.setTitre(titre);
+		t.setDateDebut(dateD);
+		t.setDateFin(dateF);
+		t.setDescription(desc);
+		Artiste a = em.find(Artiste.class,id);
+		t.setArtiste(a);
+		em.persist(t);
+		
+	}
+	
 	
 	public void ajoutEvenement(Salle salle, Artiste artiste, String date){
 		Evenement e = new Evenement();

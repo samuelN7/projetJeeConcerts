@@ -163,12 +163,22 @@ public class Serv extends HttpServlet {
 			int prix = Integer.parseInt(request.getParameter("prix"));
 			String date = request.getParameter("date");
 			String tournee = request.getParameter("tournee");
-			//Artiste artiste = (Artiste) session.getAttribute(ATT_SESSION_USER);
+			Artiste artiste = (Artiste) session.getAttribute(ATT_SESSION_USER);	
 			
-			
-			facade.ajoutEvt(/*artiste,*/nom,description,nomsalle, date,prix,tournee);
+			facade.ajoutEvt(artiste.getId(),nom,description,nomsalle, date,prix,tournee);
 			request.getRequestDispatcher("PagePerso.jsp").forward(request, response);
 
+		}
+		else if (op.equals("ajouterTournee")) {
+			String nom = request.getParameter("nomT");
+			String dateD = request.getParameter("dateD");
+			String dateF = request.getParameter("dateF");			
+			String desc = request.getParameter("descT");
+			Artiste artiste = (Artiste) session.getAttribute(ATT_SESSION_USER);
+			facade.ajouterTournee(nom,dateD,dateF,desc,artiste.getId());			
+			request.getRequestDispatcher("PagePerso.jsp").forward(request, response);
+			
+			
 		}
 		else if(op.equals("suivreArtiste")) {
 			 int id = Integer.parseInt(request.getParameter("artiste"));
