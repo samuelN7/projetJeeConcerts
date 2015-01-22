@@ -295,18 +295,12 @@ public class Facade {
 		//Récupérer les événements où est inscris un utilisateur
 		public Collection<Evenement> getInscriptions(int id) {
 			Utilisateur u = em.find(Utilisateur.class, id);
-			if (u.getInscris()==null) {
-				System.out.println("NNNNNNNNNNNNNNNNNNNNNNNNNNUUUULLLLLLL");
-			}
 			return u.getInscris();
 		}
 		
 		//Récupérer les artistes favoris d'un utilisateur
 		public Collection<Artiste> getFavoris(int id) {
 			Utilisateur u = em.find(Utilisateur.class, id);
-			if (u.getInscris()==null) {
-				System.out.println("NNNNNNNNNNNNNNNNNNNNNNNNNNUUUULLLLLLL");
-			}
 			return u.getArtistesFavoris();
 		}
 		
@@ -351,7 +345,6 @@ public class Facade {
 				Utilisateur ut = uts.iterator().next();
 				Utilisateur ut2 = this.em.find(Utilisateur.class,ut.getId());
 				Message m2 = this.em.find(Message.class,m.getId());
-				System.out.println("JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ"+ut2.getNom());
 				m2.setDest(ut2);
 			}
 			
