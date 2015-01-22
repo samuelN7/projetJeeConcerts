@@ -149,15 +149,12 @@ public class Serv extends HttpServlet {
 			request.getRequestDispatcher("accueil.jsp").forward(request, response);
 		}
 		else if (op.equals("deconnexion")) {
-			//if(session!=null){
-				//session.invalidate();
-				//session = null;
+			
 				request.getSession().invalidate();
+				int i = 0;
+				request.getSession().setAttribute("estInscris",i );
 				request.getRequestDispatcher("accueil.jsp").forward(request, response);
-			/*}
-			else{
-				request.getRequestDispatcher("accueil.jsp").forward(request, response);
-			}*/
+			
 		}
 		
 		//L'utilisateur est sur un evenement, il veut acheter, on transmet l'evt à la prochaine page
@@ -211,7 +208,7 @@ public class Serv extends HttpServlet {
 			
 		}
 		else if(op.equals("suivreArtiste")) {
-			if(session!=null){
+			if ( (Integer) request.getSession().getAttribute("estInscris") == 1) {
 				int id = Integer.parseInt(request.getParameter("artiste"));
 				//Utilisateur u = (Utilisateur) session.getAttribute(ATT_SESSION_USER);
 				 Utilisateur u = (Utilisateur) request.getSession().getAttribute("uti");
@@ -267,6 +264,7 @@ public class Serv extends HttpServlet {
 
 		}
 		else if(op.equals("poster")) {
+			if (((Integer) request.getSession().getAttribute("estInscris")) == 1) {
 			int typeC = Integer.parseInt(request.getParameter("typeC"));
 			Utilisateur u = (Utilisateur) request.getSession().getAttribute("uti");
 			int idEvt = Integer.parseInt(request.getParameter("idEvt"));
@@ -276,6 +274,9 @@ public class Serv extends HttpServlet {
 			
 			facade.poster(u.getPseudo(),idEvt,request.getParameter("commentaire"), time.toString(),typeC);//dateFormat.format(actuelle),typeC);
 			response.sendRedirect((String) request.getHeader("Referer"));	
+		}
+		else {
+				request.getRequestDispatcher("inscription.html").forward(request, response);	
 		}
 		
 	}
