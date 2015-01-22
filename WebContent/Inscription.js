@@ -29,15 +29,17 @@ var erreur9 = document.getElementById("erreur9");
 var erreur10 = document.getElementById("erreur10");
 
 var listeErreur = [ erreur1, erreur2, erreur3, erreur4, erreur5, erreur6,
-		erreur7, erreur8, erreur9, erreur10 ];
+		erreur7, erreur8, erreur9, erreur10 ]; // liste des images d'erreur
 var listeString = [ "nom", "prenom", "pseudo", "mdp", "adresse", "mail",
-		"ville", "typeArtiste", "nomArtiste", "desc_groupe" ];
+		"ville", "typeArtiste", "nomArtiste", "desc_groupe" ]; // liste des input associés aux images
 var form = document.forms;
 
+//Initialement, le formulaire ne comporte pas d'erreur
 for ( var i = 0; i < listeString.length; i++) {
 	listeErreur[i].style.display = 'none';
 }
 
+//on vérifie que le formulaire a été correctement rempli
 bouton
 		.addEventListener(
 				'click',
