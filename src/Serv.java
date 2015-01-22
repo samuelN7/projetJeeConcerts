@@ -163,16 +163,16 @@ public class Serv extends HttpServlet {
 		//L'utilisateur est sur un evenement, il veut acheter, on transmet l'evt à la prochaine page
 		else if(op.equals("achat")) { 
 			Evenement e = (Evenement) request.getAttribute("monEvenement");
-			idevt = Integer.parseInt(request.getParameter("idEvt"));
-			session.setAttribute(MON_EVT, e);			
+			int idevt = Integer.parseInt(request.getParameter("idEvt"));
+			request.getSession().setAttribute("idEvt", idevt);			
 			request.getRequestDispatcher("Achat.jsp").forward(request, response);
 		}
 		
 		//On effectue l'achat, l'inscription...
 		else if(op.equals("achete")) {
 			 if(request.getParameter("PourMoi") != null) {
-				 //Utilisateur u = (Utilisateur) session.getAttribute(ATT_SESSION_USER);
-				 Utilisateur u = (Utilisateur) request.getSession().getAttribute("uti");
+				 Utilisateur u = (Utilisateur) request.getSession().getAttribute("uti");//ATT_SESSION_USER);
+				 int idevt = (Integer) request.getSession().getAttribute("idEvt");
 				 facade.ajouterInscription(idevt, u, request.getParameter("Visible") != null );
 				 request.getRequestDispatcher("accueil.jsp").forward(request, response);
 			 } else {
