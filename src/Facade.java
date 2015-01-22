@@ -18,23 +18,18 @@ import projet_jee.Utilisateur;
  * 
  */
 
-/**
- * @author Nicolas Ronco
- *
- */
+
 @Singleton
 public class Facade {
 	
 	@PersistenceContext
-	private EntityManager em;
-
-	
+	private EntityManager em;	
 	
 	public Facade() {
 	}
 	
 	public void ajoutUtilisateur(String nom, String prenom, String pseudo,
-			String motDePasse, String adresseMail, String adresse,String ville){
+		String motDePasse, String adresseMail, String adresse,String ville){
 		Utilisateur u = new Utilisateur();
 		u.setNom(nom);
 		u.setPrenom(prenom);
@@ -47,7 +42,7 @@ public class Facade {
 	}
 	
 	public void ajoutArtiste(String nom, String prenom, String pseudo,
-			String motDePasse, String adresseMail, String adresse,String ville,String nomA, String desc){
+		String motDePasse, String adresseMail, String adresse,String ville,String nomA, String desc){
 		Artiste a = new Artiste();
 		a.setNom(nom);
 		a.setPrenom(prenom);
@@ -58,7 +53,7 @@ public class Facade {
 		a.setVille(ville);
 		a.setNom_groupe(nomA);
 		a.setDescription_groupe(desc);
-		a.setTypeArtiste(1);
+		a.setTypeArtiste(1); //il manque des checkbox dans le formulaire pour ce champ donc un par défaut pour le moment
 		this.em.persist(a);
 	}
 	

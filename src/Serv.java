@@ -181,10 +181,15 @@ public class Serv extends HttpServlet {
 		
 		//L'utilisateur est sur un evenement, il veut acheter, on transmet l'evt à la prochaine page
 		else if(op.equals("achat")) { 
-			Evenement e = (Evenement) request.getAttribute("monEvenement");
-			int idevt = Integer.parseInt(request.getParameter("idEvt"));
-			request.getSession().setAttribute("idEvt", idevt);			
-			request.getRequestDispatcher("Achat.jsp").forward(request, response);
+			if( (Integer) request.getSession().getAttribute("estInscris") == 1){
+				Evenement e = (Evenement) request.getAttribute("monEvenement");
+				int idevt = Integer.parseInt(request.getParameter("idEvt"));
+				request.getSession().setAttribute("idEvt", idevt);			
+				request.getRequestDispatcher("Achat.jsp").forward(request, response);
+			} else {
+				request.getRequestDispatcher("connexion.html").forward(request, response);
+			}
+
 		}
 		
 		//On effectue l'achat, l'inscription...
@@ -272,6 +277,7 @@ public class Serv extends HttpServlet {
 		
 		//Traitement avant l'accès à la page perso
 		else if(op.equals("pagePerso")) {
+			if (((Integer) request.getSession().getAttribute("estInscris")) == 1) {
 			//Utilisateur u = (Utilisateur) session.getAttribute(ATT_SESSION_USER);
 			 Utilisateur u = (Utilisateur) request.getSession().getAttribute("uti");
 			request.setAttribute("inscriptions", facade.getInscriptions(u.getId()));			
@@ -279,6 +285,10 @@ public class Serv extends HttpServlet {
 			request.setAttribute("evtsFav", facade.getEvtsDesFavoris(u.getId()));
 			request.setAttribute("estArtiste", facade.estArtiste(u.getId()));
 			request.getRequestDispatcher("PagePerso.jsp").forward(request, response);
+			} 
+			else {
+				request.getRequestDispatcher("inscription.html").forward(request, response);	
+			}
 		}
 		
 		//Traitement lors de l'envoi d'un message
@@ -292,10 +302,14 @@ public class Serv extends HttpServlet {
 		
 		//Traitement avant l'accès aux messages persos
 		else if(op.equals("MP")) {
+			if (((Integer) request.getSession().getAttribute("estInscris")) == 1) {
 			//Utilisateur u = (Utilisateur) session.getAttribute(ATT_SESSION_USER);
 			 Utilisateur u = (Utilisateur) request.getSession().getAttribute("uti");
 			request.setAttribute("mps", facade.getMPs(u.getId()));
 			request.getRequestDispatcher("MessagesPersos.jsp").forward(request, response);
+			}  else {
+				request.getRequestDispatcher("inscription.html").forward(request, response);	
+			}
 
 		}
 		
