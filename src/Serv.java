@@ -51,8 +51,23 @@ public class Serv extends HttpServlet {
 		}
 		
 		if(op.equals("ajoututilisateur")){
-			facade.ajoutUtilisateur(request.getParameter("nom"), request.getParameter("prenom"), request.getParameter("pseudo"),request.getParameter("mdp"), request.getParameter("mail"));
-			request.getRequestDispatcher("accueil.html").forward(request, response);
+			String nom = request.getParameter("nom");
+			String prenom = request.getParameter("prenom");
+			String pseudo = request.getParameter("pseudo");
+			String mdp = request.getParameter("mdp");
+			String adresse = request.getParameter("adresse");
+			String mail = request.getParameter("mail");
+			String ville = request.getParameter("ville");
+			
+			if (request.getParameter("checkbox") != null) {
+				String nomA = request.getParameter("nomArtiste");
+				String desc = request.getParameter("desc_groupe");
+				facade.ajoutArtiste(nom,prenom,pseudo,mdp,mail,adresse,ville,nomA,desc);
+			
+			} else {			
+				facade.ajoutUtilisateur(nom,prenom,pseudo,mdp,mail,adresse,ville);				
+			}
+			request.getRequestDispatcher("accueil.jsp").forward(request, response);
 		}
 		else if(op.equals("listerUtilisateurs")){
 			request.setAttribute("listeUtilisateurs", facade.getUtilisateurs());

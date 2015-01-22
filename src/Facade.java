@@ -44,15 +44,32 @@ public class Facade {
 	}
 	
 	public void ajoutUtilisateur(String nom, String prenom, String pseudo,
-			String motDePasse, String adresseMail){
+			String motDePasse, String adresseMail, String adresse,String ville){
 		Utilisateur u = new Utilisateur();
 		u.setNom(nom);
 		u.setPrenom(prenom);
 		u.setPseudo(pseudo);
 		u.setMotDePasse(motDePasse);
-		u.setAdresse(adresseMail);
-		/*this.utilisateurs.add(u);*/
+		u.setEmail(adresseMail);
+		u.setAdresse(adresse);
+		u.setVille(ville);
 		this.em.persist(u);
+	}
+	
+	public void ajoutArtiste(String nom, String prenom, String pseudo,
+			String motDePasse, String adresseMail, String adresse,String ville,String nomA, String desc){
+		Artiste a = new Artiste();
+		a.setNom(nom);
+		a.setPrenom(prenom);
+		a.setPseudo(pseudo);
+		a.setMotDePasse(motDePasse);
+		a.setEmail(adresseMail);
+		a.setAdresse(adresse);
+		a.setVille(ville);
+		a.setNom_groupe(nomA);
+		a.setDescription_groupe(desc);
+		a.setTypeArtiste(1);
+		this.em.persist(a);
 	}
 	
 	public void ajoutEvt(int id, String nom, String description, String nomsalle, String date,int prix,String tournee){
