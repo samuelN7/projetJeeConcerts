@@ -1,168 +1,106 @@
 @CHARSET "UTF-8";
 
-
-
-
-
-
 /* aside */
-
-aside
-{
-	display:block;
+aside {
+	display: block;
 	background-color: #e0e0e0;
-	border-radius:15px;
-	width:200px;
+	border-radius: 15px;
+	width: 200px;
 }
 
-#parcoursPagePerso
-{
+#parcoursPagePerso {
 	list-style-type: square;
 	text-align: left;
 }
 
 #parcoursPagePerso li:HOVER {
-	background-color:#33bde5;
+	background-color: #33bde5;
 }
 
-
 /* nav */
-
-body
-{
-	text-align:center;
+body {
+	text-align: center;
 	margin-top: 0px;
 }
 
-
-#bandeau1
-{
-	position:absolute;
-	width:250px;
-	height:1000px;
+#bandeau1 {
+	position: absolute;
+	width: 250px;
+	height: 1000px;
 	background-color: #e0e0e0;
 	left: 0px;
 	display: inline;
 }
 
-#bandeau2
-{
-	position:absolute;
-	width:250px;
-	height:1000px;
+#bandeau2 {
+	position: absolute;
+	width: 250px;
+	height: 1000px;
 	background-color: #e0e0e0;
 	right: 0px;
 	display: inline;
 }
 
-
-
-
- 
-nav
-{
-	
-	display:inline-block;
+nav {
+	display: inline-block;
 	background-color: #e0e0e0;
-	margin:auto;
+	margin: auto;
 	width: 800px;
-	border-radius:15px;
-	
-	
-
-	
+	border-radius: 15px;
 }
 
-
-
-
-
-
-nav ul
-{
-
-    list-style-type: none;
-    margin-right: 50px;
-   
-    
+nav ul {
+	list-style-type: none;
+	margin-right: 50px;
 }
 
-nav li
-{
-
-    display: inline-block;
-    border-style:solid;
-    width: 80px;
-    text-align: center; 
+nav li {
+	display: inline-block;
+	border-style: solid;
+	width: 80px;
+	text-align: center;
 }
 
-nav li:HOVER
-{
-	background-color:#33bde5;
+nav li:HOVER {
+	background-color: #33bde5;
 }
 
-
-
-
-
-
-
-
-#genreArtiste li
-{
+#genreArtiste li {
 	display: block;
 	text-align: left;
 	background-color: #8e8e8e;
 	text-align: center;
-		
 }
 
-#genreArtiste li:HOVER
-{
-	background-color:#33bde5;
+#genreArtiste li:HOVER {
+	background-color: #33bde5;
 }
 
-
-#genreArtiste 
-{
-    display:none;
-    border-top-width: 5px; 
-	padding-left:0;	
-	
-	
-	
-  
-    
+#genreArtiste {
+	display: none;
+	border-top-width: 5px;
+	padding-left: 0;
 }
 
-
-#listePrincipale li 
-{
-	border-style: solid;margin:auto;
-	margin: 0 0; 
-	
+#listePrincipale li {
+	border-style: solid;
+	margin: auto;
+	margin: 0 0;
 }
 
 /* corps */
-
-#statut
-{
-	display:inline-block;
-	margin:auto;
-	width:800px;
+#statut {
+	display: inline-block;
+	margin: auto;
+	width: 800px;
 	text-align: justify;
-	
 }
 
-#avatarDefaut
-{
-	display:inline-block;
-	margin:auto;
-	width : 173px;
-	height : 164px;
+#avatarDefaut {
+	display: inline-block;
+	margin: auto;
+	width: 173px;
+	height: 164px;
 	border-style: solid;
 	border-width: 2px;
 }
-
-
-
