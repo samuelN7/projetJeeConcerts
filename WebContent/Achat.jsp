@@ -47,7 +47,7 @@
 			<input type="checkbox" name="PourMoi" id="PourMoi" checked="checked"> <label for="PourMoi"> C'est pour moi !</label> <br>
 			<input type="checkbox" name="Visible" id="Visible" checked="checked"> <label for="Visible"> Je veux être visible sur l'événement</label> <br>
 			<input type="submit" value="J'achète !" id="acheté" >  
-			<input type="hidden" name="op" value="acheté"/>
+			<input type="hidden" name="op" value="achete"/>
 </form>
 <script src="JsAccueil.js"></script>
 </body>
