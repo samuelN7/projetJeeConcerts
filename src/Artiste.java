@@ -1,16 +1,10 @@
 package projet_jee;
 
 import java.util.Set;
-import java.util.LinkedList;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
@@ -44,6 +38,21 @@ public class Artiste extends Utilisateur {
 
 	public int getTypeArtiste() {
 		return typeArtiste;
+	}
+	
+	public String getTypeArtisteString() {
+		 if(typeArtiste == 1){
+			 return "Musique";
+		 }
+		 else if(typeArtiste == 2){
+			 return "Danse";
+		 }
+		 else if(typeArtiste == 3){
+			 return "Humour";
+		 }
+		 else{
+			 return "type inconnu";
+		 }
 	}
 
 	public String getNom_groupe() {
