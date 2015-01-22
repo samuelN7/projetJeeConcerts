@@ -44,6 +44,12 @@ public class Serv extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String op = request.getParameter("op");
+		
+		if (request.getSession().isNew()) {
+			int i = 0;
+			request.getSession().setAttribute("estInscris",i );
+		}
+		
 		if(op.equals("ajoututilisateur")){
 			facade.ajoutUtilisateur(request.getParameter("nom"), request.getParameter("prenom"), request.getParameter("pseudo"),request.getParameter("mdp"), request.getParameter("mail"));
 			request.getRequestDispatcher("accueil.html").forward(request, response);
@@ -126,28 +132,32 @@ public class Serv extends HttpServlet {
 		
 		else if(op.equals("connexion")) {			
 
-			if (session == null) {
+			//if (session == null) {
 				String pseudo = request.getParameter("pseudo");
 				String mdp = request.getParameter("mdp");
 				request.setAttribute("ut", facade.identifier(pseudo,mdp));
 				Utilisateur ut = (Utilisateur) request.getAttribute("ut");
 				if (ut != null) {
-					session = request.getSession();
-					session.setAttribute(ATT_SESSION_USER, ut);
+					//session = request.getSession();
+					//session.setAttribute(ATT_SESSION_USER, ut);
+					request.getSession().setAttribute("uti", ut);
+					int i = 1;
+					request.getSession().setAttribute("estInscris", 1);
 				}
 				
-			}
+		//	}
 			request.getRequestDispatcher("accueil.jsp").forward(request, response);
 		}
 		else if (op.equals("deconnexion")) {
-			if(session!=null){
-				session.invalidate();
-				session = null;
+			//if(session!=null){
+				//session.invalidate();
+				//session = null;
+				request.getSession().invalidate();
 				request.getRequestDispatcher("accueil.jsp").forward(request, response);
-			}
+			/*}
 			else{
 				request.getRequestDispatcher("accueil.jsp").forward(request, response);
-			}
+			}*/
 		}
 		
 		//L'utilisateur est sur un evenement, il veut acheter, on transmet l'evt à la prochaine page
@@ -161,7 +171,8 @@ public class Serv extends HttpServlet {
 		//On effectue l'achat, l'inscription...
 		else if(op.equals("achete")) {
 			 if(request.getParameter("PourMoi") != null) {
-				 Utilisateur u = (Utilisateur) session.getAttribute(ATT_SESSION_USER);
+				 //Utilisateur u = (Utilisateur) session.getAttribute(ATT_SESSION_USER);
+				 Utilisateur u = (Utilisateur) request.getSession().getAttribute("uti");
 				 facade.ajouterInscription(idevt, u, request.getParameter("Visible") != null );
 				 request.getRequestDispatcher("accueil.jsp").forward(request, response);
 			 } else {
@@ -177,7 +188,8 @@ public class Serv extends HttpServlet {
 				int prix = Integer.parseInt(request.getParameter("prix"));
 				String date = request.getParameter("date");
 				String tournee = request.getParameter("tournee");
-				Artiste artiste = (Artiste) session.getAttribute(ATT_SESSION_USER);	
+				//Artiste artiste = (Artiste) session.getAttribute(ATT_SESSION_USER);	
+				Artiste artiste = (Artiste) request.getSession().getAttribute("uti");
 			
 				facade.ajoutEvt(artiste.getId(),nom,description,nomsalle, date,prix,tournee);
 				request.getRequestDispatcher("PagePerso.jsp").forward(request, response);
@@ -191,7 +203,8 @@ public class Serv extends HttpServlet {
 			String dateD = request.getParameter("dateD");
 			String dateF = request.getParameter("dateF");			
 			String desc = request.getParameter("descT");
-			Artiste artiste = (Artiste) session.getAttribute(ATT_SESSION_USER);
+			//Artiste artiste = (Artiste) session.getAttribute(ATT_SESSION_USER);
+			Artiste artiste = (Artiste) request.getSession().getAttribute("uti");
 			facade.ajouterTournee(nom,dateD,dateF,desc,artiste.getId());			
 			request.getRequestDispatcher("PagePerso.jsp").forward(request, response);
 			
@@ -200,7 +213,8 @@ public class Serv extends HttpServlet {
 		else if(op.equals("suivreArtiste")) {
 			if(session!=null){
 				int id = Integer.parseInt(request.getParameter("artiste"));
-				Utilisateur u = (Utilisateur) session.getAttribute(ATT_SESSION_USER);
+				//Utilisateur u = (Utilisateur) session.getAttribute(ATT_SESSION_USER);
+				 Utilisateur u = (Utilisateur) request.getSession().getAttribute("uti");
 				if (u!=null) {
 					facade.ajouterArtisteSuivis(id, u);
 					request.setAttribute("favoris", facade.getFavoris(u.getId()));
@@ -230,7 +244,8 @@ public class Serv extends HttpServlet {
 			}		
 		}
 		else if(op.equals("pagePerso")) {
-			Utilisateur u = (Utilisateur) session.getAttribute(ATT_SESSION_USER);
+			//Utilisateur u = (Utilisateur) session.getAttribute(ATT_SESSION_USER);
+			 Utilisateur u = (Utilisateur) request.getSession().getAttribute("uti");
 			request.setAttribute("inscriptions", facade.getInscriptions(u.getId()));			
 			request.setAttribute("favoris", facade.getFavoris(u.getId()));
 			request.setAttribute("evtsFav", facade.getEvtsDesFavoris(u.getId()));
@@ -238,13 +253,15 @@ public class Serv extends HttpServlet {
 			request.getRequestDispatcher("PagePerso.jsp").forward(request, response);
 		}
 		else if(op.equals("sendMP")) {
-			Utilisateur u = (Utilisateur) session.getAttribute(ATT_SESSION_USER);
+			//Utilisateur u = (Utilisateur) session.getAttribute(ATT_SESSION_USER);
+			 Utilisateur u = (Utilisateur) request.getSession().getAttribute("uti");
 			facade.envoyer(u.getNom(),request.getParameter("dest"),request.getParameter("mess"));
 			request.getRequestDispatcher("Serv?op=MP").forward(request, response);
 
 		}
 		else if(op.equals("MP")) {
-			Utilisateur u = (Utilisateur) session.getAttribute(ATT_SESSION_USER);
+			//Utilisateur u = (Utilisateur) session.getAttribute(ATT_SESSION_USER);
+			 Utilisateur u = (Utilisateur) request.getSession().getAttribute("uti");
 			request.setAttribute("mps", facade.getMPs(u.getId()));
 			request.getRequestDispatcher("MessagesPersos.jsp").forward(request, response);
 
