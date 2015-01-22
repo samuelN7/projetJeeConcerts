@@ -56,19 +56,30 @@
 	for(Utilisateur u : inscritsNonCaches) {
 		out.println(u.getPseudo()+" <br>");		
 	}
-	out.println("");
+	out.println("");*/
+	//request.setAttribute("idEvt",e.getId());
 	
 	Collection<Message> messages = e.getCommentaires();
 	out.println("Commentaires :");
-	out.println("");
-	for(Message m : messages) {
-		out.println(m.getAuteur()+" "+m.getDate() +" <br>");
-		out.println(m.getMessage());		
+	out.println("<br>");
+	if(messages != null) {
+		for(Message m : messages) {
+			out.println(m.getDate()+" "+m.getAuteur() +": <br>");
+			out.println(m.getMessage()+"<br><br>");		
+		}
+		out.println("");
+	//	request.setAttribute("monEvenement",e); 
+		request.setAttribute("idEvt",e.getId());
 	}
-	out.println("");
-	request.setAttribute("monEvenement",e); */
-	//request.setAttribute("idEvt",e.getId());
 	%>
+	<form method ="get" action="Serv" id="poster"> 
+	<textarea name = "commentaire" rows="5" cols="40" placeholder="Lâchez-vous les cocos !"></textarea> <br>
+	<input type="submit" value="Poster" id="poste" > 
+	<input type="hidden" name="op" value="poster"/>
+	<input type="hidden" name="idEvt" value="<%=e.getId()%>"/>
+	<input type="hidden" name="typeC" value="1"/>	
+	</form>
+	
 	<form method ="get" action="Serv" id="achat"> 
 	<input type="submit" value="Prendre sa place !" id="achat" > 
 	<input type="hidden" name="op" value="achat"/>

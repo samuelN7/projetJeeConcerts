@@ -3,6 +3,7 @@ package projet_jee;
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.GregorianCalendar;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -247,6 +248,17 @@ public class Serv extends HttpServlet {
 			request.setAttribute("mps", facade.getMPs(u.getId()));
 			request.getRequestDispatcher("MessagesPersos.jsp").forward(request, response);
 
+		}
+		else if(op.equals("poster")) {
+			int typeC = Integer.parseInt(request.getParameter("typeC"));
+			Utilisateur u = (Utilisateur) request.getSession().getAttribute("uti");
+			int idEvt = Integer.parseInt(request.getParameter("idEvt"));
+						
+			java.util.GregorianCalendar calendar = new GregorianCalendar();
+			java.util.Date time  = calendar.getTime();			
+			
+			facade.poster(u.getPseudo(),idEvt,request.getParameter("commentaire"), time.toString(),typeC);//dateFormat.format(actuelle),typeC);
+			response.sendRedirect((String) request.getHeader("Referer"));	
 		}
 		
 	}

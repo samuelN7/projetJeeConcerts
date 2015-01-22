@@ -78,17 +78,27 @@
 		out.println(t.getTitre()+" <br>");		
 	}
 	out.println("");
-	
+	*/
 	Collection<Message> messages = a.getCommentaires();
 	out.println("Commentaires :");
-	out.println("");
-	for(Message m : messages) {
-		out.println(m.getAuteur()+" "+m.getDate() +" <br>");
-		out.println(m.getMessage());		
+	out.println("<br>");
+	if(messages != null) {
+		for(Message m : messages) {
+			out.println(m.getDate()+" "+m.getAuteur() +": <br>");
+			out.println(m.getMessage()+"<br><br>");		
+		}
+		out.println("");
+	//	request.setAttribute("monEvenement",e); 
+		request.setAttribute("idEvt",a.getId());
 	}
-	out.println(""); 
-	*/
 	%>
+	<form method ="get" action="Serv" id="poster"> 
+	<textarea name = "commentaire" rows="5" cols="40" placeholder="Lâchez-vous les cocos !"></textarea> <br>
+	<input type="submit" value="Poster" id="poste" > 
+	<input type="hidden" name="op" value="poster"/>
+	<input type="hidden" name="idEvt" value="<%=a.getId()%>"/>
+	<input type="hidden" name="typeC" value="2"/>	
+	</form>
 	<script src="JsAccueil.js"></script>
 	</body>
 </html>

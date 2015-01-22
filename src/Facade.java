@@ -8,7 +8,9 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import projet_jee.Artiste;
+import projet_jee.Evenement;
 import projet_jee.Message;
+import projet_jee.Tournee;
 import projet_jee.Utilisateur;
 
 
@@ -335,5 +337,26 @@ public class Facade {
 		public Collection<Message> getMPs(int id) {
 			Utilisateur u = em.find(Utilisateur.class, id);
 			return u.getMessagesPerso();
+		}
+		
+		public void poster(String auteur,int id,String mess,String date, int typeC) {
+			Message m = new Message();
+			m.setAuteur(auteur);
+			m.setDate(date);
+			m.setMessage(mess);
+			em.persist(m);
+			
+			Message m2 = this.em.find(Message.class,m.getId());
+			if (typeC == 1) {
+				Evenement e = em.find(Evenement.class,id);
+				e.getCommentaires().add(m2);
+			} 
+			else if (typeC == 2) {
+				Artiste a = em.find(Artiste.class,id);
+				a.getCommentaires().add(m2);
+			} else if (typeC == 3) {
+				Tournee t = em.find(Tournee.class,id);
+				t.getCommentaires().add(m2);
+			}
 		}
 }
