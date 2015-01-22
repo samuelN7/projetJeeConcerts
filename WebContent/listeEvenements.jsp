@@ -108,11 +108,21 @@
 		 
 		 out.print("<tr>");
          out.print("<td><a href=\"/projet_jee/Serv?op=lienEvenement&param="+e.getTitre()+"\">"+e.getTitre()+"</a></td>");
-         out.print("<td>"+e.getArtiste()+"</td>");
-         out.print("<td>"+e.getSalle()+"</td>");
+         if(e.getArtiste()!=null){
+        	 out.print("<td>"+e.getArtiste().getNom_groupe()+"</td>");
+        	 				}
+         else{
+        	 out.print("<td>"+e.getArtiste()+"</td>");
+         }
+         if(e.getSalle()!=null){
+        	 out.print("<td>"+e.getSalle().getNom()+"</td>");
+        	 				}
+        else{
+        	 out.print("<td>"+e.getSalle()+"</td>");
+        }
          out.print("<td>"+e.getDate()+"</td>");
          out.print("<td>"+e.getPrix()+"</td>");
-         out.print("<td><a href=\"/projet_jee/Serv?op=lienTournee&param="+e.getTitreTournee()+"\">"+e.getTitreTournee()+"</a></td>");
+      //   out.print("<td><a href=\"/projet_jee/Serv?op=lienTournee&param="+e.getTitreTournee()+"\">"+e.getTitreTournee()+"</a></td>");
          out.print("</tr>");
       
 	 }
