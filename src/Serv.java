@@ -178,7 +178,7 @@ public class Serv extends HttpServlet {
 			 
 		}
 		else if(op.equals("ajouterEvt")) {
-			if(session!=null){
+			if( (Integer) request.getSession().getAttribute("estInscris") == 1){
 				String nom = request.getParameter("nomEvt");
 				String description = request.getParameter("descriptionEvt");
 				String nomsalle = request.getParameter("nomSalle");
@@ -225,7 +225,7 @@ public class Serv extends HttpServlet {
 			}
 		}
 		else if(op.equals("ajouterSalle")) {
-			if(session!=null){
+			if((Integer) request.getSession().getAttribute("estInscris") == 1){
 				String nom = request.getParameter("nomSalle");
 				String adresse = request.getParameter("adresse");
 				String ville = request.getParameter("ville");
