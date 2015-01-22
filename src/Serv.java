@@ -189,22 +189,26 @@ public class Serv extends HttpServlet {
 				Artiste artiste = (Artiste) request.getSession().getAttribute("uti");
 			
 				facade.ajoutEvt(artiste.getId(),nom,description,nomsalle, date,prix,tournee);
-				request.getRequestDispatcher("PagePerso.jsp").forward(request, response);
+				request.getRequestDispatcher("/Serv?op=pagePerso").forward(request, response);
 			}
 			else {
 				request.getRequestDispatcher("connexion.html").forward(request, response);
 			}
 		}
 		else if (op.equals("ajouterTournee")) {
-			String nom = request.getParameter("nomT");
-			String dateD = request.getParameter("dateD");
-			String dateF = request.getParameter("dateF");			
-			String desc = request.getParameter("descT");
-			//Artiste artiste = (Artiste) session.getAttribute(ATT_SESSION_USER);
-			Artiste artiste = (Artiste) request.getSession().getAttribute("uti");
-			facade.ajouterTournee(nom,dateD,dateF,desc,artiste.getId());			
-			request.getRequestDispatcher("PagePerso.jsp").forward(request, response);
-			
+			if( (Integer) request.getSession().getAttribute("estInscris") == 1){
+				String nom = request.getParameter("nomT");
+				String dateD = request.getParameter("dateD");
+				String dateF = request.getParameter("dateF");			
+				String desc = request.getParameter("descT");
+				//Artiste artiste = (Artiste) session.getAttribute(ATT_SESSION_USER);
+				Artiste artiste = (Artiste) request.getSession().getAttribute("uti");
+				facade.ajouterTournee(nom,dateD,dateF,desc,artiste.getId());			
+				request.getRequestDispatcher("/Serv?op=pagePerso").forward(request, response);
+			}
+			else {
+				request.getRequestDispatcher("connexion.html").forward(request, response);
+			}
 			
 		}
 		else if(op.equals("suivreArtiste")) {
@@ -234,7 +238,7 @@ public class Serv extends HttpServlet {
 				int tel = Integer.parseInt(request.getParameter("tel"));
 			
 				facade.ajoutSalle(adresse, nom, ville, capacite, tel, description);
-				request.getRequestDispatcher("PagePerso.jsp").forward(request, response);
+				request.getRequestDispatcher("/Serv?op=pagePerso").forward(request, response);
 			}
 			else{
 				request.getRequestDispatcher("connexion.html").forward(request, response);	

@@ -77,7 +77,7 @@
  				out.println("<a href=\"/projet_jee/Serv?op=lienArtiste&param="+a.getNom_groupe()+"\">"+a.getNom_groupe()+"</a> <br>"); 
 			} 
 			} else {
-				out.println("Vous n'aimez personnes? <br>");
+				out.println("Vous n'aimez personne? <br>");
 			}
 			
 			Collection<Evenement> evts = (Collection<Evenement>) request.getAttribute("evtsFav");
@@ -101,8 +101,8 @@
 		<%  
 		if ( (Boolean) request.getAttribute("estArtiste") ) {
 				out.println("<a href=\"/projet_jee/AjouterEvenement.jsp\">Créer un événement</a> <br>");
-				out.println("<a href=\"/projet_jee/AjouterEvenement.jsp\">Créer une tournée</a> <br>");
-				out.println("<a href=\"/projet_jee/AjouterEvenement.jsp\">Ajouter une salle</a> <br>");
+				out.println("<a href=\"/projet_jee/AjouterTournee.jsp\">Créer une tournée</a> <br>");
+				out.println("<a href=\"/projet_jee/AjouterSalle.jsp\">Ajouter une salle</a> <br>");
 
 			}
 		%>
