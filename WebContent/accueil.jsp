@@ -37,6 +37,7 @@
 					<li><a href="/projet_jee/Serv?op=listerEvenements">Evenements</a></li>
 					<li><a href="/projet_jee/Serv?op=listerUtilisateurs">Membres</a></li>
 					<li><a href="/projet_jee/Serv?op=listerTournees">Tournees</a></li>
+					<li><a href="/projet_jee/Serv?op=pagePerso">MaPagePerso</a></li>
 				</ul>	
 		
 				<p id="descriptionSite"> Ne loupez aucun événement de vos artistes préférés ! <br />
