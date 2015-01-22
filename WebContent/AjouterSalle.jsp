@@ -14,14 +14,7 @@
 		
 			<div id="bandeau2"></div>
 			
-			<div id="connexion">
-			<a href="inscription.html">Inscription</a>
-			<%	if ( !((Integer) request.getSession().getAttribute("estInscris") == 1)) {%> 
-			<a href=connexion.html>Connexion</a>
-			<%} %>
- 			<%	if ( (Integer) request.getSession().getAttribute("estInscris") == 1) {%>
- 			<a href="/projet_jee/Serv?op=deconnexion">Deconnexion</a> 
-			<%} %>
+			<div id="connexion"> <a href="inscription.html">Inscription</a> <a href=connexion.html>Connexion</a><a href="/projet_jee/Serv?op=deconnexion">Deconnexion</a> 
 			</div>
 			
 			
@@ -45,7 +38,8 @@
 			</nav>
 		</header>
 
-
+		<!-- Les champs necessaires a l'ajout d'une salle  -->
+		
 		<p>Tous les champs ci-dessous sont <span style="color: red; font-weight: bold;">obligatoires :</span></p><br />
 
 
@@ -67,6 +61,6 @@
 			</form>
 
 	<script src="AjouterSalle.js"></script>
-	<script src="JsAccueil.js"></script>	
+	<script src="Accueil.js"></script>	
 </body>
 </html>

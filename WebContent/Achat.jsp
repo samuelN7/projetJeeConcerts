@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Achat</title>
 <link rel="stylesheet" href="styleConnexion.css" />
 </head>
 <body>
@@ -14,14 +14,7 @@
 		
 			<div id="bandeau2"></div>
 			
-			<div id="connexion">
-			<a href="inscription.html">Inscription</a>
-			<%	if ( !((Integer) request.getSession().getAttribute("estInscris") == 1)) {%> 
-			<a href=connexion.html>Connexion</a>
-			<%} %>
- 			<%	if ( (Integer) request.getSession().getAttribute("estInscris") == 1) {%>
- 			<a href="/projet_jee/Serv?op=deconnexion">Deconnexion</a> 
-			<%} %>
+			<div id="connexion"> <a href="inscription.html">Inscription</a> <a href=connexion.html>Connexion</a><a href="/projet_jee/Serv?op=deconnexion">Deconnexion</a> 
 			</div>
 			
 			
@@ -45,6 +38,8 @@
 			</nav>
 		</header>
 		
+<!-- les differents champs necessaires pour l'achat -->		
+		
 <form method="Get" action="Serv" id="acheté">
 
 			Nom : 				<input type="text" name="nom" /><br>
@@ -57,6 +52,6 @@
 			<input type="submit" value="J'achète !" id="acheté" >  
 			<input type="hidden" name="op" value="acheté"/>
 </form>
-<script src="JsAccueil.js"></script>
+<script src="Accueil.js"></script>
 </body>
 </html>

@@ -22,14 +22,7 @@
 		
 			<div id="bandeau2"></div>
 			
-			<div id="connexion">
-			<a href="inscription.html">Inscription</a>
-			<%	if ( !((Integer) request.getSession().getAttribute("estInscris") == 1)) {%> 
-			<a href=connexion.html>Connexion</a>
-			<%} %>
- 			<%	if ( (Integer) request.getSession().getAttribute("estInscris") == 1) {%>
- 			<a href="/projet_jee/Serv?op=deconnexion">Deconnexion</a> 
-			<%} %>
+			<div id="connexion"> <a href="inscription.html">Inscription</a> <a href=connexion.html>Connexion</a><a href="/projet_jee/Serv?op=deconnexion">Deconnexion</a> 
 			</div>
 			
 			
@@ -78,6 +71,8 @@
 			out.println("<p>"+pseudo+"</p>");%>
 	
 		
+	<!-- On affiche les differentes caracteristiques de l'utilisateur -->	
+		
 	<% Collection<Artiste> as = (Collection<Artiste>) request.getAttribute("favoris");
 			out.println("Mes Favoris : <br>");
 			if (as != null) {
@@ -106,6 +101,8 @@
  		}
 		%> 
 		
+		<!-- Affichage des options si on est un artiste -->
+		
 		<%  
 		if ( (Boolean) request.getAttribute("estArtiste") ) {
 				out.println("<a href=\"/projet_jee/AjouterEvenement.jsp\">Créer un événement</a> <br>");
@@ -115,7 +112,7 @@
 			}
 		%>
  		<p> ${sessionScope.sessionUtilisateur.pseudo} </p>
- 	<script src="JsAccueil.js"></script>	
+ 	<script src="Accueil.js"></script>	
 </body>
 
 

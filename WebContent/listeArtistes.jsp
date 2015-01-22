@@ -17,14 +17,7 @@
 		
 			<div id="bandeau2"></div>
 			
-			<div id="connexion">
-			<a href="inscription.html">Inscription</a>
-			<%	if ( !((Integer) request.getSession().getAttribute("estInscris") == 1)) {%> 
-			<a href=connexion.html>Connexion</a>
-			<%} %>
- 			<%	if ( (Integer) request.getSession().getAttribute("estInscris") == 1) {%>
- 			<a href="/projet_jee/Serv?op=deconnexion">Deconnexion</a> 
-			<%} %>
+			<div id="connexion"> <a href="inscription.html">Inscription</a> <a href=connexion.html>Connexion</a><a href="/projet_jee/Serv?op=deconnexion">Deconnexion</a> 
 			</div>
 			
 			
@@ -83,6 +76,8 @@
 
    <tbody> <!-- Corps du tableau -->
    
+   		<!-- On ecrit la liste des artistes de type lien vers la page de l'artiste-->
+   		
 		<% Collection<Artiste> artistes = (Collection<Artiste>)request.getAttribute("listeArtistes");
 	
 	 for(Artiste a : artistes) {
@@ -104,6 +99,6 @@
    </tbody>
 
 </table>
-<script src="JsAccueil.js"></script>
+<script src="Accueil.js"></script>
 </body>
 </html>

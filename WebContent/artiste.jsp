@@ -16,14 +16,7 @@
 		
 			<div id="bandeau2"></div>
 			
-			<div id="connexion">
-			<a href="inscription.html">Inscription</a>
-			<%	if ( !((Integer) request.getSession().getAttribute("estInscris") == 1)) {%> 
-			<a href=connexion.html>Connexion</a>
-			<%} %>
- 			<%	if ( (Integer) request.getSession().getAttribute("estInscris") == 1) {%>
- 			<a href="/projet_jee/Serv?op=deconnexion">Deconnexion</a> 
-			<%} %>
+			<div id="connexion"> <a href="inscription.html">Inscription</a> <a href=connexion.html>Connexion</a><a href="/projet_jee/Serv?op=deconnexion">Deconnexion</a> 
 			</div>
 			
 			
@@ -47,6 +40,8 @@
 			</nav>
 		</header>
 
+	<!-- on affiche les differents attributs de l'artiste -->
+	
 	<% Artiste a = (Artiste)request.getAttribute("artiste");
 	out.println(a.getNom_groupe()+ "<br>");
 	out.println("<br>");
@@ -107,6 +102,6 @@
 	<input type="hidden" name="idEvt" value="<%=a.getId()%>"/>
 	<input type="hidden" name="typeC" value="2"/>	
 	</form>
-	<script src="JsAccueil.js"></script>
+	<script src="Accueil.js"></script>
 	</body>
 </html>

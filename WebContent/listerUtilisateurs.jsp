@@ -16,14 +16,7 @@
 		
 			<div id="bandeau2"></div>
 			
-			<div id="connexion">
-			<a href="inscription.html">Inscription</a>
-			<%	if ( !((Integer) request.getSession().getAttribute("estInscris") == 1)) {%> 
-			<a href=connexion.html>Connexion</a>
-			<%} %>
- 			<%	if ( (Integer) request.getSession().getAttribute("estInscris") == 1) {%>
- 			<a href="/projet_jee/Serv?op=deconnexion">Deconnexion</a> 
-			<%} %>
+			<div id="connexion"> <a href="inscription.html">Inscription</a> <a href=connexion.html>Connexion</a><a href="/projet_jee/Serv?op=deconnexion">Deconnexion</a> 
 			</div>
 			
 			
@@ -54,6 +47,8 @@
 	Rechercher un utilisateur ou un artiste :
 	<br>
 	<br>
+	
+	<!-- Barre de recherche -->
 	
 	<form method="Get" action="Serv">	
 			<label for="pseudoRech">Pseudo : </label> 	
@@ -118,6 +113,8 @@
 
    <tbody> <!-- Corps du tableau -->
    
+   		<!-- La liste des utilisateurs avec le lien menant a chaque page de l'utilisateur -->
+   
 		  <% Collection<Utilisateur> users2 = (Collection<Utilisateur>)request.getAttribute("listeUtilisateurs");
 	 for(Utilisateur u : users2) {
 		 
@@ -142,6 +139,6 @@
 
 
 
-	<script src="JsAccueil.js"></script>
+	<script src="Accueil.js"></script>
 	</body>
 </html>

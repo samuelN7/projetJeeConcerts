@@ -16,14 +16,7 @@
 		
 			<div id="bandeau2"></div>
 			
-			<div id="connexion">
-			<a href="inscription.html">Inscription</a>
-			<%	if ( !((Integer) request.getSession().getAttribute("estInscris") == 1)) {%> 
-			<a href=connexion.html>Connexion</a>
-			<%} %>
- 			<%	if ( (Integer) request.getSession().getAttribute("estInscris") == 1) {%>
- 			<a href="/projet_jee/Serv?op=deconnexion">Deconnexion</a> 
-			<%} %>
+			<div id="connexion"> <a href="inscription.html">Inscription</a> <a href=connexion.html>Connexion</a><a href="/projet_jee/Serv?op=deconnexion">Deconnexion</a> 
 			</div>
 			
 			
@@ -47,7 +40,7 @@
 			</nav>
 		</header>
 	
-	
+	<!-- Affichage des attributs de la tournee -->
 	
 	<% Tournee t = (Tournee)request.getAttribute("tournee");
 		out.println(t.getTitre()+" <br>");//+t.getArtiste());
@@ -87,14 +80,17 @@
 		
 		
 	%>	
+	
+	<!--  Pour poster un message -->
+	
 	<form method ="get" action="Serv" id="poster"> 
-	<textarea name = "commentaire" rows="5" cols="40" placeholder="Lâchez-vous les cocos !"></textarea> <br>
-	<input type="submit" value="Poster" id="poste" > 
-	<input type="hidden" name="op" value="poster"/>
-	<input type="hidden" name="idEvt" value="<%=t.getId()%>"/>
-	<input type="hidden" name="typeC" value="3"/>	
+		<textarea name = "commentaire" rows="5" cols="40" placeholder="Lâchez-vous les cocos !"></textarea> <br>
+		<input type="submit" value="Poster" id="poste" > 
+		<input type="hidden" name="op" value="poster"/>
+		<input type="hidden" name="idEvt" value="<%=t.getId()%>"/>
+		<input type="hidden" name="typeC" value="3"/>	
 	</form>
 	
-	<script src="JsAccueil.js"></script>
+	<script src="Accueil.js"></script>
 	</body>
 </html>

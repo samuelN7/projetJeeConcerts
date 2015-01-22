@@ -17,14 +17,7 @@
 		
 			<div id="bandeau2"></div>
 			
-			<div id="connexion">
-			<a href="inscription.html">Inscription</a>
-			<%	if ( !((Integer) request.getSession().getAttribute("estInscris") == 1)) {%> 
-			<a href=connexion.html>Connexion</a>
-			<%} %>
- 			<%	if ( (Integer) request.getSession().getAttribute("estInscris") == 1) {%>
- 			<a href="/projet_jee/Serv?op=deconnexion">Deconnexion</a> 
-			<%} %>
+			<div id="connexion"> <a href="inscription.html">Inscription</a> <a href=connexion.html>Connexion</a><a href="/projet_jee/Serv?op=deconnexion">Deconnexion</a> 
 			</div>
 			
 			
@@ -48,6 +41,8 @@
 			</nav>
 		</header>	
 
+
+ 	<!-- On affiche les attributs de la salle -->
 
 	<%
 	Salle s = (Salle)request.getAttribute("salle");
@@ -99,6 +94,6 @@
 	<input type="hidden" name="op" value="suivreSalle"/>
 	<input type="hidden" name="salle" value=<%=s%>/>
 	</form>
-	<script src="JsAccueil.js"></script>
+	<script src="Accueil.js"></script>
 </body>
 </html>

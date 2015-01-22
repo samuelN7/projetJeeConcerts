@@ -16,14 +16,7 @@
 		
 			<div id="bandeau2"></div>
 			
-			<div id="connexion">
-			<a href="inscription.html">Inscription</a>
-			<%	if ( !((Integer) request.getSession().getAttribute("estInscris") == 1)) {%> 
-			<a href=connexion.html>Connexion</a>
-			<%} %>
- 			<%	if ( (Integer) request.getSession().getAttribute("estInscris") == 1) {%>
- 			<a href="/projet_jee/Serv?op=deconnexion">Deconnexion</a> 
-			<%} %>
+			<div id="connexion"> <a href="inscription.html">Inscription</a> <a href=connexion.html>Connexion</a><a href="/projet_jee/Serv?op=deconnexion">Deconnexion</a> 
 			</div>
 			
 			
@@ -48,6 +41,8 @@
 		</header>
 	
 	<h2>Liste des salles repertoriées</h2>
+	
+	<!-- Barre de recherche -->
 	
 	<form method="Get" action="Serv">	
 			<label for="rechercheNom">Nom : </label> 	
@@ -103,7 +98,9 @@
 
    <tbody> <!-- Corps du tableau -->
    
-		 <% Collection<Salle> salles = (Collection<Salle>)request.getAttribute("listeSalles");
+   		<!-- On affiche les caractéristiques de chaque salle -->
+   
+	<% Collection<Salle> salles = (Collection<Salle>)request.getAttribute("listeSalles");
 	
 	 for(Salle s : salles) {
 		 
@@ -128,6 +125,6 @@
    </tbody>
 
 </table>
-<script src="JsAccueil.js"></script>
+<script src="Accueil.js"></script>
 	</body>
 </html>

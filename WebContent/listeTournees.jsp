@@ -16,14 +16,7 @@
 		
 			<div id="bandeau2"></div>
 			
-			<div id="connexion">
-			<a href="inscription.html">Inscription</a>
-			<%	if ( !((Integer) request.getSession().getAttribute("estInscris") == 1)) {%> 
-			<a href=connexion.html>Connexion</a>
-			<%} %>
- 			<%	if ( (Integer) request.getSession().getAttribute("estInscris") == 1) {%>
- 			<a href="/projet_jee/Serv?op=deconnexion">Deconnexion</a> 
-			<%} %>
+			<div id="connexion"> <a href="inscription.html">Inscription</a> <a href=connexion.html>Connexion</a><a href="/projet_jee/Serv?op=deconnexion">Deconnexion</a> 
 			</div>
 			
 			
@@ -50,6 +43,8 @@
 	<h2>Les tournées à venir</h2>
 	<br>
 	
+	<!-- Barre de recherche -->
+	
 	<form method="Get" action="Serv">	
 			<label for="titreTournee">Titre : </label> 	
 			<input type="text" name="titreTournee" id="titreTournee" />
@@ -61,11 +56,13 @@
 	<br>
 	<br>
 	
+	<!-- On affiche les liens vers chaque tournee -->
+	
 	<% Collection<Tournee> tournees = (Collection<Tournee>)request.getAttribute("listeTournees");
 	 for(Tournee t : tournees) {
 		 out.println("<a href=\"/projet_jee/Serv?op=lienTournee&param="+t.getTitre()+"\">"+t.getTitre()+"</a> <br>");
 		 out.println("<br>");
 	}%>
 	</body>
-	<script src="JsAccueil.js"></script>
+	<script src="Accueil.js"></script>
 </html>

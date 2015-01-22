@@ -41,6 +41,8 @@
 	
 		<p>Tous les champs ci-dessous sont <span style="color: red; font-weight: bold;">obligatoires :</span></p>
 	
+		<!-- les differents champs a remplir pour l'inscription -->
+		
 		<form method="Get" action="Serv" id="formulaireInscription">
 			<input type="checkbox" name="checkbox" id="checkbox" > <label for="Artiste"> Cochez si vous voulez vous inscrire en tant qu'artiste </label><br/><br />
 			<img id="erreur1" src="erreur.png" alt="erreur1" height="12" width="12">
@@ -68,11 +70,13 @@
 				 <textarea name="desc_groupe" id="adesc_groupe" rows="10" cols="50" placeholder="Informez les gens sur ce que vous produisez. Donnez leur envie de vous follow, d'aller voir vos Evenements."></textarea><br>
 			</div>
 			<br/>
+			
+			<!-- le bouton -->
 			<input type="submit" value="S'inscrire" id="bouton" />
 			<input type="hidden" name="op" value="ajoututilisateur"/>
 		</form>
 		
 		<script src="Inscription.js"></script>
-		<script src="JsAccueil.js"></script>
+		<script src="Accueil.js"></script>
 	</body>
 </html>

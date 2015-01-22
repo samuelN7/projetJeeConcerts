@@ -16,14 +16,7 @@
 		
 			<div id="bandeau2"></div>
 			
-			<div id="connexion">
-			<a href="inscription.html">Inscription</a>
-			<%	if ( !((Integer) request.getSession().getAttribute("estInscris") == 1)) {%> 
-			<a href=connexion.html>Connexion</a>
-			<%} %>
- 			<%	if ( (Integer) request.getSession().getAttribute("estInscris") == 1) {%>
- 			<a href="/projet_jee/Serv?op=deconnexion">Deconnexion</a> 
-			<%} %>
+			<div id="connexion"> <a href="inscription.html">Inscription</a> <a href=connexion.html>Connexion</a><a href="/projet_jee/Serv?op=deconnexion">Deconnexion</a> 
 			</div>
 			
 			
@@ -110,7 +103,10 @@
 
    <tbody> <!-- Corps du tableau -->
    
-		 <% Collection<Evenement> evenements = (Collection<Evenement>)request.getAttribute("listeEvenements");
+   
+   		<!-- La liste des evenements avec le lien menant vers la page de l'evenement  -->
+   		
+	<% Collection<Evenement> evenements = (Collection<Evenement>)request.getAttribute("listeEvenements");
 	 for(Evenement e : evenements) {
 		 
 		 
@@ -130,7 +126,6 @@
         }
          out.print("<td>"+e.getDate()+"</td>");
          out.print("<td>"+e.getPrix()+"</td>");
-      //   out.print("<td><a href=\"/projet_jee/Serv?op=lienTournee&param="+e.getTitreTournee()+"\">"+e.getTitreTournee()+"</a></td>");
          out.print("</tr>");
       
 	 }
@@ -147,6 +142,6 @@
    </tbody>
 
 </table>
-	<script src="JsAccueil.js"></script>
+	<script src="Accueil.js"></script>
 	</body>
 </html>

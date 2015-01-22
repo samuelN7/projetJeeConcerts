@@ -18,14 +18,7 @@
 		
 			<div id="bandeau2"></div>
 			
-			<div id="connexion">
-			<a href="inscription.html">Inscription</a>
-			<%	if ( !((Integer) request.getSession().getAttribute("estInscris") == 1)) {%> 
-			<a href=connexion.html>Connexion</a>
-			<%} %>
- 			<%	if ( (Integer) request.getSession().getAttribute("estInscris") == 1) {%>
- 			<a href="/projet_jee/Serv?op=deconnexion">Deconnexion</a> 
-			<%} %>
+			<div id="connexion"> <a href="inscription.html">Inscription</a> <a href=connexion.html>Connexion</a><a href="/projet_jee/Serv?op=deconnexion">Deconnexion</a> 
 			</div>
 			
 			
@@ -50,13 +43,15 @@
 		</header>
 	
 
-
+			<!-- Les champs a remplir -->
 			<form method="Get" action="Serv" id="ajouterEvenement">
 			Pseudo du destinataire: <input type="text" name="dest" /><br>
 			Message 			 <input type="text" name="mess"/><br>
 			<input type="submit" value="Envoyer" id="envoyer" >  
 			<input type="hidden" name="op" value="sendMP"/>
 			</form>
+			
+		<!-- On affiche les messages deja ecrits -->	
 			
 		<% Collection<Message> mps = (Collection<Message>) request.getAttribute("mps");
  		if (mps != null) {
@@ -70,6 +65,6 @@
 		%> 
 			
 
-<script src="JsAccueil.js"></script>
+<script src="Accueil.js"></script>
 </body>
 </html>
