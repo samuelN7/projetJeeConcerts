@@ -18,33 +18,18 @@ import projet_jee.Utilisateur;
  * 
  */
 
-/**
- * @author Nicolas Ronco
- *
- */
+
 @Singleton
 public class Facade {
 	
 	@PersistenceContext
-	private EntityManager em;
-	
-	public Set<Utilisateur> utilisateurs;
-	public Set<Evenement> evenements;
-	public Set<Artiste> artistes;
-	public Set<Salle> salles;
-	public Set<Tournee> tournees;
-	
+	private EntityManager em;	
 	
 	public Facade() {
-//		this.utilisateurs = new LinkedList<Utilisateur>();
-//		this.artistes = new LinkedList<Artiste>();
-//		this.evenements = new LinkedList<Evenement>();
-//		this.salles = new LinkedList<Salle>();
-//		this.tournees = new LinkedList<Tournee>();
 	}
 	
 	public void ajoutUtilisateur(String nom, String prenom, String pseudo,
-			String motDePasse, String adresseMail, String adresse,String ville){
+		String motDePasse, String adresseMail, String adresse,String ville){
 		Utilisateur u = new Utilisateur();
 		u.setNom(nom);
 		u.setPrenom(prenom);
@@ -57,7 +42,7 @@ public class Facade {
 	}
 	
 	public void ajoutArtiste(String nom, String prenom, String pseudo,
-			String motDePasse, String adresseMail, String adresse,String ville,String nomA, String desc){
+		String motDePasse, String adresseMail, String adresse,String ville,String nomA, String desc){
 		Artiste a = new Artiste();
 		a.setNom(nom);
 		a.setPrenom(prenom);
@@ -68,13 +53,14 @@ public class Facade {
 		a.setVille(ville);
 		a.setNom_groupe(nomA);
 		a.setDescription_groupe(desc);
-		a.setTypeArtiste(1);
+		a.setTypeArtiste(1); //il manque des checkbox dans le formulaire pour ce champ donc un par défaut pour le moment
 		this.em.persist(a);
 	}
 	
 	public void ajoutEvt(int id, String nom, String description, String nomsalle, String date,int prix,String tournee){
 		Evenement e = new Evenement();
 		
+		//On va chercher la salle correspondant au nom donné par l'utilisateur
 		TypedQuery<Salle> tq = em.createQuery("select s from Salle s where s.nom='"+nomsalle+"'", Salle.class);
 		Collection<Salle> salles = (Collection<Salle>) tq.getResultList();
 		if (salles.iterator().hasNext()) {
@@ -82,6 +68,7 @@ public class Facade {
 			e.setSalle(salle);
 		}	
 		
+		//On va chercher la tournée correspondant au nom donné par l'utilisateur
 		TypedQuery<Tournee> tq2 = em.createQuery("select t from Tournee t where t.titre='"+tournee+"'", Tournee.class);
 		Collection<Tournee> tournees = (Collection<Tournee>) tq2.getResultList();
 		if(tournees.iterator().hasNext()) {
@@ -95,7 +82,6 @@ public class Facade {
 		e.setDescription(description);
 		e.setDate(date);
 		e.setPrix(prix);
-		/*this.evenements.add(e);*/
 		em.persist(e);
 	}
 	
@@ -163,6 +149,7 @@ public class Facade {
 		return evenements;
 	}
 
+	//Récupérer un type d'artiste particulier
 	public Collection<Artiste> getArtistes(int type) {
 		TypedQuery<Artiste> tq;
 		if (type==1){
@@ -295,26 +282,24 @@ public class Facade {
 				u1.getArtistesFavoris().add(a1);
 			}
 		
+		//Récupérer un utilisateur à partir de son id
 		public Utilisateur getUtilisateur(int id) {
 			return em.find(Utilisateur.class, id); 
 		}
 		
+		//Récupérer les événements où est inscris un utilisateur
 		public Collection<Evenement> getInscriptions(int id) {
 			Utilisateur u = em.find(Utilisateur.class, id);
-			if (u.getInscris()==null) {
-				System.out.println("NNNNNNNNNNNNNNNNNNNNNNNNNNUUUULLLLLLL");
-			}
 			return u.getInscris();
 		}
 		
+		//Récupérer les artistes favoris d'un utilisateur
 		public Collection<Artiste> getFavoris(int id) {
 			Utilisateur u = em.find(Utilisateur.class, id);
-			if (u.getInscris()==null) {
-				System.out.println("NNNNNNNNNNNNNNNNNNNNNNNNNNUUUULLLLLLL");
-			}
 			return u.getArtistesFavoris();
 		}
 		
+		//Récupérer les événements favoris d'un utilisateur
 		public Collection<Evenement> getEvtsDesFavoris(int id) {
 			Collection<Evenement> retour = null;
 			Collection<Artiste> arts = this.getFavoris(id);
@@ -330,6 +315,7 @@ public class Facade {
 			return retour;				
 		}		
 		
+		//Renvoie vrai si l'id correspond à un artiste, faux sinon
 		public boolean estArtiste(int id) {
 			Utilisateur u = em.find(Utilisateur.class, id);
 			boolean retour;
@@ -340,6 +326,8 @@ public class Facade {
 			}
 			return retour;
 		}
+		
+		//Envoyer un message
 		public void envoyer(String em, String dest, String mess) {
 			Message m = new Message();
 			m.setAuteur(em);
@@ -352,17 +340,18 @@ public class Facade {
 				Utilisateur ut = uts.iterator().next();
 				Utilisateur ut2 = this.em.find(Utilisateur.class,ut.getId());
 				Message m2 = this.em.find(Message.class,m.getId());
-				System.out.println("JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ"+ut2.getNom());
 				m2.setDest(ut2);
 			}
 			
 		}
 		
+		//Obtenir les messages persos d'un utilisateur
 		public Collection<Message> getMPs(int id) {
 			Utilisateur u = em.find(Utilisateur.class, id);
 			return u.getMessagesPerso();
 		}
 		
+		//Poster un commentaire sur une page typeC (nombre différent selon une page artiste, événement ou tournée)
 		public void poster(String auteur,int id,String mess,String date, int typeC) {
 			Message m = new Message();
 			m.setAuteur(auteur);

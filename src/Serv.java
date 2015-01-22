@@ -48,8 +48,10 @@ public class Serv extends HttpServlet {
 		if (request.getSession().isNew()) {
 			int i = 0;
 			request.getSession().setAttribute("estInscris",i );
+			//estInscris vaut 0 si l'utilisateur est anonyme, 1 sinon (cf le traitement de la connexion)
 		}
 		
+		//Inscription d'un utilisateur
 		if(op.equals("ajoututilisateur")){
 			String nom = request.getParameter("nom");
 			String prenom = request.getParameter("prenom");
@@ -69,6 +71,34 @@ public class Serv extends HttpServlet {
 			}
 			request.getRequestDispatcher("accueil.jsp").forward(request, response);
 		}
+		
+		//Connexion d'un utilisateur
+		else if(op.equals("connexion")) {	
+				String pseudo = request.getParameter("pseudo");
+				String mdp = request.getParameter("mdp");
+				request.setAttribute("ut", facade.identifier(pseudo,mdp));
+				Utilisateur ut = (Utilisateur) request.getAttribute("ut");
+				if (ut != null) {
+						//Création d'une session qui connaît l'utilisateur
+						request.getSession().setAttribute("uti", ut);
+						int i = 1;
+						request.getSession().setAttribute("estInscris", 1);
+				}
+					request.getRequestDispatcher("accueil.jsp").forward(request, response);
+		}
+		
+		//Deconnexion
+		else if (op.equals("deconnexion")) {
+					
+			request.getSession().invalidate();
+			int i = 0;
+			//L'utilisateur redevient anonyme
+			request.getSession().setAttribute("estInscris",i );
+			request.getRequestDispatcher("accueil.jsp").forward(request, response);
+					
+		}
+		
+		//Traitements pour les listes 
 		else if(op.equals("listerUtilisateurs")){
 			request.setAttribute("listeUtilisateurs", facade.getUtilisateurs());
 			request.getRequestDispatcher("listerUtilisateurs.jsp").forward(request, response);
@@ -101,6 +131,8 @@ public class Serv extends HttpServlet {
 			request.setAttribute("listeTournees", facade.getTournees());
 			request.getRequestDispatcher("listeTournees.jsp").forward(request, response);
 		}
+		
+		//Traitement pour des recherches
 		else if(op.equals("RechercherSalle")){
 			String rechercheNom = request.getParameter("rechercheNom");
 			String rechercheVille = request.getParameter("rechercheVille");
@@ -122,6 +154,8 @@ public class Serv extends HttpServlet {
 			request.setAttribute("listeUtilisateurs", facade.getPseudoRecherche(pseudo));
 			request.getRequestDispatcher("listerUtilisateurs.jsp").forward(request, response);
 		}
+		
+		//Traitement pour les liens des listes vers les pages individuelles
 		else if(op.equals("lienSalle")){
 			String nomSalle = request.getParameter("param");
 			request.setAttribute("salle", facade.getSalle(nomSalle));
@@ -145,39 +179,17 @@ public class Serv extends HttpServlet {
 			request.getRequestDispatcher("evenement.jsp").forward(request, response);
 		}
 		
-		else if(op.equals("connexion")) {			
-
-			//if (session == null) {
-				String pseudo = request.getParameter("pseudo");
-				String mdp = request.getParameter("mdp");
-				request.setAttribute("ut", facade.identifier(pseudo,mdp));
-				Utilisateur ut = (Utilisateur) request.getAttribute("ut");
-				if (ut != null) {
-					//session = request.getSession();
-					//session.setAttribute(ATT_SESSION_USER, ut);
-					request.getSession().setAttribute("uti", ut);
-					int i = 1;
-					request.getSession().setAttribute("estInscris", 1);
-				}
-				
-		//	}
-			request.getRequestDispatcher("accueil.jsp").forward(request, response);
-		}
-		else if (op.equals("deconnexion")) {
-			
-				request.getSession().invalidate();
-				int i = 0;
-				request.getSession().setAttribute("estInscris",i );
-				request.getRequestDispatcher("accueil.jsp").forward(request, response);
-			
-		}
-		
 		//L'utilisateur est sur un evenement, il veut acheter, on transmet l'evt à la prochaine page
 		else if(op.equals("achat")) { 
-			Evenement e = (Evenement) request.getAttribute("monEvenement");
-			int idevt = Integer.parseInt(request.getParameter("idEvt"));
-			request.getSession().setAttribute("idEvt", idevt);			
-			request.getRequestDispatcher("Achat.jsp").forward(request, response);
+			if( (Integer) request.getSession().getAttribute("estInscris") == 1){
+				Evenement e = (Evenement) request.getAttribute("monEvenement");
+				int idevt = Integer.parseInt(request.getParameter("idEvt"));
+				request.getSession().setAttribute("idEvt", idevt);			
+				request.getRequestDispatcher("Achat.jsp").forward(request, response);
+			} else {
+				request.getRequestDispatcher("connexion.html").forward(request, response);
+			}
+
 		}
 		
 		//On effectue l'achat, l'inscription...
@@ -192,6 +204,7 @@ public class Serv extends HttpServlet {
 			 }		 
 			 
 		}
+		//Ajouts dans la base de donnée via des formulaires
 		else if(op.equals("ajouterEvt")) {
 			if( (Integer) request.getSession().getAttribute("estInscris") == 1){
 				String nom = request.getParameter("nomEvt");
@@ -226,6 +239,24 @@ public class Serv extends HttpServlet {
 			}
 			
 		}
+		else if(op.equals("ajouterSalle")) {
+			if((Integer) request.getSession().getAttribute("estInscris") == 1){
+				String nom = request.getParameter("nomSalle");
+				String adresse = request.getParameter("adresse");
+				String ville = request.getParameter("ville");
+				int capacite = Integer.parseInt(request.getParameter("capacite"));
+				String description = request.getParameter("desciptionSalle");
+				int tel = Integer.parseInt(request.getParameter("tel"));
+			
+				facade.ajoutSalle(adresse, nom, ville, capacite, tel, description);
+				request.getRequestDispatcher("/Serv?op=pagePerso").forward(request, response);
+			}
+			else{
+				request.getRequestDispatcher("connexion.html").forward(request, response);	
+			}		
+		}
+		
+		//Ajouter un artiste aux favoris
 		else if(op.equals("suivreArtiste")) {
 			if ( (Integer) request.getSession().getAttribute("estInscris") == 1) {
 				int id = Integer.parseInt(request.getParameter("artiste"));
@@ -243,23 +274,10 @@ public class Serv extends HttpServlet {
 				request.getRequestDispatcher("connexion.html").forward(request, response);
 			}
 		}
-		else if(op.equals("ajouterSalle")) {
-			if((Integer) request.getSession().getAttribute("estInscris") == 1){
-				String nom = request.getParameter("nomSalle");
-				String adresse = request.getParameter("adresse");
-				String ville = request.getParameter("ville");
-				int capacite = Integer.parseInt(request.getParameter("capacite"));
-				String description = request.getParameter("desciptionSalle");
-				int tel = Integer.parseInt(request.getParameter("tel"));
-			
-				facade.ajoutSalle(adresse, nom, ville, capacite, tel, description);
-				request.getRequestDispatcher("/Serv?op=pagePerso").forward(request, response);
-			}
-			else{
-				request.getRequestDispatcher("connexion.html").forward(request, response);	
-			}		
-		}
+		
+		//Traitement avant l'accès à la page perso
 		else if(op.equals("pagePerso")) {
+			if (((Integer) request.getSession().getAttribute("estInscris")) == 1) {
 			//Utilisateur u = (Utilisateur) session.getAttribute(ATT_SESSION_USER);
 			 Utilisateur u = (Utilisateur) request.getSession().getAttribute("uti");
 			request.setAttribute("inscriptions", facade.getInscriptions(u.getId()));			
@@ -267,7 +285,13 @@ public class Serv extends HttpServlet {
 			request.setAttribute("evtsFav", facade.getEvtsDesFavoris(u.getId()));
 			request.setAttribute("estArtiste", facade.estArtiste(u.getId()));
 			request.getRequestDispatcher("PagePerso.jsp").forward(request, response);
+			} 
+			else {
+				request.getRequestDispatcher("inscription.html").forward(request, response);	
+			}
 		}
+		
+		//Traitement lors de l'envoi d'un message
 		else if(op.equals("sendMP")) {
 			//Utilisateur u = (Utilisateur) session.getAttribute(ATT_SESSION_USER);
 			 Utilisateur u = (Utilisateur) request.getSession().getAttribute("uti");
@@ -275,13 +299,21 @@ public class Serv extends HttpServlet {
 			request.getRequestDispatcher("Serv?op=MP").forward(request, response);
 
 		}
+		
+		//Traitement avant l'accès aux messages persos
 		else if(op.equals("MP")) {
+			if (((Integer) request.getSession().getAttribute("estInscris")) == 1) {
 			//Utilisateur u = (Utilisateur) session.getAttribute(ATT_SESSION_USER);
 			 Utilisateur u = (Utilisateur) request.getSession().getAttribute("uti");
 			request.setAttribute("mps", facade.getMPs(u.getId()));
 			request.getRequestDispatcher("MessagesPersos.jsp").forward(request, response);
+			}  else {
+				request.getRequestDispatcher("inscription.html").forward(request, response);	
+			}
 
 		}
+		
+		//Traitement lors d'un poste d'un commentaire
 		else if(op.equals("poster")) {
 			if (((Integer) request.getSession().getAttribute("estInscris")) == 1) {
 			int typeC = Integer.parseInt(request.getParameter("typeC"));
