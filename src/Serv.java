@@ -274,9 +274,9 @@ public class Serv extends HttpServlet {
 			
 			facade.poster(u.getPseudo(),idEvt,request.getParameter("commentaire"), time.toString(),typeC);//dateFormat.format(actuelle),typeC);
 			response.sendRedirect((String) request.getHeader("Referer"));	
-		}
-		else {
-				request.getRequestDispatcher("inscription.html").forward(request, response);	
+		} else {
+			request.getRequestDispatcher("inscription.html").forward(request, response);	
+			}
 		}
 		
 	}
