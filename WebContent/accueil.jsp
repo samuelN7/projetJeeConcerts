@@ -27,6 +27,12 @@
  			<a href="/projet_jee/Serv?op=deconnexion">Deconnexion</a> 
 			<%} %>
 			<a href="/projet_jee/Serv?op=pagePerso">MaPagePerso</a><br/>
+			
+			<br>
+			<%	if ( (Integer) request.getSession().getAttribute("estInscris") == 1) {
+				out.println( ((Utilisateur) request.getSession().getAttribute("uti")).getPseudo());
+			} %>
+			
 			</div>
 			
 			
