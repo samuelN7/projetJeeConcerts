@@ -94,21 +94,3 @@ nav li:HOVER {
 	border-style: solid;
 	margin: 0 0;
 }
-/* Les articles */
-#derniersEvenements {
-	margin-top: 40px;
-	background: #7fff3b;
-	width: 800px;
-	text-align: center;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-#ArtistesDuMoment {
-	margin-top: 40px;
-	background: #7fff3b;
-	width: 800px;
-	text-align: center;
-	margin-left: auto;
-	margin-right: auto;
-}

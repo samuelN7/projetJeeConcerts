@@ -60,11 +60,7 @@
 			</nav>
 		</header>
 		
-		<article id="derniersEvenements">Faire la requête sql <br>
-		<br>
-		</article>
 		
-		<article id="ArtistesDuMoment">Suggestion?</article>
 	
 			<p> ${sessionScope.sessionUtilisateur.pseudo} </p>
 		
