@@ -22,6 +22,10 @@
 		
 			<div id="bandeau2"></div>
 			
+			<div id="bandeau1"></div>
+		
+			<div id="bandeau2"></div>
+			
 			<div id="connexion">
 			<a href="inscription.html">Inscription</a>
 			<%	if ( !((Integer) request.getSession().getAttribute("estInscris") == 1)) {%> 
@@ -58,33 +62,14 @@
 			</nav>
 		</header>
 	
-	<aside>
-		<ul id = "parcoursPagePerso">
-			<li><a href = "">Profil</a></li>
-			<li><a href = "">Paramètres</a></li>
-			<li><a href = "">Messagerie privée</a></li>
-		</ul>
-	</aside>
-	<img src="avatarDefaut.png" alt="avatar par défaut" height="256" width="256" id="avatarDefaut">
-	<div id="statut">
-		<h4 id="h4">Vous avez le statut : *Artiste ou simple Utilisateur*</h4>
-		 <br />
-		<p>A ce titre vous pouvez:</p> 
-		   <div> - consulter les événements: <a href ="/projet_jee/Serv?op=listerEvenements">liste des Evenements</a></div>
-		   <div> - consulter les Salles proches de chez vous susceptibles de vous intéresser: <a href ="/projet_jee/Serv?op=listerSalles">liste des Salles</a> </div>
-	       <div> - créer un évènement : <a href ="AjouterEvenement.jsp">création d'événement</a></div>
-	         nous vous invitons donc à tenir votre profil artistique à jour afin que tout le monde puisse connaître votre activité   
-	</div>
 
-	<script src="Accueil.js"></script>
-	<script src="PagePerso.js"></script>
-	<a href="AjouterEvenement.jsp"> Ajouter un evenement ! </a>
-	<% String pseudo = (String) request.getAttribute("pseudo"); 
-			out.println("<p>"+pseudo+"</p>");%>
+	
+	
 	
 		
-	<!-- On affiche les differentes caracteristiques de l'utilisateur -->	
-		
+	<!-- On affiche les differentes caracteristiques de l'utilisateur -->
+	
+
 	<% Collection<Artiste> as = (Collection<Artiste>) request.getAttribute("favoris");
 			out.println("Mes Favoris : <br>");
 			if (as != null) {
@@ -123,8 +108,12 @@
 
 			}
 		%>
+		
+		<a href="/projet_jee/Serv?op=MP">Messagerie Privée</a>
+	
  		<p> ${sessionScope.sessionUtilisateur.pseudo} </p>
  	<script src="Accueil.js"></script>	
+ 	<script src="PagePerso.js"></script>	
 </body>
 
 
