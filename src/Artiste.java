@@ -102,6 +102,11 @@ public class Artiste extends Utilisateur {
 	public void setCommentaires(Set<Message> commentaires) {
 		this.commentaires = commentaires;
 	}
+
+
+	public void setTypeArtiste(int typeArtiste) {
+		this.typeArtiste = typeArtiste;
+	}
 	
 
 }
