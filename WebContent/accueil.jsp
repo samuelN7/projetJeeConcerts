@@ -1,3 +1,6 @@
+<%@page import="java.util.*"%>
+<%@page import="projet_jee.*"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -15,10 +18,15 @@
 		
 			<div id="bandeau2"></div>
 			
-			<div id="connexion"> <a href="inscription.html">Inscription</a> <a href=connexion.html>Connexion</a>
-			<%	if ( (Integer) request.getSession().getAttribute("estInscris") == 1) {%>
-			<a href="/projet_jee/Serv?op=deconnexion">Deconnexion</a> 
+			<div id="connexion">
+			<a href="inscription.html">Inscription</a>
+			<%	if ( !((Integer) request.getSession().getAttribute("estInscris") == 1)) {%> 
+			<a href=connexion.html>Connexion</a>
 			<%} %>
+ 			<%	if ( (Integer) request.getSession().getAttribute("estInscris") == 1) {%>
+ 			<a href="/projet_jee/Serv?op=deconnexion">Deconnexion</a> 
+			<%} %>
+			<a href="/projet_jee/Serv?op=pagePerso">MaPagePerso</a><br/>
 			</div>
 			
 			
@@ -37,7 +45,6 @@
 					<li><a href="/projet_jee/Serv?op=listerEvenements">Evenements</a></li>
 					<li><a href="/projet_jee/Serv?op=listerUtilisateurs">Membres</a></li>
 					<li><a href="/projet_jee/Serv?op=listerTournees">Tournees</a></li>
-					<li><a href="/projet_jee/Serv?op=pagePerso">MaPagePerso</a></li>
 				</ul>	
 		
 				<p id="descriptionSite"> Ne loupez aucun événement de vos artistes préférés ! <br />

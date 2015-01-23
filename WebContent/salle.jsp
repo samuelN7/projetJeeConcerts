@@ -17,7 +17,15 @@
 		
 			<div id="bandeau2"></div>
 			
-			<div id="connexion"> <a href="inscription.html">Inscription</a> <a href=connexion.html>Connexion</a><a href="/projet_jee/Serv?op=deconnexion">Deconnexion</a> 
+			<div id="connexion">
+			<a href="inscription.html">Inscription</a>
+			<%	if ( !((Integer) request.getSession().getAttribute("estInscris") == 1)) {%> 
+			<a href=connexion.html>Connexion</a>
+			<%} %>
+ 			<%	if ( (Integer) request.getSession().getAttribute("estInscris") == 1) {%>
+ 			<a href="/projet_jee/Serv?op=deconnexion">Deconnexion</a> 
+			<%} %>
+			<a href="/projet_jee/Serv?op=pagePerso">MaPagePerso</a>
 			</div>
 			
 			
@@ -36,7 +44,6 @@
 					<li><a href="/projet_jee/Serv?op=listerEvenements">Evenements</a></li>
 					<li><a href="/projet_jee/Serv?op=listerUtilisateurs">Membres</a></li>
 					<li><a href="/projet_jee/Serv?op=listerTournees">Tournees</a></li>
-					<li><a href="/projet_jee/Serv?op=pagePerso">MaPagePerso</a></li>
 				</ul>	
 			</nav>
 		</header>	

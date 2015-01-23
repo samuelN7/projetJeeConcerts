@@ -42,7 +42,7 @@ nav {
 	display: inline-block;
 	background-color: #e0e0e0;
 	margin: auto;
-	width: 900px;
+	width: 800px;
 	border-radius: 15px;
 }
 
@@ -65,7 +65,7 @@ nav ul {
 nav li {
 	display: inline-block;
 	border-style: solid;
-	width: 130px;
+	width: 100px;
 	text-align: center;
 }
 
@@ -94,7 +94,6 @@ nav li:HOVER {
 	border-style: solid;
 	margin: 0 0;
 }
-
 /* Les articles */
 #derniersEvenements {
 	margin-top: 40px;
