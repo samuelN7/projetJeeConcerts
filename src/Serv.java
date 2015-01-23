@@ -267,7 +267,7 @@ public class Serv extends HttpServlet {
 					request.setAttribute("favoris", facade.getFavoris(u.getId()));
 					request.setAttribute("inscriptions", facade.getInscriptions(u.getId()));
 					request.setAttribute("evtsFav", facade.getEvtsDesFavoris(u.getId()));
-					request.getRequestDispatcher("PagePerso.jsp").forward(request, response);
+					request.getRequestDispatcher("/Serv?op=pagePerso").forward(request, response);
 				}
 			}
 			else{
